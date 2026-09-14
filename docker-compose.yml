@@ -1,0 +1,11 @@
+services:
+  pqc-bench:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pqc-bench-dev
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app/src
+    command: pytest -v

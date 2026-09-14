@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pqc-bench-api
+  labels:
+    app: pqc-bench-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pqc-bench-api
+  template:
+    metadata:
+      labels:
+        app: pqc-bench-api
+    spec:
+      containers:
+        - name: pqc-bench-api
+          image: pqc-bench:latest
+          command: ["uvicorn", "pqc_bench.api:app", "--host", "0.0.0.0", "--port", "8000"]
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 15
