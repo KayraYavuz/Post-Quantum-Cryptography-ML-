@@ -1,6 +1,6 @@
 # PROJECT STATE
-Son güncelleme: 2026-09-15T00:00:00Z
-Commit: 31f09d9
+Son güncelleme: 2026-09-16T01:53:00Z
+Commit: 127e8e6
 
 ## Aktif İş Kolu
 WS-0 — Altyapı | Adım 0.4 | Durum: DONE
@@ -17,7 +17,7 @@ Beklenen çıktı: Derleyici matrisi ({gcc, clang} x {-O0..-Os}) ile KyberSlash/
 | # | Kol | Durum | Son adım | GPU? | Engel |
 |---|---|---|---|---|---|
 | 0 | WS-0 altyapı | DONE | 0.4 | hayır | |
-| 1 | WS-G sabit zamanlılık | IN_PROGRESS | G.1 | hayır | |
+| 1 | WS-G sabit zamanlılık | DONE | G.3 | hayır | |
 | 2 | WS-F CBOM | PENDING | - | hayır | |
 | 3 | WS-A güvenlik tahmini | PENDING | - | hayır | |
 | 4 | WS-D kuantum maliyet | PENDING | - | hayır | |
@@ -33,7 +33,7 @@ Beklenen çıktı: Derleyici matrisi ({gcc, clang} x {-O0..-Os}) ile KyberSlash/
 
 ## Kabul Kriteri Durumu
 - [x] WS-0: Repo iskeleti, pyproject.toml, Docker multi-stage, Kueue k8s manifestoları
-- [ ] WS-G: KyberSlash + Clangover pozitif, mlkem-native negatif
+- [x] WS-G: KyberSlash + Clangover pozitif, mlkem-native negatif
 - [ ] WS-F: geçerli CycloneDX 1.6 CBOM + 2 politika değerlendirmesi
 - [ ] WS-A: ML-KEM-768 literatürle ±2 bit
 - [ ] WS-D: iki aracın (AQRE, Qualtran) sapması raporlandı
@@ -57,6 +57,6 @@ Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0
 Yok.
 
 ## Sonraki 3 Adım
-1. [WS-G.1] Derleyici matrisi ({gcc, clang} x {-O0..-Os} x {x86_64, aarch64}) kurulum scriptini ve build scriptlerini yazmak.
-2. [WS-G.2] ctgrind/valgrind ve dudect analiz sarmalayıcılarını entegre etmek.
-3. [WS-G.3] KyberSlash1/2 ve Clangover (CVE-2024-37880) regresyon test vakalarını hazırlamak.
+1. [WS-G.1] Derleyici matrisi ({gcc, clang} x {-O0..-Os} x {x86_64, aarch64}) kurulum scriptini ve build scriptlerini yazmak. **(Tamamlandı)**
+2. [WS-G.2] ctgrind/valgrind ve dudect analiz sarmalayıcılarını entegre etmek. **(Tamamlandı)**
+3. [WS-G.3] KyberSlash1/2 ve Clangover (CVE-2024-37880) regresyon test vakalarını hazırlamak. **(Tamamlandı)**
