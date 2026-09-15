@@ -6,12 +6,13 @@ Commit: bf072d8
 WS-0 — Altyapı | Adım 0.4 | Durum: DONE
 WS-G — Sabit Zamanlılık Doğrulaması | Adım G.3 | Durum: DONE
 WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.1 | Durum: DONE
-WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.2 | Durum: IN_PROGRESS
+WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.2 | Durum: DONE
+WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.3 | Durum: IN_PROGRESS
 
 ## Sıradaki Adım
-Dosya: src/pqc_bench/cbom/policy.py
-Komut: python -m pqc_bench.cbom.policy --scan src/
-Beklenen çıktı: NIST SP 800-208 / CNSA 2.0 uyumluluk kontrolü ile kripto politikası değerlendirici modülü.
+Dosya: src/pqc_bench/cbom/tests/test_cbom.py
+Komut: python -m pytest src/pqc_bench/tests/test_cbom.py -v (veya çalıştırılabilir testler)
+Beklenen çıktı: Tüm CBOM birim testleri passed.
 
 ## İş Kolu Durum Tablosu (öncelik sırasıyla)
 | # | Kol | Durum | Son adım | GPU? | Engel |
