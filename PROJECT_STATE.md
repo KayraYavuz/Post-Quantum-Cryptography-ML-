@@ -5,12 +5,13 @@ Commit: bf072d8
 ## Aktif İş Kolu
 WS-0 — Altyapı | Adım 0.4 | Durum: DONE
 WS-G — Sabit Zamanlılık Doğrulaması | Adım G.3 | Durum: DONE
-WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.1 | Durum: IN_PROGRESS
+WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.1 | Durum: DONE
+WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.2 | Durum: IN_PROGRESS
 
 ## Sıradaki Adım
-Dosya: src/pqc_bench/cbom/generator.py
-Komut: python -m pqc_bench.cbom.generator --scan src/
-Beklenen çıktı: CycloneDX 1.6 uyumlu Cryptographic Bill of Materials (CBOM) üretim modülü ve PQC varlık tespiti (ML-KEM, ML-DSA, SLH-DSA, hibrit).
+Dosya: src/pqc_bench/cbom/policy.py
+Komut: python -m pqc_bench.cbom.policy --scan src/
+Beklenen çıktı: NIST SP 800-208 / CNSA 2.0 uyumluluk kontrolü ile kripto politikası değerlendirici modülü.
 
 ## İş Kolu Durum Tablosu (öncelik sırasıyla)
 | # | Kol | Durum | Son adım | GPU? | Engel |
@@ -44,6 +45,7 @@ Beklenen çıktı: CycloneDX 1.6 uyumlu Cryptographic Bill of Materials (CBOM) �
 ## Güncel Metrikler
 | Kol | Model/Araç | Veri | Metrik | Değer [%95 GA] | Artefakt |
 |---|---|---|---|---|---|
+| WS-F | cbom_generator | src/pqc_bench/cbom/generator.py | CBOM Üretim | 8 algoritma tespit edildi, testler geçirildi | artifacts/cbom.json |
 | WS-G | matrix_runner | KyberSlash/Clangover | Regresyon Testleri | 36 senaryo tamamlandı | artifacts/ |
 
 ## Hesap Bütçesi
