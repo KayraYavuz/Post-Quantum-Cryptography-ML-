@@ -1,0 +1,264 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "timestamp": "2026-09-15T23:49:08Z",
+  "components": [
+    {
+      "type": "library",
+      "name": "ML-KEM-512",
+      "version": "1.0.0",
+      "publisher": "OpenCLaw PQC Bench",
+      "properties": [
+        {
+          "name": "algorithm",
+          "value": "ML-KEM-512"
+        },
+        {
+          "name": "nist_reference",
+          "value": "FIPS-203"
+        },
+        {
+          "name": "family",
+          "value": "kem"
+        },
+        {
+          "name": "description",
+          "value": "NIST FIPS 203 KeM-512 (formerly Kyber-512)"
+        }
+      ],
+      "components": [
+        {
+          "path": "src/pqc_bench/cbom/generator.py",
+          "relative": "src/pqc_bench/cbom/generator.py"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "ML-KEM-768",
+      "version": "1.0.0",
+      "publisher": "OpenCLaw PQC Bench",
+      "properties": [
+        {
+          "name": "algorithm",
+          "value": "ML-KEM-768"
+        },
+        {
+          "name": "nist_reference",
+          "value": "FIPS-203"
+        },
+        {
+          "name": "family",
+          "value": "kem"
+        },
+        {
+          "name": "description",
+          "value": "NIST FIPS 203 KeM-768 (formerly Kyber-768)"
+        }
+      ],
+      "components": [
+        {
+          "path": "src/pqc_bench/cbom/generator.py",
+          "relative": "src/pqc_bench/cbom/generator.py"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "ML-KEM-1024",
+      "version": "1.0.0",
+      "publisher": "OpenCLaw PQC Bench",
+      "properties": [
+        {
+          "name": "algorithm",
+          "value": "ML-KEM-1024"
+        },
+        {
+          "name": "nist_reference",
+          "value": "FIPS-203"
+        },
+        {
+          "name": "family",
+          "value": "kem"
+        },
+        {
+          "name": "description",
+          "value": "NIST FIPS 203 KeM-1024 (formerly Kyber-1024)"
+        }
+      ],
+      "components": [
+        {
+          "path": "src/pqc_bench/cbom/generator.py",
+          "relative": "src/pqc_bench/cbom/generator.py"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "ML-DSA-44",
+      "version": "1.0.0",
+      "publisher": "OpenCLaw PQC Bench",
+      "properties": [
+        {
+          "name": "algorithm",
+          "value": "ML-DSA-44"
+        },
+        {
+          "name": "nist_reference",
+          "value": "FIPS-204"
+        },
+        {
+          "name": "family",
+          "value": "dsa"
+        },
+        {
+          "name": "description",
+          "value": "NIST FIPS 204 ML-DSA-44 (formerly Dilithium-2)"
+        }
+      ],
+      "components": [
+        {
+          "path": "src/pqc_bench/cbom/generator.py",
+          "relative": "src/pqc_bench/cbom/generator.py"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "SLH-DSA-Simple",
+      "version": "1.0.0",
+      "publisher": "OpenCLaw PQC Bench",
+      "properties": [
+        {
+          "name": "algorithm",
+          "value": "SLH-DSA-Simple"
+        },
+        {
+          "name": "nist_reference",
+          "value": "FIPS-205"
+        },
+        {
+          "name": "family",
+          "value": "hashbased"
+        },
+        {
+          "name": "description",
+          "value": "NIST FIPS 205 SLH-DSA-Simple (formerly SPHINCS+ Simple)"
+        }
+      ],
+      "components": [
+        {
+          "path": "src/pqc_bench/__init__.py",
+          "relative": "src/pqc_bench/__init__.py"
+        },
+        {
+          "path": "src/pqc_bench/cbom/generator.py",
+          "relative": "src/pqc_bench/cbom/generator.py"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "SLH-DSA-Medium",
+      "version": "1.0.0",
+      "publisher": "OpenCLaw PQC Bench",
+      "properties": [
+        {
+          "name": "algorithm",
+          "value": "SLH-DSA-Medium"
+        },
+        {
+          "name": "nist_reference",
+          "value": "FIPS-205"
+        },
+        {
+          "name": "family",
+          "value": "hashbased"
+        },
+        {
+          "name": "description",
+          "value": "NIST FIPS 205 SLH-DSA-Medium (formerly SPHINCS+ Medium)"
+        }
+      ],
+      "components": [
+        {
+          "path": "src/pqc_bench/__init__.py",
+          "relative": "src/pqc_bench/__init__.py"
+        },
+        {
+          "path": "src/pqc_bench/cbom/generator.py",
+          "relative": "src/pqc_bench/cbom/generator.py"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "SLH-DSA-Full",
+      "version": "1.0.0",
+      "publisher": "OpenCLaw PQC Bench",
+      "properties": [
+        {
+          "name": "algorithm",
+          "value": "SLH-DSA-Full"
+        },
+        {
+          "name": "nist_reference",
+          "value": "FIPS-205"
+        },
+        {
+          "name": "family",
+          "value": "hashbased"
+        },
+        {
+          "name": "description",
+          "value": "NIST FIPS 205 SLH-DSA-Full (formerly SPHINCS+ Full)"
+        }
+      ],
+      "components": [
+        {
+          "path": "src/pqc_bench/__init__.py",
+          "relative": "src/pqc_bench/__init__.py"
+        },
+        {
+          "path": "src/pqc_bench/cbom/generator.py",
+          "relative": "src/pqc_bench/cbom/generator.py"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Ml-Kem-768 Ml-Dsa-65",
+      "version": "1.0.0",
+      "publisher": "OpenCLaw PQC Bench",
+      "properties": [
+        {
+          "name": "algorithm",
+          "value": "Ml-Kem-768 Ml-Dsa-65"
+        },
+        {
+          "name": "family",
+          "value": "hybrid"
+        },
+        {
+          "name": "description",
+          "value": "Hybrid PQC configuration: ml-kem-768 ml-dsa-65"
+        }
+      ],
+      "components": [
+        {
+          "path": "src/pqc_bench/cbom/generator.py",
+          "relative": "src/pqc_bench/cbom/generator.py"
+        }
+      ]
+    }
+  ],
+  "metadata": [
+    {
+      "component": {
+        "type": "application",
+        "name": "pqc-bench",
+        "version": "1.0.0"
+      }
+    }
+  ]
+}
