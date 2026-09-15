@@ -4,7 +4,9 @@ Commit: 31f09d9
 
 ## Aktif İş Kolu
 WS-0 — Altyapı | Adım 0.4 | Durum: DONE
-WS-G — Sabit Zamanlılık Doğrulaması | Adım G.1 | Durum: IN_PROGRESS
+WS-G — Sabit Zamanlılık Doğrulaması | Adım G.1 | Durum: DONE
+WS-G — Sabit Zamanlılık Doğrulaması | Adım G.2 | Durum: DONE
+WS-G — Sabit Zamanlılık Doğrulaması | Adım G.3 | Durum: DONE
 
 ## Sıradaki Adım
 Dosya: src/pqc_bench/constant_time/matrix_runner.py
