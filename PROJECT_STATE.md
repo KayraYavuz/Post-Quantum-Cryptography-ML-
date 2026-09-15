@@ -1,24 +1,23 @@
 # PROJECT STATE
-Son güncelleme: 2026-09-16T01:53:00Z
-Commit: 127e8e6
+Son güncelleme: 2026-09-16T02:40:00Z
+Commit: bf072d8
 
 ## Aktif İş Kolu
 WS-0 — Altyapı | Adım 0.4 | Durum: DONE
-WS-G — Sabit Zamanlılık Doğrulaması | Adım G.1 | Durum: DONE
-WS-G — Sabit Zamanlılık Doğrulaması | Adım G.2 | Durum: DONE
 WS-G — Sabit Zamanlılık Doğrulaması | Adım G.3 | Durum: DONE
+WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.1 | Durum: IN_PROGRESS
 
 ## Sıradaki Adım
-Dosya: src/pqc_bench/constant_time/matrix_runner.py
-Komut: python -m pqc_bench.constant_time.matrix_runner --build-matrix
-Beklenen çıktı: Derleyici matrisi ({gcc, clang} x {-O0..-Os}) ile KyberSlash/Clangover ve mlkem-native referanslarının derleme ve analiz ortamının oluşturulması.
+Dosya: src/pqc_bench/cbom/generator.py
+Komut: python -m pqc_bench.cbom.generator --scan src/
+Beklenen çıktı: CycloneDX 1.6 uyumlu Cryptographic Bill of Materials (CBOM) üretim modülü ve PQC varlık tespiti (ML-KEM, ML-DSA, SLH-DSA, hibrit).
 
 ## İş Kolu Durum Tablosu (öncelik sırasıyla)
 | # | Kol | Durum | Son adım | GPU? | Engel |
 |---|---|---|---|---|---|
 | 0 | WS-0 altyapı | DONE | 0.4 | hayır | |
 | 1 | WS-G sabit zamanlılık | DONE | G.3 | hayır | |
-| 2 | WS-F CBOM | PENDING | - | hayır | |
+| 2 | WS-F CBOM | IN_PROGRESS | F.1 | hayır | |
 | 3 | WS-A güvenlik tahmini | PENDING | - | hayır | |
 | 4 | WS-D kuantum maliyet | PENDING | - | hayır | |
 | 5 | WS-E servis | PENDING | - | hayır | |
@@ -45,6 +44,7 @@ Beklenen çıktı: Derleyici matrisi ({gcc, clang} x {-O0..-Os}) ile KyberSlash/
 ## Güncel Metrikler
 | Kol | Model/Araç | Veri | Metrik | Değer [%95 GA] | Artefakt |
 |---|---|---|---|---|---|
+| WS-G | matrix_runner | KyberSlash/Clangover | Regresyon Testleri | 36 senaryo tamamlandı | artifacts/ |
 
 ## Hesap Bütçesi
 Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0.0 GPU-saat (CPU-only)
@@ -57,6 +57,6 @@ Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0
 Yok.
 
 ## Sonraki 3 Adım
-1. [WS-G.1] Derleyici matrisi ({gcc, clang} x {-O0..-Os} x {x86_64, aarch64}) kurulum scriptini ve build scriptlerini yazmak. **(Tamamlandı)**
-2. [WS-G.2] ctgrind/valgrind ve dudect analiz sarmalayıcılarını entegre etmek. **(Tamamlandı)**
-3. [WS-G.3] KyberSlash1/2 ve Clangover (CVE-2024-37880) regresyon test vakalarını hazırlamak. **(Tamamlandı)**
+1. [WS-F.1] CycloneDX 1.6 CBOM üreteci (src/pqc_bench/cbom/generator.py) ve PQC varlık keşfi (ML-KEM, ML-DSA, SLH-DSA, hibrit).
+2. [WS-F.2] Kriptografik politika değerlendiricisi (NIST SP 800-208 / CNSA 2.0 uyumluluk kontrolü - src/pqc_bench/cbom/policy.py).
+3. [WS-F.3] CBOM ve politika değerlendirmesi birim testleri (tests/test_cbom.py).
