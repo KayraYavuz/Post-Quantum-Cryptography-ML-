@@ -1,0 +1,20 @@
+{
+  "tool_checks": {
+    "valgrind": {
+      "available": false,
+      "error": "[Errno 2] No such file or directory: 'valgrind'"
+    },
+    "dudect": {
+      "available": false,
+      "error": "[Errno 2] No such file or directory: 'dudect'"
+    }
+  },
+  "baseline": [
+    {
+      "timestamp": "2026-09-15T22:39:30.349142Z",
+      "description": "WS-G.2 scaffolding run - tools evaluated, not yet instrumented",
+      "matrix_total": 36
+    }
+  ],
+  "status": "completed"
+}
