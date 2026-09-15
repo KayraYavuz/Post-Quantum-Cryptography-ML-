@@ -29,3 +29,12 @@ artifacts/checkpoints/
 *.parquet
 *.h5
 *.hdf5
+
+# OpenClaw agent workspace metadata
+AGENTS.md
+IDENTITY.md
+SOUL.md
+USER.md
+DREAMS.md
+memory/
+game/
