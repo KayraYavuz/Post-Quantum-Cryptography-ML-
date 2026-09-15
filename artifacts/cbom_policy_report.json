@@ -1,0 +1,45 @@
+{
+  "bom_evaluation": {
+    "cNSA_2_0": {
+      "cNSA_level": "2",
+      "timestamp": "2026-09-15T23:49:08Z",
+      "overall_status": "partial",
+      "ka_compliant": true,
+      "signature_compliant": false,
+      "missing_ka": [],
+      "missing_signature": [
+        "ml-dsa-65",
+        "ml-dsa-87"
+      ],
+      "recommendations": [
+        "Add CNSA 2.0 compliant signature algorithm(s): ml-dsa-65, ml-dsa-87"
+      ]
+    },
+    "nist_sp_800_208": {
+      "overall_status": "compliant",
+      "legacy_algorithms": [],
+      "transitional_algorithms": [
+        "ml-dsa-44",
+        "ml-kem-512",
+        "slh-dsa-simple"
+      ],
+      "recommended_algorithms": [
+        "ml-kem-1024",
+        "slh-dsa-full",
+        "ml-kem-768",
+        "slh-dsa-medium"
+      ],
+      "missing_recommended": [
+        "ml-dsa-65",
+        "ml-dsa-87"
+      ],
+      "unclassified_algorithms": [
+        "ml-kem-768 ml-dsa-65"
+      ],
+      "recommendations": [
+        "Add recommended NIST SP 800-208 algorithms: ml-dsa-65, ml-dsa-87"
+      ]
+    }
+  },
+  "generated_at": "2026-09-15T23:52:28Z"
+}

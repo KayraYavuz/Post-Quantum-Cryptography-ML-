@@ -6,4 +6,6 @@
 
 - 2026-09-16T02:45:00Z | [WS-F.1] CBOM generator created (src/pqc_bench/cbom/generator.py) with CycloneDX 1.6 compatible CBOM generation and PQC varlık tespiti (ML-KEM, ML-DSA, SLH-DSA, hibrit). Unit tests written and passed. | state: DONE
 
-- 2026-09-16T02:45:00Z | [WS-F.2] Kripto politiği değerlendirici (policy.py) için planlandı, generator.py testleri tamamlandı. | state: IN_PROGRESS
+- 2026-09-16T02:45:00Z | [WS-F.2] CBOM politikası değerlendirici (policy.py) oluşturuldu ve NIST SP 800-208 / CNSA 2.0 uyumluluk değerlendirmesi yapıldı. CBOM ve politika raporu artifacts/ klasörüne yazıldı. | state: DONE
+
+- 2026-09-16T02:45:00Z | [WS-F.3] CBOM birim testleri (test_cbom.py) yazıldı ve çalıştırıldı. Tüm testler passed. | state: DONE
