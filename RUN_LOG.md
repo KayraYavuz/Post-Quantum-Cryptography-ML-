@@ -51,3 +51,5 @@
 
 - 2026-09-16T06:35:00Z | [WS-F.1] CBOM analizi ve politikalar değerlendirmesi başlatıldı - CycloneDX 1.6 uyumluluk testleri, 8 algoritma tespit edildi, policy değerlendirmesi tamamlandı
 - 2026-09-16T06:45:00Z | [WS-F.2] CBOM politikası derin değerlendirmesi ve raporlama - NIST SP 800-208 ve CNSA 2.0 uyumluluk analizi tamamlandı
+- 2026-09-16T06:50:00Z | [WS-F.3] CBOM uyumluluk raporu ve artifact oluşturma - CycloneDX 1.6 uyumlu CBOM oluşturuldu; 8 algoritma tespit edildi; tüm birim testler passed | state: DONE
+- 2026-09-16T06:55:00Z | [WS-A.1] Security estimation tests (test_security_estimation.py) çalıştırıldı; tüm 13 test passed; git commit 예정 | state: DONE

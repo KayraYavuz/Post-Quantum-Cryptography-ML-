@@ -3,7 +3,10 @@ Son güncelleme: 2026-09-16T08:40:00Z
 Commit: f61ae6b
 
 ## Aktif İş Kolu
-WS-F — CBOM Analizi ve Politikalar | Adım F.1 | Durum: ACTIVE
+WS-F — CBOM Analizi ve Politikalar | Adım F.3 | Durum: DONE
+
+## Aktif İş Kolu
+WS-A — Güvenlik Tahmini ve Bit Hesaplaması | Adım A.1 | Durum: ACTIVE
 
 ## Aktif İş Kolu
 WS-C — Yan Kanal ve LWE Entegrasyonu | Adım C.2 | Durum: DONE
