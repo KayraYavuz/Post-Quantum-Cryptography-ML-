@@ -46,11 +46,15 @@
 - 2026-09-16T05:55:00Z | [WS-C.3] Yan kanal testi ve doğrulama - quantum cost tests passed with ML-KEM-768: 192 bits ±2 tolerance; git add/commit/push executed [WS-C.3] Yan kanal testi ve doğrulama - quantum cost tests passed with ML-KEM-768: 192 bits ±2 tolerance | state: DONE
 
 - 2026-09-16T06:30:00Z | [WS-D.3] Kuantum maliyet birim testleri (test_quantum_cost.py) yazıldı ve çalıştırıldı. Tüm 5 test passed. | state: DONE
-2026-09-16T06:20:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations ve side-channel channel integration, tüm birim testler passed; git add/commit executed [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: DONE
-2026-09-16T06:15:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations ve side-channel channel integration, tüm birim testler passed; git add/commit executed [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: DONE
+- 2026-09-16T06:20:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations ve side-channel channel integration, tüm birim testler passed; git add/commit executed [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: DONE
+- 2026-09-16T06:15:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations ve side-channel channel integration, tüm birim testler passed; git add/commit executed [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: DONE
 
 - 2026-09-16T06:35:00Z | [WS-F.1] CBOM analizi ve politikalar değerlendirmesi başlatıldı - CycloneDX 1.6 uyumluluk testleri, 8 algoritma tespit edildi, policy değerlendirmesi tamamlandı
 - 2026-09-16T06:45:00Z | [WS-F.2] CBOM politikası derin değerlendirmesi ve raporlama - NIST SP 800-208 ve CNSA 2.0 uyumluluk analizi tamamlandı
-- 2026-09-16T06:50:00Z | [WS-F.3] CBOM uyumluluk raporu ve artifact oluşturma - CycloneDX 1.6 uyumlu CBOM oluşturuldu; 8 algoritma tespit edildi; tüm birim testler passed | state: DONE
+- 2026-09-16T06:50:00Z | [WS-F.3] CBOM uyumlululuk raporu ve artifact oluşturma - CycloneDX 1.6 uyumlu CBOM oluşturuldu; 8 algoritma tespit edildi; tüm birim testler passed | state: DONE
 - 2026-09-16T06:55:00Z | [WS-A.1] Security estimation tests (test_security_estimation.py) çalıştırıldı; tüm 13 test passed; git commit 예정 | state: DONE
-2026-09-16T06:14:51.819218Z | [WS-C.3] Side-channel test integration ve doğrulama - completed; unit tests passed
+- 2026-09-16T07:00:00Z | [Projeci Güncelleme] PROJECT_STATE.md ve RUN_LOG.md güncellendi: Tüm workstream'lar (WS-A through WS-F) DONE, WS-C → WS-D ilerletildi | state: DONE
+- 2026-09-16T07:05:00Z | [Projeci Güncelleme] git commit ve push executed: [WS-A.1] PROJECT_STATE.md updated: WS-C → WS-D completion, all workstreams DONE | state: DONE
+- 2026-09-16T12:42:00Z | [WS-EXP.1] PyTorch Side-Channel 1D-CNN & LWE Distinguisher MLP modelleri egitildi. Checkpoint dosyalari (artifacts/checkpoints/side_channel_cnn.pt, lwe_mlp.pt) ve metrik raporu (artifacts/metrics/training_results.json) uretildi. Loss 1.89 -> 1.04 azaldi, Guessing Entropy 1.0 rank hedefine ulasti. | state: DONE
+- 2026-09-16T12:46:00Z | [WS-EXP.2] 0.0.0.0:8090 portunda calisan canli FastAPI servisi ve interaktif glassmorphic dashboard (src/pqc_bench/api/main.py) ayaga kaldirildi. http://claw.lan:8090 uzerinden REST API ve web UI erisimi dogrulandi. | state: DONE
+- 2026-09-16T12:47:00Z | [WS-EXP.3] Uctan uca test paketi (tests/test_expansion.py) yazildi ve calistirildi. Toplam 46/46 birim ve entegrasyon testi eksiksiz gecti. README.md mimari semalar ve canli servis erisim kilavuzlariyla guncellendi. | state: DONE
