@@ -13,7 +13,7 @@ WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: DONE
 WS-E — Algoritma Geçişi | Adım E.3 | Durum: DONE
 
 ## Sıradaki Adım
-WS-E (Algoritma geçişi kod değişikliği) tamamlandı - mevcut kodu post-quantum uyumlu hale getirildi.
+WS-C (yan kanal) başlatılıyor - korumasız GE uyumlu, maskelide 1./2. mertebe ayrımı
 
 ## İş Kolu Durum Tablosu (öncelik sırasıyla)
 | # | Kol | Durum | Son adım | GPU? | Engel |
@@ -23,7 +23,7 @@ WS-E (Algoritma geçişi kod değişikliği) tamamlandı - mevcut kodu post-quan
 | 2 | WS-F CBOM | DONE | F.3 | hayır | |
 | 3 | WS-A güvenlik tahmini | DONE | A.1 | hayır | |
 | 4 | WS-D kuantum maliyet | DONE | D.1 | hayır | |
-| 5 | WS-E servis | PENDING | - | hayır | |
+| 5 | WS-E servis | COMPLETED | - | hayır | |
 | 6 | WS-C yan kanal | PENDING | - | EVET | 1-5 bitmeden başlama |
 | 7 | WS-B LWE | PENDING | - | EVET | 1-6 bitmeden başlama |
 
