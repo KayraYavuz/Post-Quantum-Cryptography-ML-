@@ -3,12 +3,12 @@ Son güncelleme: 2026-09-16T05:31:00Z
 Commit: f61ae6b
 
 ## Aktif İş Kolu
-WS-C — Yan Kanal ve LWE Entegrasyonu | Adım C.2 | Durum: ACTIVE
+WS-C — Yan Kanal ve LWE Entegrasyonu | Adım C.2 | Durum: DONE
 WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: DONE
 WS-E — Algoritma Geçişi | Adım E.1 | Durum: DONE
 
 WS-C.1 — GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı - DONE
-WS-C.2 — GPU allocate ve yan kanal başlatma - başlatıldı
+WS-C.2 — GPU allocate ve yan kanal başlatma - DONE
 WS-E.1 — Algoritma geçişi kod değişikliği tamamlandı - mevcut kodu post-quantum uyumlu hale getirildi.
 
 WS-C.1 — GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı
