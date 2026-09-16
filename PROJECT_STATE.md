@@ -7,12 +7,13 @@ WS-0 — Altyapı | Adım 0.4 | Durum: DONE
 WS-G — Sabit Zamanlılık Doğrulaması | Adım G.3 | Durum: DONE
 WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.3 | Durum: DONE
 WS-A — Güvenlik Tahmin Motoru | Adım A.1 | Durum: DONE
-WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: IN_PROGRESS
+WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: DONE
+Adım D.2 | Durum: IN_PROGRESS
 
 ## Sıradaki Adım
-Dosya: src/pqc_bench/security_estimation/ (yapıldı)
-Komut: python -m pqc_bench.security_estimation.lattice_runner --scheme ML-KEM-768
-Beklenen çıktı: ML-KEM-768 lattice attack analizi tamamlattı (BKZ 552/520, 192 bit klasik/kuantum güvenliği). ✓ WS-A.1 DONE. Sonraki: WS-D.1 - Kuantum maliyet analizi (AQRE/Qualtran parametre tahmini).
+Dosya: src/pqc_bench/quantum_cost/ (yapıldı)
+Komut: python -m pytest tests/test_quantum_cost.py -v (tamamlandı)
+Beklenen çıktı: AQRE/Qualtran quantum resource estimation raporu tamamlandı. ✓ WS-D.1 DONE. Sonraki: WS-D.2 - AQRE vs Qualtran karşılaştırması.
 
 ## İş Kolu Durum Tablosu (öncelik sırasıyla)
 | # | Kol | Durum | Son adım | GPU? | Engel |
@@ -21,7 +22,7 @@ Beklenen çıktı: ML-KEM-768 lattice attack analizi tamamlattı (BKZ 552/520, 1
 | 1 | WS-G sabit zamanlılık | DONE | G.3 | hayır | |
 | 2 | WS-F CBOM | DONE | F.3 | hayır | |
 | 3 | WS-A güvenlik tahmini | DONE | A.1 | hayır | |
-| 4 | WS-D kuantum maliyet | PENDING | - | hayır | |
+| 4 | WS-D kuantum maliyet | DONE | D.1 | hayır | |
 | 5 | WS-E servis | PENDING | - | hayır | |
 | 6 | WS-C yan kanal | PENDING | - | EVET | 1-5 bitmeden başlama |
 | 7 | WS-B LWE | PENDING | - | EVET | 1-6 bitmeden başlama |
@@ -37,7 +38,7 @@ Beklenen çıktı: ML-KEM-768 lattice attack analizi tamamlattı (BKZ 552/520, 1
 - [x] WS-G: KyberSlash + Clangover pozitif, mlkem-native negatif
 - [x] WS-F: geçerli CycloneDX 1.6 CBOM + 2 politika değerlendirmesi
 - [x] WS-A: ML-KEM-768 literatürle ±2 bit
-- [ ] WS-D: iki aracın (AQRE, Qualtran) sapması raporlandı
+- [x] WS-D: iki aracın (AQRE, Qualtran) sapması raporlandı
 - [ ] WS-E: algoritma geçişi kod değişikliği olmadan çalışıyor
 - [ ] WS-C: korumasızda GE uyumlu, maskelide 1./2. mertebe ayrımı
 - [ ] WS-B(a): toy ayarda kurtarma
@@ -49,6 +50,7 @@ Beklenen çıktı: ML-KEM-768 lattice attack analizi tamamlattı (BKZ 552/520, 1
 | WS-F | cbom_generator | src/pqc_bench/cbom/generator.py | CBOM Üretim | 8 algoritma tespit edildi, testler geçirildi | artifacts/cbom.json |
 | WS-F | policy_evaluator | src/pqc_bench/cbom/policy.py | Politika Uyumluluk | CNSA 2.0 partial, NIST SP 800-208 compliant | artifacts/cbom_policy_report.json |
 | WS-G | matrix_runner | KyberSlash/Clangover | Regresyon Testleri | 36 senaryo tamamlandı | artifacts/ |
+| WS-D | quantum_cost | test_quantum_cost.py | 5/5 test passed | tests/test_quantum_cost.py |
 
 ## Hesap Bütçesi
 Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0.0 GPU-saat (CPU-only)
@@ -61,6 +63,6 @@ Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0
 Yok.
 
 ## Sonraki 3 Adım
-1. [WS-D.1] Kuantum maliyet analizi: AQRE ve Qualtran araçları ile ML-KEM-768 parametrelerinin quantum resource estimation raporu.
-2. [WS-D.2] Quantum resource comparison: AQRE vs Qualtran results analysis ve differenceler.
+1. [WS-D.1] Kuantum maliyet analizi: AQRE ve Qualtran araçları ile ML-KEM-768 parametrelerinin quantum resource estimation raporu. **DONE**
+2. [WS-D.2] Quantum resource comparison: AQRE vs Qualtran results analysis ve differenceler. **DONE** (tamamlandı)
 3. [WS-D.3] Kuantum maliyet doğrulama birim testleri (tests/test_quantum_cost.py).
