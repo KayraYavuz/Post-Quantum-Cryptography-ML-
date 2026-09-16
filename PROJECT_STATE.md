@@ -1,17 +1,19 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
-Son güncelleme: 2026-09-17T02:47:26+03:00
-Referans commit (bu güncelleme öncesi): 05b99b9
+Son güncelleme: 2026-09-16T23:55:28+00:00
+Referans commit (bu güncelleme öncesi): 86a4177; P5.2 kodu: efd3a98
 
 ## Aktif İş Kolu
-WS-P5 — Canlı WebSocket Telemetrisi & SIMD İstatistikleri | Adım P5.2 | Durum: IN_PROGRESS
+WS-P5 — Canlı WebSocket Telemetrisi & SIMD İstatistikleri | Adım P5.3 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P5.2: Mevcut sentetik SIMD istatistik modülünün doğruluk düzeltmelerini ve regresyonlarını tamamla.
-1. Sıralama, eşitlik, sıfır varyans, RNG izolasyonu ve girdi doğrulamasını test et.
-2. Sentetik model sonuçlarını gerçek donanım ölçümü veya sabit zamanlılık kanıtı olarak sunma.
-3. Başarılı testlerden sonra WS-P5.3'e ilerle; dokümantasyon, commit ve push sonucunu kaydet.
+WS-P5.3: Yerel, projeye ait ELF/SO dosyaları için savunma amaçlı statik zamanlama denetçisi.
+1. Mevcut ayrıştırıcı/disassembler araçlarını değerlendir; dosyaları çalıştırmadan incele.
+2. Potansiyel değişken zamanlı komutları inceleme bulgusu olarak raporla; bulgu varlığı/yokluğunu sızıntı veya sabit zamanlılık kanıtı sayma.
+3. Projeye ait küçük test örnekleriyle birim testlerini doğrula; kapsam ve sınırları belgele.
+4. Testlerden sonra commit/push sonucunu kaydet ve WS-P5.4'e ilerle.
 
 ## Doğrulanmış Kapsam ve Sınırlar
+- Son yerel doğrulama: `pytest -q` → 174 passed, 2 bağımlılık deprecation uyarısı (8.92 s). P5.2 sentetik kapsamı tamamlandı; aktif adım P5.3.
 - P5.1: `05b99b9` commit'indeki WebSocket Live Play/Pause yalnızca sentetik görselleştirme sağlar. HDF5/donanım akışı sağlamaz; 60 FPS istek üst sınırıdır, ölçülmüş hız garantisi değildir.
 - P4 + P5.1 regresyonları: `python3 -m pytest tests/test_phase4.py tests/test_phase5.py -q` → 50 passed, 2 bağımlılık deprecation uyarısı.
 - P5.2: AVX2/AVX-512/ARM NEON etiketleri kalibre edilmemiş sentetik model senaryolarıdır; gerçek SIMD NTT çekirdeği veya donanım çevrim ölçümü uygulanmış değildir.
@@ -39,7 +41,7 @@ WS-P5.2: Mevcut sentetik SIMD istatistik modülünün doğruluk düzeltmelerini 
 | 16 | WS-P4.3 Donanım İzi İçe Aktarıcı | DONE | P4.3 | CPU | ChipWhisperer, HDF5, CSV osiloskop izi yükleme ve SNR analizi |
 | 17 | WS-P4.4 GitHub Actions CI/CD | DONE | P4.4 | CI | Otomatik test koşturma ve CBOM doğrulama pipeline'ı |
 | 18 | WS-P5.1 WebSocket | DONE | P5.1 | CPU | Sentetik Live Play/Pause; 1–60 FPS istek sınırı; donanım akışı yok |
-| 19 | WS-P5.2 SIMD İstatistikleri | IN_PROGRESS | P5.2 | CPU | AVX2/AVX-512/ARM NEON etiketli sentetik model; donanım ölçümü yok |
+| 19 | WS-P5.2 SIMD İstatistikleri | DONE (sentetik kapsam) | P5.2 | CPU | AVX2/AVX-512/ARM NEON etiketli sentetik model; donanım ölçümü yok |
 | 20 | WS-P5.3 İkili Dosya (Binary) Zamanlama Denetçisi | TODO | P5.3 | CPU | ELF/SO nesnelerinde idiv/div değişken zamanlı komut tarayıcısı |
 | 21 | WS-P5.4 Otomatik Anomali & Sızıntı Alarmı | TODO | P5.4 | CPU | Eşik aşımı tespit edildiğinde Webhook/JSON bildirim motoru |
 | 22 | WS-P6.1 1D ResNet Derin Öğrenme Omurgası | TODO | P6.1 | CPU/GPU | Residual bağlantılı SideChannelResNet1D modeli |
