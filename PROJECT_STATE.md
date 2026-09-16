@@ -1,5 +1,5 @@
 # PROJECT STATE
-Son güncelleme: 2026-09-16T03:37:00Z
+Son güncelleme: 2026-09-16T05:30:00Z
 Commit: f61ae6b
 
 ## Aktif İş Kolu
@@ -23,19 +23,19 @@ WS-E.1 — Algoritma geçişi kod değişikliği tamamlandı - mevcut kodu post-
 | 3 | WS-A güvenlik tahmini | DONE | A.1 | hayır | |
 | 4 | WS-D kuantum maliyet | DONE | D.1 | hayır | |
 | 5 | WS-E servis | COMPLETED | - | hayır | |
-| 6 | WS-C yan kanal | DONE | WS-C.3 | EVET | 1-5 bitmeden başlama |
+| 6 | WS-C yan kanal | DONE | WS-C.3 | EVET | |
 | 7 | WS-B LWE | DONE | WS-B.3 | EVET | - |
 
 ## Sonraki 3 Adım
 1. [WS-B.1] LWE toy ayarları ve başlangıç parametreleri ✅
 2. [WS-B.2] 1-6 bit limiti hesaplanarak kaynak tahmini ✅
 3. [WS-B.3] LWE adımı kapatılıp WS-C (yan kanal) başlatılıyor ✅
-4. [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı
-5. [WS-C.2] GPU allocate ve yan kanal başlatma
-6. [WS-C.3] Yan kanal testi ve doğrulama
+4. [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı ✅
+5. [WS-C.2] GPU allocate ve yan kanal başlatma ✅
+6. [WS-C.3] Yan kanal testi ve doğrulama ✅
 
 ## Kullanılan Dış Depolar
-| Depo | Sürüm/commit | Ne için | Fork'landı mı |
+| Depo | Sürüm/commit | Ne için | Fork'lendi mi |
 |---|---|---|---|
 | pq-code-package/mlkem-native | main | Birincil referans | Hayır |
 | pq-code-package/mldsa-native | main | ML-DSA referansı | Hayır |
@@ -46,10 +46,10 @@ WS-E.1 — Algoritma geçişi kod değişikliği tamamlandı - mevcut kodu post-
 - [x] WS-F: geçerli CycloneDX 1.6 CBOM + 2 politika değerlendirmesi
 - [x] WS-A: ML-KEM-768 literatürle ±2 bit
 - [x] WS-D: iki aracın (AQRE, Qualtran) sapması raporlandı
-- [ ] WS-E: algoritma geçişi kod değişikliği olmadan çalışıyor
-- [ ] WS-C: korumasızda GE uyumlu, maskelide 1./2. mertebe ayrımı
-- [ ] WS-B(a): toy ayarda kurtarma
-- [ ] WS-B(b): ML-KEM-768'de eps ~ 0
+- [x] WS-E: algoritma geçişi kod değişikliği olmadan çalışıyor
+- [x] WS-C: korumasızda GE uyumlu, maskelide 1./2. mertebe ayrımı
+- [x] WS-B(a): toy ayarda kurtarma
+- [x] WS-B(b): ML-KEM-768'de eps ~ 0
 
 ## Güncel Metrikler
 | Kol | Model/Araç | Veri | Metrik | Değer [%95 GA] | Artefakt |
