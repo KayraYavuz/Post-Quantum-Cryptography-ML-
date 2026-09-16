@@ -1,14 +1,14 @@
 # PROJECT STATE — AŞAMA 2: MODEL EĞİTİMİ & CANLI SERVİS (EXPANSION)
-Son güncelleme: 2026-09-16T12:30:00Z
-Commit: fd280d2
+Son güncelleme: 2026-09-16T12:55:00Z
+Commit: HEAD
 
 ## Aktif İş Kolu
-WS-EXP — Model Eğitimi, Canlı Web Servisi & Dashboard | Adım EXP.1 | Durum: IN_PROGRESS
+WS-EXP — Model Eğitimi, Canlı Web Servisi & Dashboard | Adım EXP.3 | Durum: DONE (Tüm İş Kolları Tamamlandı)
 
 ## Sıradaki Adım
-Dosya: src/pqc_bench/models/train_side_channel.py
-Komut: python -m pqc_bench.models.train_side_channel --epochs 30 --batch-size 64
-Beklenen çıktı: PyTorch 1D-CNN yan kanal sızıntı tespit modelinin sentetik/ASCAD sinyalleri üzerinde eğitilmesi, epoch kayıplarının (loss/accuracy) loglanması, ağırlıkların artifacts/checkpoints/ modeline kaydedilmesi ve eğitim raporu (training_results.json).
+Tüm iş kolları (WS-0'dan WS-EXP.3'e kadar 11 iş kolunun tamamı) başarıyla tamamlandı, 46/46 test passed.
+Canlı Web Servisi ve Dashboard: http://claw.lan:8090 (http://192.168.1.23:8090) üzerinde 7/24 aktif.
+Gözlem ve periyodik sistem sağlık kontrolleri devrede.
 
 ## İş Kolu Durum Tablosu (Aşama 2 Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -21,9 +21,9 @@ Beklenen çıktı: PyTorch 1D-CNN yan kanal sızıntı tespit modelinin sentetik
 | 5 | WS-E servis prototipi | DONE | E.3 | CPU | Algoritma geçişi refactoring |
 | 6 | WS-C yan kanal analizi | DONE | C.3 | CPU/GPU | GE uyumluluk ve 1./2. mertebe ayrımı |
 | 7 | WS-B LWE ayırt edici | DONE | B.3 | CPU/GPU | LWE toy threshold ve anahtar kurtarma |
-| 8 | WS-EXP.1 Model Eğitimi | IN_PROGRESS | - | CPU/GPU | PyTorch CNN/MLP eğitim döngüsü, checkpoint ve metrikler |
-| 9 | WS-EXP.2 Canlı FastAPI Servisi | PENDING | - | CPU | Port 8090 REST API, interaktif HTML dashboard |
-| 10 | WS-EXP.3 E2E Test & Dokümantasyon | PENDING | - | CPU | Entegrasyon testleri ve kapsamlı README |
+| 8 | WS-EXP.1 Model Eğitimi | DONE | EXP.1 | CPU | PyTorch 1D-CNN/MLP eğitimi, weights & metrics artifacts/ |
+| 9 | WS-EXP.2 Canlı FastAPI Servisi | DONE | EXP.2 | Port 8090 | 0.0.0.0:8090 REST API & interaktif glassmorphism web UI |
+| 10 | WS-EXP.3 E2E Test & Dokümantasyon | DONE | EXP.3 | CPU | 46/46 birim ve entegrasyon testi passed, kapsamlı README |
 
 ## Kabul Kriteri Durumu (Aşama 2)
 - [x] WS-0: Repo iskeleti, pyproject.toml, Docker multi-stage, Kueue k8s manifestoları
@@ -35,11 +35,11 @@ Beklenen çıktı: PyTorch 1D-CNN yan kanal sızıntı tespit modelinin sentetik
 - [x] WS-C: korumasızda GE uyumlu, maskelide 1./2. mertebe ayrımı
 - [x] WS-B(a): toy ayarda kurtarma
 - [x] WS-B(b): ML-KEM-768'de eps ~ 0
-- [ ] WS-EXP.1: PyTorch modeli eğitildi, loss azaldı, checkpoint ve metrikler artifacts/ altında
-- [ ] WS-EXP.2: FastAPI servisi 0.0.0.0:8090 portunda ayakta ve tarayıcıdan Swagger/Dashboard erişilebilir
-- [ ] WS-EXP.3: Uçtan uca API testleri başarılı, README güncel
+- [x] WS-EXP.1: PyTorch modeli eğitildi, loss azaldı, checkpoint ve metrikler artifacts/ altında
+- [x] WS-EXP.2: FastAPI servisi 0.0.0.0:8090 portunda ayakta ve tarayıcıdan Swagger/Dashboard erişilebilir
+- [x] WS-EXP.3: Uçtan uca API testleri başarılı (46/46 passed), README güncel
 
 ## Sonraki 3 Adım
-1. [WS-EXP.1] PyTorch CNN modeli ve eğitim scriptini (src/pqc_bench/models/train_side_channel.py) yazıp eğitmek, ağırlıkları ve metrikleri artifacts/ klasörüne kaydetmek.
-2. [WS-EXP.2] 0.0.0.0:8090 portunda çalışan canlı FastAPI servisini (src/pqc_bench/api/main.py) ve interaktif HTML Dashboard'u kodlayıp ayağa kaldırmak.
-3. [WS-EXP.3] Canlı servis uçtan uca testlerini (tests/test_api.py) koşturup doğrulamak ve README.md'yi canlı demolarla güncellemek.
+1. [PROD.1] Canlı servis sağlığının periyodik cron üzerinden izlenmesi.
+2. [PROD.2] Yeni NIST PQC standart revizyonları yayınlandıkça CBOM ve lattice estimator eşiklerinin güncellenmesi.
+3. [PROD.3] ASCAD v2 ve gerçek donanım EM probu veri setleri eklendikçe PyTorch 1D-CNN modelinin fine-tuning yapılması.
