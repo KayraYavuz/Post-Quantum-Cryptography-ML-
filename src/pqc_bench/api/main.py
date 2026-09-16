@@ -22,7 +22,7 @@ from typing import Any, List, Optional
 
 import numpy as np
 import torch
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import FastAPI, HTTPException, Response, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from pydantic import BaseModel, Field
@@ -1340,3 +1340,173 @@ def compute_hdf5_snr(req: Hdf5TraceRequest) -> Dict[str, float]:
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8090, log_level="info")
+
+# ---------------------------------------------------------------------------
+# WS-P5.1: Canlı WebSocket Osiloskop Akışı - /ws/traces Endpoint
+# ---------------------------------------------------------------------------
+
+class WsTraceRequest(BaseModel):
+    trace_type: str = Field("synthetic", description="Type: synthetic|real|hdf5")
+    model: str = Field("unprotected", description="Leakage model: unprotected|protected|masked")
+    n_samples: int = Field(256, ge=1, le=1024, description="Number of trace samples")
+    sample_rate: float = Field(1e9, description="Sample rate in Hz")
+    butterfly_markers: bool = Field(True, description="Show NTT butterfly markers")
+    session_id: Optional[str] = Field(None, description="Optional session identifier")
+
+@app.websocket("/ws/traces")
+async def websocket_traces(ws: WebSocket):
+    """Live WebSocket endpoint for real-time power/EM trace streaming.
+
+    Clients connect and receive continuous synthetic or real trace data
+    with optional NTT butterfly markers. Supports synthetic traces,
+    real HDF5 capture imports, and live dashboard playback controls.
+    """
+    await ws.accept()
+    loader = Hdf5OscilloscopeLoader(filepath="")
+    try:
+        while True:
+            data = await ws.receive_json()
+            trace_type = data.get("trace_type", "synthetic")
+            model = data.get("model", "unprotected")
+            n_samples = data.get("n_samples", 256)
+            sample_rate = data.get("sample_rate", 1e9)
+            butterfly_markers = data.get("butterfly_markers", True)
+
+            if trace_type == "synthetic":
+                # Generate synthetic trace using existing waveform generator
+                trace_info = generate_power_trace(
+                    n_samples=n_samples,
+                    leakage_model=model,
+                    add_noise=True,
+                    butterfly_markers=butterfly_markers,
+                )
+                # Send trace data as JSON
+                await ws.send_json({
+                    "type": "trace",
+                    "trace": trace_info["trace"].tolist(),
+                    "time": trace_info["time"].tolist(),
+                    "leakage_score": trace_info["leakage_score"],
+                    "labels": trace_info["labels"],
+                    "timestamp": time.time() - START_TIME,
+                })
+
+            elif trace_type == "hdf5":
+                filepath = data.get("filepath", "")
+                if filepath:
+                    try:
+                        loader = Hdf5OscilloscopeLoader(filepath)
+                        loader.open()
+                        summary = load_hdf5_traces(filepath)
+                        n_traces = summary.get("n_traces", 1)
+                        n_samples_data = summary.get("n_samples", n_samples)
+
+                        # Send trace chunks
+                        for trace_idx in range(min(n_traces, 10)):  # Limit to 10 traces
+                            await ws.send_json({
+                                "type": "hdf5_trace",
+                                "trace_index": trace_idx,
+                                "trace": summary["traces"][trace_idx]["trace"][:n_samples].tolist(),
+                                "time": summary["traces"][trace_idx]["time"][:n_samples].tolist(),
+                                "sample_rate": summary["metadata"].get("sample_rate", sample_rate),
+                                "timestamp": time.time() - START_TIME,
+                            })
+                        await ws.send_json({
+                            "type": "hdf5_complete",
+                            "message": "HDF5 trace import completed",
+                        })
+                        loader.close()
+                    except Exception as e:
+                        await ws.send_json({
+                            "type": "error",
+                            "message": f"HDF5 import error: {str(e)}",
+                        })
+
+            elif trace_type == "playback":
+                # Live playback mode - continuous streaming
+                n_chunks = data.get("n_chunks", 10)
+                for chunk_idx in range(n_chunks):
+                    trace_info = generate_power_trace(
+                        n_samples=n_samples,
+                        leakage_model=model,
+                        add_noise=True,
+                        butterfly_markers=butterfly_markers,
+                    )
+                    await ws.send_json({
+                        "type": "playback_chunk",
+                        "chunk_index": chunk_idx,
+                        "trace": trace_info["trace"][:n_samples // 4].tolist(),  # Reduced for streaming
+                        "time": trace_info["time"][:n_samples // 4].tolist(),
+                        "leakage_score": trace_info["leakage_score"],
+                        "labels": trace_info["labels"],
+                    })
+                    # Small delay for real-time feel
+                    import asyncio
+                    await asyncio.sleep(0.1)
+
+            else:
+                await ws.send_json({
+                    "type": "error",
+                    "message": f"Unknown trace_type: {trace_type}",
+                })
+    except Exception as e:
+        # Connection closed or error
+        try:
+            await ws.close()
+        except:
+            pass
+
+
+# ---------------------------------------------------------------------------
+# WebSocket Endpoint: Live Trace Streaming (WS-P5.1)
+# ---------------------------------------------------------------------------
+
+@app.websocket("/ws/traces")
+async def websocket_traces(websocket):
+    """WebSocket endpoint for live power/EM trace streaming.
+
+    Clients connect and receive synthetic power/EM trace data including
+    leakage scores, NTT butterfly markers, and protected/unprotected
+    signal samples at ~60 FPS for the Phase 5 live telemetry dashboard.
+    """
+    await websocket.accept()
+    try:
+        # Generate and send initial trace configuration
+        from pqc_bench.visualize.waveform import generate_power_trace
+        import numpy as np
+        import asyncio
+
+        initial_trace = generate_power_trace(n_samples=256, leakage_model="unprotected", butterfly_markers=True)
+        await websocket.send_text(json.dumps({
+            "type": "config",
+            "n_samples": 256,
+            "leakage_model": "unprotected",
+            "butterfly_peak_idx": 128,
+            "sample_rate": 1000000,
+            "initial_leakage_score": initial_trace["leakage_score"],
+        }))
+
+        # Send initial trace data
+        await websocket.send_text(json.dumps({
+            "type": "initial_trace",
+            "trace": initial_trace["trace"].tolist(),
+            "time": initial_trace["time"].tolist(),
+            "labels": initial_trace["labels"],
+        }))
+
+        # Continuously stream updated traces at ~60 FPS
+        while True:
+            trace_data = generate_power_trace(n_samples=256, leakage_model="unprotected", butterfly_markers=True)
+
+            await websocket.send_text(json.dumps({
+                "type": "live_trace",
+                "trace": trace_data["trace"].tolist(),
+                "time": trace_data["time"].tolist(),
+                "leakage_score": trace_data["leakage_score"],
+                "labels": trace_data["labels"],
+            }))
+
+            await asyncio.sleep(0.016)  # ~60 FPS
+    except WebSocketDisconnect:
+        pass
+    except Exception:
+        pass

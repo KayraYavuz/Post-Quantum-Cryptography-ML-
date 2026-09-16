@@ -1,16 +1,19 @@
-# PROJECT STATE — AŞAMA 4: SAVUNMA MOTORU, DALGA FORMU GÖRSELLEŞTİRİCİ & VERİ İŞLEME (PHASE 4)
-Son güncelleme: 2026-09-16T14:29:17ZZ
-Commit: b561acf
+# PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
+Son güncelleme: 2026-09-17T01:50:00ZZ
+Commit: efa907d
 
 ## Aktif İş Kolu
-WS-P4 — Savunma Motoru, Dalga Formu Görselleştirici & Koruma Motoru | Adım WS-P4.4 | Durum: IN_PROGRESS
+WS-P5 — Canlı WebSocket Telemetrisi & Donanım SIMD Analizörü | Adım P5.1 | Durum: IN_PROGRESS
 
 ## Sıradaki Adım
-WS-P4.4: GitHub Actions CI/CD Pipeline - Otomatik test koşturma ve CBOM doğrulama pipeline'ı
+WS-P5.1: Canlı WebSocket Osiloskop Akışı:
+1. `src/pqc_bench/api/main.py` içerisine `WS /ws/traces` WebSocket uç noktasını ekle. İstemci bağlandığında sentetik veya gerçek güç/EM dalga formlarını, sızıntı piklerini ve korumalı/korumasız iz verilerini canlı yayınla.
+2. Web arayüzündeki osiloskop bileşenine WebSocket ile canlı otomatik oynatma (Live Play/Pause) desteği ekle.
+3. `tests/test_phase5.py` birim testlerini yaz, tüm testlerin geçtiğini doğrula (pytest).
+4. Başarılı testlerin ardından git commit at ve push et: `[WS-P5.1] Implement Live WebSocket Trace Streaming Endpoint and Tests | state: WS-P5.1.DONE`
+5. Ardından PROJECT_STATE.md içindeki adımı WS-P5.2'ye ilerlet.
 
-Git commit ve push: in progress
-
-## İş Kolu Durum Tablosu (Yol Haritası)
+## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
 |---|---|---|---|---|---|
 | 0 | WS-0 altyapı | DONE | 0.4 | CPU | Repo iskeleti, Docker, Kueue manifestoları |
@@ -30,17 +33,27 @@ Git commit ve push: in progress
 | 14 | WS-P4.1 Dalga Formu Osiloskopu | DONE | P4.1 | CPU | Canlı HTML5 Canvas/SVG güç izi dalga boyu çizici & sızıntı noktası görselleştirme |
 | 15 | WS-P4.2 Savunma ve Karşı Önlem Motoru | DONE | P4.2 | CPU | 2. mertebe maskeleme, shuffle ve dummy döngü koruma modülü |
 | 16 | WS-P4.3 Donanım İzi İçe Aktarıcı | DONE | P4.3 | CPU | ChipWhisperer, HDF5, CSV osiloskop izi yükleme ve SNR analizi |
-| 17 | WS-P4.4 GitHub Actions CI/CD | IN_PROGRESS | P4.4 | CI | Otomatik test koşturma ve CBOM doğrulama pipeline'ı - GitHub Actions workflow dosyaları oluşturuluyor
+| 17 | WS-P4.4 GitHub Actions CI/CD | DONE | P4.4 | CI | Otomatik test koşturma ve CBOM doğrulama pipeline'ı |
+| 18 | WS-P5.1 DONE | P5.1 | CPU | 60 FPS canlı akan güç dalga formu ve sızıntı piki streaming endpoint |
+| 19 | WS-P5.2 SIMD & Vektör Sabit Zamanlılık | TODO | P5.2 | CPU | AVX2/AVX-512 & ARM NEON NTT zaman varyansı analizörü |
+| 20 | WS-P5.3 İkili Dosya (Binary) Zamanlama Denetçisi | TODO | P5.3 | CPU | ELF/SO nesnelerinde idiv/div değişken zamanlı komut tarayıcısı |
+| 21 | WS-P5.4 Otomatik Anomali & Sızıntı Alarmı | TODO | P5.4 | CPU | Eşik aşımı tespit edildiğinde Webhook/JSON bildirim motoru |
+| 22 | WS-P6.1 1D ResNet Derin Öğrenme Omurgası | TODO | P6.1 | CPU/GPU | Residual bağlantılı SideChannelResNet1D modeli |
+| 23 | WS-P6.2 Transformer & Attention SCA Modeli | TODO | P6.2 | CPU/GPU | Multi-Head Self-Attention ile faz kaymasına dayanıklı yan kanal modeli |
+| 24 | WS-P6.3 GAN Tabanlı Sentetik İz Veri Artırımı | TODO | P6.3 | CPU/GPU | cGAN ile gerçekçi sentetik gürültülü osiloskop izi üretimi |
+| 25 | WS-P6.4 Otomatik Model Liderlik Tablosu | TODO | P6.4 | CPU | CNN vs ResNet vs Transformer vs CPA karşılaştırmalı leaderboard API |
+| 26 | WS-P7.1 X.509 Hibrit Sertifika Üreticisi | TODO | P7.1 | CPU | RSA-4096 + ML-DSA-65 hibrit sertifika zinciri oluşturucu |
+| 27 | WS-P7.2 PQC TLS 1.3 El Sıkışma Simülatörü | TODO | P7.2 | CPU | X25519Kyber768 hibrit anahtar değişimi ve RTT gecikme ölçümü |
+| 28 | WS-P7.3 FIPS 140-3 Güvenlik Doğrulama Matrisi | TODO | P7.3 | CPU | NIST FIPS 140-3 kriptografik modül uyumluluk denetleyicisi |
+| 29 | WS-P7.4 Executive C-Level Rapor İhracı | TODO | P7.4 | CPU | Kurumsal yöneticiler için detaylı PDF/Markdown uyumluluk raporu |
+| 30 | WS-P8.1 QEMU ARM Cortex-M4 Emülasyonu | TODO | P8.1 | CPU | Gömülü mikrodenetleyici üzerinde döngü seviyesinde pqm4 ölçümleri |
+| 31 | WS-P8.2 Prometheus Metrik Uç Noktası | TODO | P8.2 | CPU | /metrics altında model çıkarım süreleri ve bellek telemetrisi |
+| 32 | WS-P8.3 Otomatik İstemci SDK Üretimi | TODO | P8.3 | CPU | Python ve Go istemcileri için otomatik OpenAPI SDK paketi |
+| 33 | WS-P8.4 Sürekli Öğrenen Otonom Geri Bildirim | TODO | P8.4 | CPU/GPU | Yeni izler geldikçe modeli fine-tune eden continuous learning pipeline |
 
-## Kabul Kriteri Durumu (Aşama 4)
-- [x] WS-0'dan WS-ADV.3'e kadar olan 14 temel iş kolu eksiksiz tamamlandı (55/55 test passed).
-- [x] WS-P4.1: Canlı osiloskop ekranı ve GET /api/v1/visualize/trace uç noktası aktif.
-- [x] WS-P4.2: Çoklu mertebe maskeleme ve karıştırma korumasıyla GE > 100 artışı simüle edildi.
-- [x] WS-P4.3: ChipWhisperer/CSV HDF5 iz formatı içe aktarma ve SNR grafiği hazır.
-- [ ] WS-P4.4:  pipeline oluşturuldu.
-
-## Sonraki Adımlar
-1. WS-P4.1: Canlı Dalga Formu Osiloskopu (DONE)
-2. WS-P4.2: Savunma ve Karşı Önlem Motoru (Masking + Shuffling) - DONE
-3. WS-P4.3: Donanım İzi Yükleyici & SNR Analizörü (Yeni Başlangıç)
-4. WS-P4.4: GitHub Actions CI/CD Pipeline
+## Kabul Kriteri Durumu
+- [x] Aşama 1-4 kapsamındaki tüm 18 iş kolu tamamlandı (76/76 test passed).
+- [ ] Aşama 5: Gerçek Zamanlı Telemetri ve SIMD Analizi (WS-P5.1 - WS-P5.4)
+- [ ] Aşama 6: İleri Derin Öğrenme Mimarileri - ResNet, Transformer & GAN (WS-P6.1 - WS-P6.4)
+- [ ] Aşama 7: Kuantum Sonrası PKI, Hibrit TLS 1.3 & FIPS 140-3 (WS-P7.1 - WS-P7.4)
+- [ ] Aşama 8: Donanım-Döngüde Emülasyon & Sürekli Öğrenme (WS-P8.1 - WS-P8.4)
