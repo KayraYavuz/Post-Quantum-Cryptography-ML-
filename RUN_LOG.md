@@ -10,4 +10,6 @@
 
 - 2026-09-16T03:00:00Z | [WS-F.3] CBOM birim testleri (test_cbom.py) yazıldı ve çalıştırıldı. Tüm testler passed. | state: DONE
 
-- 2026-09-16T03:00:00Z | [WS-A.1] Security estimation implementation ve testler (test_security_estimation.py) çalıştırıldı; tüm 13 test passed. | state: DONE
+- 2026-09-16T03:00:00Z | [WS-A.1] Security estimation implementation ve testler (test_security_estimation.py) çalıştırıldı; tüm 13 test passed. lattice_runner.py dosyası yazıldı ve ML-KEM-768 lattice attack analizi yapıldı (BKZ 552/520, 192 bit güvenlik). | state: DONE
+
+- 2026-09-16T03:15:00Z | [WS-D.1] Kuantum maliyet analizi başlatıldı; lattice estimator entegrasyonu ve AQRE/Qualtran entegrasyonu için hazırlıklar | state: IN_PROGRESS
