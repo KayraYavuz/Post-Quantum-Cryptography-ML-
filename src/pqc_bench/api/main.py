@@ -1326,13 +1326,13 @@ def compute_hdf5_snr(req: Hdf5TraceRequest) -> Dict[str, float]:
 
     Convenience endpoint for SNR-only analysis without full trace summary.
     """
-    loader = Hdf5OscilloscopeLoader(filepath)
+    loader = Hdf5OscilloscopeLoader(req.filepath)
     loader.open()
     try:
         snr = loader.compute_snr(
-            signal_indices=signal_indices,
-            noise_trace_indices=noise_trace_indices,
-            noise_indices=noise_sample_indices,
+            signal_indices=req.signal_indices,
+            noise_trace_indices=req.noise_trace_indices,
+            noise_indices=req.noise_sample_indices,
         )
         return snr
     finally:
