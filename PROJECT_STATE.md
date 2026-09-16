@@ -3,14 +3,12 @@ Son güncelleme: 2026-09-16T14:29:17ZZ
 Commit: b561acf
 
 ## Aktif İş Kolu
-WS-P4 — Savunma Motoru, Dalga Formu Görselleştirici & Koruma Motoru | Adım WS-P4.2 | Durum: DONE
+WS-P4 — Savunma Motoru, Dalga Formu Görselleştirici & Koruma Motoru | Adım WS-P4.4 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P4.3: Donanım İzi İçe Aktarıcı - ChipWhisperer HDF5 trace loading ve SNR analizi tamamlandı. WS-P4.4 için hazır.
+WS-P4.4: GitHub Actions CI/CD Pipeline - Otomatik test koşturma ve CBOM doğrulama pipeline'ı
 
-Git commit ve push: completed
-
-Proje WS-P4.3'e ilerletildi.
+Git commit ve push: not started yet
 
 ## İş Kolu Durum Tablosu (Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -32,18 +30,17 @@ Proje WS-P4.3'e ilerletildi.
 | 14 | WS-P4.1 Dalga Formu Osiloskopu | DONE | P4.1 | CPU | Canlı HTML5 Canvas/SVG güç izi dalga boyu çizici & sızıntı noktası görselleştirme |
 | 15 | WS-P4.2 Savunma ve Karşı Önlem Motoru | DONE | P4.2 | CPU | 2. mertebe maskeleme, shuffle ve dummy döngü koruma modülü |
 | 16 | WS-P4.3 Donanım İzi İçe Aktarıcı | DONE | P4.3 | CPU | ChipWhisperer, HDF5, CSV osiloskop izi yükleme ve SNR analizi |
-| 17 | WS-P4.4 GitHub Actions CI/CD | TODO | P4.4 | CI | Otomatik test koşturma ve CBOM doğrulama pipeline'ı |
+| 17 | WS-P4.4 GitHub Actions CI/CD | IN_PROGRESS | P4.4 | CI | Otomatik test koşturma ve CBOM doğrulama pipeline'ı |
 
 ## Kabul Kriteri Durumu (Aşama 4)
 - [x] WS-0'dan WS-ADV.3'e kadar olan 14 temel iş kolu eksiksiz tamamlandı (55/55 test passed).
 - [x] WS-P4.1: Canlı osiloskop ekranı ve GET /api/v1/visualize/trace uç noktası aktif.
 - [x] WS-P4.2: Çoklu mertebe maskeleme ve karıştırma korumasıyla GE > 100 artışı simüle edildi.
-- [x] WS-P4.3: ChipWhisperer HDF5 trace loading ve SNR analizi tamamlandı.
+- [x] WS-P4.3: ChipWhisperer/CSV HDF5 iz formatı içe aktarma ve SNR grafiği hazır.
 - [ ] WS-P4.4:  pipeline oluşturuldu.
 
 ## Sonraki Adımlar
 1. WS-P4.1: Canlı Dalga Formu Osiloskopu (DONE)
 2. WS-P4.2: Savunma ve Karşı Önlem Motoru (Masking + Shuffling) - DONE
-3. WS-P4.3: Donanım İzi Yükleyici & SNR Analizörü (Yeni Başlangıç) - DONE
-4. WS-P4.4: GitHub Actions CI/CD Pipeline
+3. WS-P4.3: Donanım İzi Yükleyici & SNR Analizörü (Yeni Başlangıç)
 4. WS-P4.4: GitHub Actions CI/CD Pipeline

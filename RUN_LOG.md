@@ -64,3 +64,4 @@
 - 2026-09-16T14:30:00Z | [WS-ADV.3] NIST SP 800-208 ve NSA CNSA 2.0 uyumluluk matrisi & otomatik denetim raporu ihrac edicisi yazildi (src/pqc_bench/cbom/report_exporter.py). FastAPI servisine POST /api/v1/model/cpa-benchmark, GET /api/v1/constant-time/analysis, GET /api/v1/report/export uclari ve interaktif dashboard sekmeleri eklendi. | state: DONE
 - 2026-09-16T14:35:00Z | [WS-ADV.3] Ileri duzey birim ve entegrasyon testleri (tests/test_advanced.py) yazildi. Toplam 55/55 test passed (100% basari). Dokumantasyon ve durum tablolari guncellendi. | state: DONE
 - 2026-09-16T17:56:00Z | [WS-P4.2] Phase 4 waveform tests completed with all 21 tests passed | state: DONE
+- 2026-09-16T18:51:00Z | [WS-P4.3] Donanım İzi İçe Aktarıcı - ChipWhisperer HDF5 iz formatı içe aktarma ve SNR analizi tamamlandı | state: DONE
