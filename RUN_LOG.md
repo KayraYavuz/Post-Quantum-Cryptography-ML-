@@ -15,3 +15,6 @@
 - 2026-09-16T03:20:00Z | [WS-D.1] Kuantum maliyet analizi başlatıldı; AQRE ve Qualtran entegrasyonu için hazırlıklar, lattice estimator sonuçlarının quantum resource'e dönüştürülmesi | state: IN_PROGRESS
 - 2026-09-16T03:25:00Z | [WS-D.2] AQRE ve Qualtran quantum resource comparison çalıştırıldı; resource estimates karşılaştırması ve differans raporu üretildi | state: IN_PROGRESS
 - 2026-09-16T03:28:00Z | [WS-A.1] Security estimation implementation ve testler (test_security_estimation.py) çalıştırıldı; tüm testler passed; git commit "[WS-A.1] Security estimation tests for ML-KEM-768 ±2 bit tolerance | state: DONE" at | state: DONE
+- 2026-09-16T03:35:00Z | [WS-D.1] Kuantum maliyet analizi - AQRE ve Qualtran entegrasyonu tamamlandı; resource comparison raporu üretildi | state: DONE
+- 2026-09-16T03:36:00Z | [WS-D.2] AQRE ve Qualtran quantum resource comparison çalıştırıldı; resource estimates karşılaştırması ve differans raporu üretildi | state: DONE
+- 2026-09-16T03:37:00Z | [WS-D.3] Kuantum maliyet doğrulama birim testleri (tests/test_quantum_cost.py) çalıştırıldı; tüm testler passed - TAMAMLANDI | state: DONE
