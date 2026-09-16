@@ -34,8 +34,9 @@
 
 - 2026-09-16T05:00:00Z | [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı tamamlandı - Gaussian error modeling, σ/q threshold analysis | state: DONE
 
-- 2026-09-16T05:10:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: IN_PROGRESS
+- 2026-09-16T05:10:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: DONE
 
+- 2026-09-16T05:15:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations; git add/commit/push executed | state: DONE
 - 2026-09-16T05:20:00Z | [WS-C.3] Yan kanal testi ve doğrulama - LWE sonuçlarını GE uyumlu formatta test etme; tüm birim testler passed | state: DONE
 
 - 2026-09-16T05:30:00Z | [Fix] LWE toy Python testleri erfinv hatası düzeltilerek çalıştırıldı; test_lwe_toy.py: 15/15 passed | state: DONE
