@@ -3,12 +3,12 @@ Son güncelleme: 2026-09-16T14:29:17ZZ
 Commit: b561acf
 
 ## Aktif İş Kolu
-WS-P4 — Savunma Motoru, Dalga Formu Görselleştirici & Koruma Motoru | Adım WS-P4.4 | Durum: TODO
+WS-P4 — Savunma Motoru, Dalga Formu Görselleştirici & Koruma Motoru | Adım WS-P4.4 | Durum: IN_PROGRESS
 
 ## Sıradaki Adım
 WS-P4.4: GitHub Actions CI/CD Pipeline - Otomatik test koşturma ve CBOM doğrulama pipeline'ı
 
-Git commit ve push: not started yet
+Git commit ve push: in progress
 
 ## İş Kolu Durum Tablosu (Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -30,7 +30,7 @@ Git commit ve push: not started yet
 | 14 | WS-P4.1 Dalga Formu Osiloskopu | DONE | P4.1 | CPU | Canlı HTML5 Canvas/SVG güç izi dalga boyu çizici & sızıntı noktası görselleştirme |
 | 15 | WS-P4.2 Savunma ve Karşı Önlem Motoru | DONE | P4.2 | CPU | 2. mertebe maskeleme, shuffle ve dummy döngü koruma modülü |
 | 16 | WS-P4.3 Donanım İzi İçe Aktarıcı | DONE | P4.3 | CPU | ChipWhisperer, HDF5, CSV osiloskop izi yükleme ve SNR analizi |
-| 17 | WS-P4.4 GitHub Actions CI/CD | IN_PROGRESS | P4.4 | CI | Otomatik test koşturma ve CBOM doğrulama pipeline'ı |
+| 17 | WS-P4.4 GitHub Actions CI/CD | IN_PROGRESS | P4.4 | CI | Otomatik test koşturma ve CBOM doğrulama pipeline'ı - GitHub Actions workflow dosyaları oluşturuluyor
 
 ## Kabul Kriteri Durumu (Aşama 4)
 - [x] WS-0'dan WS-ADV.3'e kadar olan 14 temel iş kolu eksiksiz tamamlandı (55/55 test passed).
