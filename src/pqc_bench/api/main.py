@@ -36,6 +36,11 @@ from pqc_bench.models.cpa_attack import run_cpa_vs_dl_benchmark
 from pqc_bench.models.side_channel_cnn import SideChannel1DCNN
 from pqc_bench.quantum_cost import estimate_quantum_resources, get_ml_kem_resources
 from pqc_bench.security_estimator import estimate_security_bits, get_security_info
+from pqc_bench.visualize.waveform import (
+    compare_protected_unprotected,
+    generate_power_trace,
+    generate_synthetic_emm_pattern,
+)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 ARTIFACTS_DIR = REPO_ROOT / "artifacts"
@@ -290,6 +295,40 @@ def get_project_status() -> dict[str, Any]:
             {"id": "WS-ADV.2", "name": "KyberSlash Disassembly & TVLA Timing Suite", "status": "DONE", "target": "Assembly/TVLA"},
             {"id": "WS-ADV.3", "name": "NIST SP 800-208 & CNSA 2.0 Audit Exporter", "status": "DONE", "target": "Export Engine"},
         ],
+    }
+
+
+@app.get("/api/v1/visualize/trace")
+def get_visualize_trace(
+    model: str = "unprotected",
+    include_markers: bool = True,
+) -> dict[str, Any]:
+    """Get a power/EM trace waveform for dashboard visualization.
+
+    Parameters
+    ----------
+    model:
+        Leakage model: "unprotected", "protected", or "masked".
+    include_markers:
+        If True, includes NTT butterfly peak markers at the dominant leakage point.
+
+    Returns
+    -------
+    Dict with trace data suitable for SVG/Canvas rendering.
+    """
+    trace_info = generate_power_trace(
+        n_samples=256,
+        leakage_model=model,
+        add_noise=True,
+        butterfly_markers=include_markers,
+    )
+
+    return {
+        "model": model,
+        "trace": trace_info["trace"].tolist(),
+        "time": trace_info["time"].tolist(),
+        "leakage_score": trace_info["leakage_score"],
+        "labels": trace_info["labels"],
     }
 
 

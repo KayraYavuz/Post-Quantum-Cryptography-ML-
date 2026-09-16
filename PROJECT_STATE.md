@@ -1,16 +1,19 @@
-# PROJECT STATE — AŞAMA 3: İLERİ SEVİYE ANALİZ, CPA VE SABİT ZAMANLILIK (ADVANCED)
-Son güncelleme: 2026-09-16T14:35:00Z
-Commit: HEAD
+# PROJECT STATE — AŞAMA 4: SAVUNMA MOTORU, DALGA FORMU GÖRSELLEŞTİRİCİ & VERİ İŞLEME (PHASE 4)
+Son güncelleme: 2026-09-16T16:47:00Z
+Commit: a8d4d54
 
 ## Aktif İş Kolu
-WS-ADV — İleri Düzey Güvenlik Kütüphanesi & Analiz Araçları | Adım ADV.3 | Durum: DONE (Tüm İş Kolları Tamamlandı)
+WS-P4 — Savunma Motoru, Donanım İzleri & Canlı Osiloskop | Adım P4.1 | Durum: IN_PROGRESS
 
 ## Sıradaki Adım
-Tüm iş kolları (WS-0'dan WS-ADV.3'e kadar 14 iş kolunun tamamı) başarıyla tamamlandı, 55/55 test passed.
-Canlı Web Servisi ve Dashboard: http://claw.lan:8090 (http://192.168.1.23:8090) üzerinde 7/24 aktif.
-Yeni Eklenen Özellikler: CPA vs Deep Learning Kıyaslama Laboratuvarı, KyberSlash TVLA & Disassembly İnceleyici, NIST SP 800-208 / CNSA 2.0 Denetim Raporu İhraç Edici.
+WS-P4.1: Canlı Osiloskop / Dalga Formu Görselleştirici:
+1. `src/pqc_bench/visualize/waveform.py` modülünü oluştur: 256 örnek noktalı sentetik/gerçek güç ve EM dalga formlarını, sızıntı noktası (NTT kelebek operasyonu) işaretçilerini ve korumalı/korumasız iz karşılaştırmasını üret.
+2. `src/pqc_bench/api/main.py` içine `GET /api/v1/visualize/trace` uç noktasını ekle ve dashboard arayüzüne canlı SVG/Canvas dalga formu osiloskop sekmesi (Waveform Visualizer) yerleştir.
+3. `tests/test_phase4.py` birim testlerini yaz, tüm testlerin geçtiğini doğrula.
+4. Git commit ve push gerçekleştir: `[WS-P4.1] Implement Interactive Waveform Trace Oscilloscope and API endpoint | state: WS-P4.1.DONE`
+5. Ardından PROJECT_STATE.md içindeki adımı WS-P4.2'ye ilerlet.
 
-## İş Kolu Durum Tablosu (Aşama 3 Yol Haritası)
+## İş Kolu Durum Tablosu (Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
 |---|---|---|---|---|---|
 | 0 | WS-0 altyapı | DONE | 0.4 | CPU | Repo iskeleti, Docker, Kueue manifestoları |
@@ -27,26 +30,20 @@ Yeni Eklenen Özellikler: CPA vs Deep Learning Kıyaslama Laboratuvarı, KyberSl
 | 11 | WS-ADV.1 CPA vs DL Attack Lab | DONE | ADV.1 | CPU | Pearson CPA motoru & 1. mertebe Boolean maskeleme direnci kıyaslaması |
 | 12 | WS-ADV.2 KyberSlash TVLA Suite | DONE | ADV.2 | CPU | CVE-2024-37880 idiv vs Montgomery ASM & Welch t-test simülasyonu |
 | 13 | WS-ADV.3 Compliance Exporter | DONE | ADV.3 | CPU | NIST SP 800-208 ve CNSA 2.0 uyumluluk matrisi & Markdown ihracı |
+| 14 | WS-P4.1 Dalga Formu Osiloskopu | IN_PROGRESS | P4.1 | CPU | Canlı HTML5 Canvas/SVG güç izi dalga boyu çizici & sızıntı noktası görselleştirme |
+| 15 | WS-P4.2 Savunma & Karşı Önlem Motoru | TODO | P4.2 | CPU | 2. mertebe maskeleme, shuffle ve dummy döngü koruma modülü |
+| 16 | WS-P4.3 Donanım İzi İçe Aktarıcı | TODO | P4.3 | CPU | ChipWhisperer, HDF5, CSV osiloskop izi yükleme ve SNR analizi |
+| 17 | WS-P4.4 GitHub Actions CI/CD | TODO | P4.4 | CI | Otomatik test koşturma ve CBOM doğrulama pipeline'ı |
 
-## Kabul Kriteri Durumu (Aşama 3)
-- [x] WS-0: Repo iskeleti, pyproject.toml, Docker multi-stage, Kueue k8s manifestoları
-- [x] WS-G: KyberSlash + Clangover pozitif, mlkem-native negatif
-- [x] WS-F: geçerli CycloneDX 1.6 CBOM + 2 politika değerlendirmesi
-- [x] WS-A: ML-KEM-768 literatürle ±2 bit
-- [x] WS-D: iki aracın (AQRE, Qualtran) sapması raporlandı
-- [x] WS-E: algoritma geçişi kod değişikliği olmadan çalışıyor
-- [x] WS-C: korumasızda GE uyumlu, maskelide 1./2. mertebe ayrımı
-- [x] WS-B(a): toy ayarda kurtarma
-- [x] WS-B(b): ML-KEM-768'de eps ~ 0
-- [x] WS-EXP.1: PyTorch modeli eğitildi, loss azaldı, checkpoint ve metrikler artifacts/ altında
-- [x] WS-EXP.2: FastAPI servisi 0.0.0.0:8090 portunda ayakta ve tarayıcıdan Swagger/Dashboard erişilebilir
-- [x] WS-EXP.3: Uçtan uca API testleri başarılı (46/46 passed), README güncel
-- [x] WS-ADV.1: Pearson CPA motoru maskeli/maskesiz izlerde çalıştırıldı, DL-CNN üstünlüğü doğrulandı
-- [x] WS-ADV.2: KyberSlash assembly ve Welch's t-testi simülasyonu entegre edildi (|t| > 4.5 eşiği)
-- [x] WS-ADV.3: Otomatik NIST SP 800-208 ve CNSA 2.0 denetim raporu üreticisi ve API uç noktası eklendi
-- [x] E2E: 55/55 birim ve entegrasyon testi eksiksiz geçti
+## Kabul Kriteri Durumu (Aşama 4)
+- [x] WS-0'dan WS-ADV.3'e kadar olan 14 temel iş kolu eksiksiz tamamlandı (55/55 test passed).
+- [ ] WS-P4.1: Canlı osiloskop ekranı ve GET /api/v1/visualize/trace uç noktası aktif.
+- [ ] WS-P4.2: Çoklu mertebe maskeleme ve karıştırma korumasıyla GE > 100 artışı simüle edildi.
+- [ ] WS-P4.3: ChipWhisperer/CSV iz formatı içe aktarma ve SNR grafiği hazır.
+- [ ] WS-P4.4: `.github/workflows/ci.yml` pipeline oluşturuldu.
 
-## Sonraki 3 Adım
-1. [PROD.1] Canlı servis sağlığının periyodik cron üzerinden izlenmesi.
-2. [PROD.2] ASCAD v2 ve gerçek donanım EM probu veri setleri eklendikçe PyTorch 1D-CNN modelinin fine-tuning yapılması.
-3. [PROD.3] Donanım hızlandırma için AVX-512 ve ARM NEON için NTT sabit zamanlılık kıyaslamalarının genişletilmesi.
+## Sonraki Adımlar
+1. WS-P4.1: Canlı Dalga Formu Osiloskopu
+2. WS-P4.2: Savunma ve Karşı Önlem Motoru (Masking + Shuffling)
+3. WS-P4.3: Donanım İzi Yükleyici & SNR Analizörü
+4. WS-P4.4: GitHub Actions CI/CD Pipeline
