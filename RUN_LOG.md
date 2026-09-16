@@ -66,3 +66,4 @@
 - 2026-09-16T17:56:00Z | [WS-P4.2] Phase 4 waveform tests completed with all 21 tests passed | state: DONE
 - 2026-09-16T18:51:00Z | [WS-P4.3] Donanım İzi İçe Aktarıcı - ChipWhisperer HDF5 iz formatı içe aktarma ve SNR analizi tamamlandı | state: DONE
 - 2026-09-16T19:05:00Z | [WS-P4.4] GitHub Actions CI/CD Pipeline - Automatic test execution and CBOM validation pipeline created locally; git commit [WS-P4.4] executed; GitHub push pending workflow token scope resolution | state: DONE- 2026-09-17T01:51:00Z | [WS-P5.1] Canlı WebSocket Osiloskop Akışı - /ws/traces WebSocket endpoint ve testleri tamamlandı | state: DONE
+- 2026-09-17T01:52:00Z | [WS-P5.1] Canlı WebSocket Osiloskop Akışı - /ws/traces WebSocket endpointi eklendi, 60 FPS canlı trace streaming ve pytest testleri (9/9 passed) | state: DONE
