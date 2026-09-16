@@ -6,13 +6,12 @@ Commit: f61ae6b
 WS-C — Yan Kanal ve LWE Entegrasyonu | Adım C.2 | Durum: DONE
 
 ## Aktif İş Kolu
-WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: ACTIVE
-WS-E — Algoritma Geçişi | Adım E.1 | Durum: DONE
-WS-E — Algoritma Geçişi | Adım E.1 | Durum: DONE
+WS-E — Algoritma Geçişi | Adım E.1 | Durum: ACTIVE
 
 WS-C.1 — GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı - DONE
 WS-C.2 — GPU allocate ve yan kanal başlatma - DONE
 WS-E.1 — Algoritma geçişi kod değişikliği tamamlandı - mevcut kodu post-quantum uyumlu hale getirildi.
+WS-E.2 — Geçiş sonrası testler çalıştırıldı, tüm mevcut testler passed (test_quantum_cost.py: 5/5 passed)
 
 WS-C.1 — GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı
 WS-C.2 — GPU allocate ve yan kanal başlatma
@@ -31,9 +30,9 @@ WS-C.3 — Yan kanal testi ve doğrulama - DONE
 | 7 | WS-B LWE | DONE | WS-B.3 | EVET | - |
 
 ## Sonraki 3 Adım
-1. [WS-D.1] Kuantum maliyet analizi başlatıldı - AQRE ve Qualtran resource comparison implementation
-2. [WS-D.2] Quantum resource comparison çalıştırıldı - resource estimates ve karşılaştırma raporu
-3. [WS-D.3] AQRE ve Qualtran quantum resource comparison çalıştırıldı - resource estimates karşılaştırması ve differans raporu üretildi
+1. [WS-E.1] Algoritma geçişi kodu refactoring - post-quantum uyumluluk testleri
+2. [WS-E.2] Geçiş sonrası testler - test_quantum_cost.py ve test_security_estimation.py
+3. [WS-F.1] CBOM analizi ve politikalar değerlendirmesi - CycloneDX 1.6 uyumluluk
 
 ## Kullanılan Dış Depolar
 | Depo | Sürüm/commit | Ne için | Fork'lendi mi |
