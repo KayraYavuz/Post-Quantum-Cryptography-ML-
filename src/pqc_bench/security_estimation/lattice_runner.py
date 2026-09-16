@@ -60,7 +60,7 @@ def get_ml_kem_parameters(scheme: str) -> dict[str, Any]:
     Returns:
         Dictionary with lattice parameters and security estimates.
     """
-    key = scheme.lower().replace("-", "")
+    key = scheme.lower()
     if key in ML_KEM_SECURITY:
         return ML_KEM_SECURITY[key]
     # Try partial match
