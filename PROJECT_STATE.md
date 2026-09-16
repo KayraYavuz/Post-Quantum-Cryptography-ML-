@@ -4,7 +4,10 @@ Commit: f61ae6b
 
 ## Aktif İş Kolu
 WS-C — Yan Kanal ve LWE Entegrasyonu | Adım C.2 | Durum: DONE
-WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: DONE
+
+## Aktif İş Kolu
+WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: ACTIVE
+WS-E — Algoritma Geçişi | Adım E.1 | Durum: DONE
 WS-E — Algoritma Geçişi | Adım E.1 | Durum: DONE
 
 WS-C.1 — GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı - DONE
@@ -13,7 +16,7 @@ WS-E.1 — Algoritma geçişi kod değişikliği tamamlandı - mevcut kodu post-
 
 WS-C.1 — GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı
 WS-C.2 — GPU allocate ve yan kanal başlatma
-WS-C.3 — Yan kanal testi ve doğrulama
+WS-C.3 — Yan kanal testi ve doğrulama - DONE
 
 ## İş Kolu Durum Tablosu (öncelik sırasıyla)
 | # | Kol | Durum | Son adım | GPU? | Engel |
@@ -24,13 +27,13 @@ WS-C.3 — Yan kanal testi ve doğrulama
 | 3 | WS-A güvenlik tahmini | DONE | A.1 | hayır | |
 | 4 | WS-D kuantum maliyet | DONE | D.1 | hayır | |
 | 5 | WS-E servis | COMPLETED | - | hayır | |
-| 6 | WS-C yan kanal | ACTIVE | C.2 | EVET | - |
+| 6 | WS-C yan kanal | COMPLETED | C.2 | EVET | - |
 | 7 | WS-B LWE | DONE | WS-B.3 | EVET | - |
 
 ## Sonraki 3 Adım
-1. [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı ✅ DONE
-2. [WS-C.2] GPU allocate ve yan kanal başlatma
-3. [WS-C.3] Yan kanal testi ve doğrulama
+1. [WS-D.1] Kuantum maliyet analizi başlatıldı - AQRE ve Qualtran resource comparison implementation
+2. [WS-D.2] Quantum resource comparison çalıştırıldı - resource estimates ve karşılaştırma raporu
+3. [WS-D.3] AQRE ve Qualtran quantum resource comparison çalıştırıldı - resource estimates karşılaştırması ve differans raporu üretildi
 
 ## Kullanılan Dış Depolar
 | Depo | Sürüm/commit | Ne için | Fork'lendi mi |
@@ -45,7 +48,7 @@ WS-C.3 — Yan kanal testi ve doğrulama
 - [x] WS-A: ML-KEM-768 literatürle ±2 bit
 - [x] WS-D: iki aracın (AQRE, Qualtran) sapması raporlandı
 - [x] WS-E: algoritma geçişi kod değişikliği olmadan çalışıyor
-- [x] WS-C: korumasızda GE uyumlu, maskelide 1./2. mertebe ayrımı
+- [x] WS-C: korumasızda GE uyumlu, maskelide 1./2. mertebe ayrımı ✅
 - [x] WS-B(a): toy ayarda kurtarma ✅
 - [x] WS-B(b): ML-KEM-768'de eps ~ 0 ✅
 
