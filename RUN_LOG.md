@@ -15,3 +15,4 @@
 - 2026-09-16T03:15:00Z | [WS-D.1] Kuantum maliyet analizi başlatıldı; AQRE ve Qualtran entegrasyonu için hazırlıklar, lattice estimator sonuçlarının quantum resource'e dönüştürülmesi | state: DONE
 - 2026-09-16T03:20:00Z | [WS-D.2] AQRE ve Qualtran quantum resource comparison çalıştırıldı; resource estimates karşılaştırması ve differans raporu üretildi | state: DONE
 - 2026-09-16T03:25:00Z | [WS-D.3] Kuantum maliyet doğrulama birim testleri (tests/test_quantum_cost.py) çalıştırıldı; tüm 5 test passed | state: DONE
+- 2026-09-16T03:30:00Z | [WS-D.3] Kuantum maliyet doğrulama birim testleri (tests/test_quantum_cost.py) çalıştırıldı; tüm 5 test passed - PYTHONPATH + pytest setup confirmed working | state: DONE

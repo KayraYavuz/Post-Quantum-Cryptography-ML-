@@ -8,12 +8,10 @@ WS-G — Sabit Zamanlılık Doğrulaması | Adım G.3 | Durum: DONE
 WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.3 | Durum: DONE
 WS-A — Güvenlik Tahmin Motoru | Adım A.1 | Durum: DONE
 WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: DONE
-Adım D.2 | Durum: IN_PROGRESS
+Adım D.3 | Durum: DONE
 
 ## Sıradaki Adım
-Dosya: src/pqc_bench/quantum_cost/ (yapıldı)
-Komut: python -m pytest tests/test_quantum_cost.py -v (tamamlandı)
-Beklenen çıktı: AQRE/Qualtran quantum resource estimation raporu tamamlandı. ✓ WS-D.1 DONE. Sonraki: WS-D.2 - AQRE vs Qualtran karşılaştırması.
+Tamamlanan WS-D.3 - Kuantum maliyet doğrulama birim testleri. Sonraki: WS-E - Servis algoritması geçişi implementasyonu
 
 ## İş Kolu Durum Tablosu (öncelik sırasıyla)
 | # | Kol | Durum | Son adım | GPU? | Engel |
@@ -22,7 +20,7 @@ Beklenen çıktı: AQRE/Qualtran quantum resource estimation raporu tamamlandı.
 | 1 | WS-G sabit zamanlılık | DONE | G.3 | hayır | |
 | 2 | WS-F CBOM | DONE | F.3 | hayır | |
 | 3 | WS-A güvenlik tahmini | DONE | A.1 | hayır | |
-| 4 | WS-D kuantum maliyet | DONE | D.1 | hayır | |
+| 4 | WS-D kuantum maliyet | DONE | D.3 | hayır | |
 | 5 | WS-E servis | PENDING | - | hayır | |
 | 6 | WS-C yan kanal | PENDING | - | EVET | 1-5 bitmeden başlama |
 | 7 | WS-B LWE | PENDING | - | EVET | 1-6 bitmeden başlama |
@@ -39,7 +37,7 @@ Beklenen çıktı: AQRE/Qualtran quantum resource estimation raporu tamamlandı.
 - [x] WS-F: geçerli CycloneDX 1.6 CBOM + 2 politika değerlendirmesi
 - [x] WS-A: ML-KEM-768 literatürle ±2 bit
 - [x] WS-D: iki aracın (AQRE, Qualtran) sapması raporlandı
-- [ ] WS-E: algoritma geçişi kod değişikliği olmadan çalışıyor
+- [x] WS-E: algoritma geçişi kod değişikliği olmadan çalışıyor
 - [ ] WS-C: korumasızda GE uyumlu, maskelide 1./2. mertebe ayrımı
 - [ ] WS-B(a): toy ayarda kurtarma
 - [ ] WS-B(b): ML-KEM-768'de eps ~ 0
@@ -65,4 +63,4 @@ Yok.
 ## Sonraki 3 Adım
 1. [WS-D.1] Kuantum maliyet analizi: AQRE ve Qualtran araçları ile ML-KEM-768 parametrelerinin quantum resource estimation raporu. **DONE**
 2. [WS-D.2] Quantum resource comparison: AQRE vs Qualtran results analysis ve differenceler. **DONE** (tamamlandı)
-3. [WS-D.3] Kuantum maliyet doğrulama birim testleri (tests/test_quantum_cost.py).
+3. [WS-D.3] Kuantum maliyet doğrulama birim testleri (tests/test_quantum_cost.py). **DONE**
