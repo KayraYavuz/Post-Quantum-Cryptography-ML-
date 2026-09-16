@@ -175,3 +175,70 @@ class TestErrorHandling:
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
+
+
+class TestLiveStreamingRegression:
+    def test_single_registered_route(self):
+        assert len([r for r in app.routes if getattr(r, 'path', None) == '/ws/traces']) == 1
+
+    @pytest.mark.parametrize('model', ['unprotected', 'protected', 'masked'])
+    def test_live_pause_resume(self, model):
+        with TestClient(app).websocket_connect('/ws/traces') as ws:
+            ws.send_json({'trace_type': 'live', 'model': model, 'fps': 60})
+            first = ws.receive_json()
+            second = ws.receive_json()
+            assert first['type'] == second['type'] == 'live_trace'
+            assert first['source'] == 'synthetic'
+            assert first['labels']['leakage_model'] == model
+            assert len(first['trace']) == len(first['time']) == 256
+            assert first['trace'] != second['trace']
+            assert second['chunk_index'] == first['chunk_index'] + 1
+            ws.send_json({'trace_type': 'pause'})
+            # Frames already in transit may precede the acknowledgement.
+            for _ in range(20):
+                if ws.receive_json()['type'] == 'paused':
+                    break
+            else:
+                pytest.fail('Pause was not acknowledged')
+            ws.send_json({'trace_type': 'synthetic', 'model': 'protected'})
+            assert ws.receive_json()['type'] == 'trace'
+            ws.send_json({'trace_type': 'live', 'model': model})
+            assert ws.receive_json()['chunk_index'] == 0
+
+    @pytest.mark.parametrize('payload', [
+        {'n_samples': 0}, {'n_samples': 1}, {'n_samples': 1025},
+        {'n_samples': True}, {'n_samples': '256'}, {'fps': 0}, {'fps': 61},
+        {'n_chunks': 101}, {'sample_rate': 0}, {'model': 'unknown'},
+        {'trace_type': 'hdf5', 'filepath': '/etc/passwd'}, [], None,
+    ])
+    def test_invalid_request_is_recoverable(self, payload):
+        with TestClient(app).websocket_connect('/ws/traces') as ws:
+            ws.send_json(payload)
+            assert ws.receive_json()['type'] == 'error'
+            ws.send_json({'n_samples': 8, 'butterfly_markers': False})
+            frame = ws.receive_json()
+            assert len(frame['trace']) == 8
+            assert frame['labels']['butterfly_amplitude'] == 0
+
+    def test_invalid_json_is_recoverable(self):
+        with TestClient(app).websocket_connect('/ws/traces') as ws:
+            ws.send_text('{bad json')
+            assert ws.receive_json()['type'] == 'error'
+            ws.send_json({})
+            assert ws.receive_json()['type'] == 'trace'
+
+    def test_playback_is_bounded_and_full_length(self):
+        with TestClient(app).websocket_connect('/ws/traces') as ws:
+            ws.send_json({'trace_type': 'playback', 'n_chunks': 2, 'fps': 60})
+            for index in range(2):
+                frame = ws.receive_json()
+                assert frame['chunk_index'] == index
+                assert len(frame['trace']) == 256
+            ws.send_json({'trace_type': 'pause'})
+            assert ws.receive_json()['type'] == 'paused'
+
+    def test_dashboard_live_controls(self):
+        html = TestClient(app).get('/').text
+        for marker in ['liveToggleBtn', 'pauseLiveStream', 'startLiveStream',
+                       "trace_type: 'live'", '/ws/traces', 'Synthetic visualization only']:
+            assert marker in html
