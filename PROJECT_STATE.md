@@ -8,7 +8,7 @@ WS-G — Sabit Zamanlılık Doğrulaması | Adım G.3 | Durum: DONE
 WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.1 | Durum: DONE
 WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.2 | Durum: DONE
 WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.3 | Durum: DONE
-WS-A — Güvenlik Tahmini | Adım A.1 | Durum: IN_PROGRESS
+WS-A — Güvenlik Tahmini | Adım A.1 | Durum: DONE
 
 ## Sıradaki Adım
 WS-D — Kuantum maliyet analizi (Quantum Cost Analysis) başlatılıyor. WS-A (security estimate) tamamlandı, şimdi WS-D (quantum cost analysis) için başlatılıyor.
