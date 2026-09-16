@@ -44,5 +44,7 @@
 - 2026-09-16T05:35:00Z | [WS-D.1] Kuantum maliyet analisi ilerletildi; WS-D adımı başlatıldı - AQRE ve Qualtran resource comparison implementation | state: IN_PROGRESS
 
 - 2026-09-16T05:55:00Z | [WS-C.3] Yan kanal testi ve doğrulama - quantum cost tests passed with ML-KEM-768: 192 bits ±2 tolerance; git add/commit/push executed [WS-C.3] Yan kanal testi ve doğrulama - quantum cost tests passed with ML-KEM-768: 192 bits ±2 tolerance | state: DONE
+
+- 2026-09-16T06:30:00Z | [WS-D.3] Kuantum maliyet birim testleri (test_quantum_cost.py) yazıldı ve çalıştırıldı. Tüm 5 test passed. | state: DONE
 2026-09-16T06:20:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations ve side-channel channel integration, tüm birim testler passed; git add/commit executed [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: DONE
 2026-09-16T06:15:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations ve side-channel channel integration, tüm birim testler passed; git add/commit executed [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: DONE
