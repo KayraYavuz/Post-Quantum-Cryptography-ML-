@@ -18,3 +18,4 @@
 - 2026-09-16T03:35:00Z | [WS-D.1] Kuantum maliyet analizi - AQRE ve Qualtran entegrasyonu tamamlandı; resource comparison raporu üretildi | state: DONE
 - 2026-09-16T03:36:00Z | [WS-D.2] AQRE ve Qualtran quantum resource comparison çalıştırıldı; resource estimates karşılaştırması ve differans raporu üretildi | state: DONE
 - 2026-09-16T03:37:00Z | [WS-D.3] Kuantum maliyet doğrulama birim testleri (tests/test_quantum_cost.py) çalıştırıldı; tüm testler passed - TAMAMLANDI | state: DONE
+- 2026-09-16T03:40:00Z | [WS-E.1] Algoritma geçişi kod değişikliği başlatıldı - mevcut kodu post-quantum uyumlu hale getirme | state: IN_PROGRESS
