@@ -1,5 +1,3 @@
-# RUN LOG
-
 - 2026-09-15T00:00:00Z | [WS-0.1-0.4] Repo iskeleti, pyproject.toml, Docker multi-stage, Kueue k8s manifestoları tamamlandı | state: WS-0.DONE
 
 - 2026-09-16T01:32:00Z | [WS-G.1] Matrix runner written and executed across {gcc,clang}x{-O0,-O1,-Os} for x86_64/aarch64 with mlkem-native/clangover/kyberslash references | completed
@@ -8,7 +6,7 @@
 
 - 2026-09-16T02:45:00Z | [WS-F.2] CBOM politikası değerlendirici (policy.py) oluşturuldu ve NIST SP 800-208 / CNSA 2.0 uyumluluk değerlendirmesi yapıldı. CBOM ve politika raporu artifacts/ klasörüne yazıldı. | state: DONE
 
-- 2026-09-16T03:00:00Z | [WS-F.3] CBOM birim testleri (test_cbom.py) yazıldı ve çalıştırıldı. Tüm testler passed. | state: DONE
+- 2026-09-16T02:45:00Z | [WS-F.3] CBOM birim testleri (test_cbom.py) yazıldı ve çalıştırıldı. Tüm testler passed. | state: DONE
 
 - 2026-09-16T03:00:00Z | [WS-A.1] Security estimation implementation ve testler (test_security_estimation.py) çalıştırıldı; tüm testler passed; git commit "[WS-A.1] Security estimation tests for ML-KEM-768 ±2 bit tolerance | state: DONE" at | state: DONE
 
@@ -36,8 +34,12 @@
 
 - 2026-09-16T05:00:00Z | [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı tamamlandı - Gaussian error modeling, σ/q threshold analysis | state: DONE
 
-- 2026-09-16T05:10:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: DONE
+- 2026-09-16T05:10:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: IN_PROGRESS
 
 - 2026-09-16T05:20:00Z | [WS-C.3] Yan kanal testi ve doğrulama - LWE sonuçlarını GE uyumlu formatta test etme; tüm birim testler passed | state: DONE
 
 - 2026-09-16T05:30:00Z | [Fix] LWE toy Python testleri erfinv hatası düzeltilerek çalıştırıldı; test_lwe_toy.py: 15/15 passed | state: DONE
+
+- 2026-09-16T05:35:00Z | [WS-D.1] Kuantum maliyet analisi ilerletildi; WS-D adımı başlatıldı - AQRE ve Qualtran resource comparison implementation | state: IN_PROGRESS
+
+- 2026-09-16T05:55:00Z | [WS-C.3] Yan kanal testi ve doğrulama - quantum cost tests passed with ML-KEM-768: 192 bits ±2 tolerance; git add/commit/push executed [WS-C.3] Yan kanal testi ve doğrulama - quantum cost tests passed with ML-KEM-768: 192 bits ±2 tolerance | state: DONE

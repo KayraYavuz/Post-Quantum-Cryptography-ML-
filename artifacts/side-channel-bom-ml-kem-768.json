@@ -1,0 +1,44 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "timestamp": "2026-09-16T02:50:38Z",
+  "components": [
+    {
+      "type": "library",
+      "name": "side-channel-analyzer-ml-kem-768",
+      "version": "1.0.0",
+      "publisher": "OpenCLaw PQC Bench",
+      "properties": [
+        {
+          "name": "algorithm",
+          "value": "ml-kem-768"
+        },
+        {
+          "name": "ge_compatible",
+          "value": "true"
+        },
+        {
+          "name": "countermeasure",
+          "value": "masking"
+        },
+        {
+          "name": "profile",
+          "value": "GE-Profil"
+        },
+        {
+          "name": "tier_support",
+          "value": "1st/2nd tier"
+        }
+      ]
+    }
+  ],
+  "metadata": [
+    {
+      "component": {
+        "type": "application",
+        "name": "pqc-bench-side-channel",
+        "version": "1.0.0"
+      }
+    }
+  ]
+}

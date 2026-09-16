@@ -1,18 +1,19 @@
 # PROJECT STATE
-Son güncelleme: 2026-09-16T05:30:00Z
+Son güncelleme: 2026-09-16T05:31:00Z
 Commit: f61ae6b
 
 ## Aktif İş Kolu
-WS-0 — Altyapı | Adım 0.4 | Durum: DONE
-WS-G — Sabit Zamanlılık Doğrulaması | Adım G.3 | Durum: DONE
-WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.1 | Durum: DONE
-WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.2 | Durum: DONE
-WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.3 | Durum: DONE
-WS-A — Güvenlik Tahmini | Adım A.1 | Durum: DONE
+WS-C — Yan Kanal ve LWE Entegrasyonu | Adım C.2 | Durum: ACTIVE
 WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: DONE
 WS-E — Algoritma Geçişi | Adım E.1 | Durum: DONE
 
+WS-C.1 — GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı - DONE
+WS-C.2 — GPU allocate ve yan kanal başlatma - başlatıldı
 WS-E.1 — Algoritma geçişi kod değişikliği tamamlandı - mevcut kodu post-quantum uyumlu hale getirildi.
+
+WS-C.1 — GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı
+WS-C.2 — GPU allocate ve yan kanal başlatma
+WS-C.3 — Yan kanal testi ve doğrulama
 
 ## İş Kolu Durum Tablosu (öncelik sırasıyla)
 | # | Kol | Durum | Son adım | GPU? | Engel |
@@ -23,16 +24,13 @@ WS-E.1 — Algoritma geçişi kod değişikliği tamamlandı - mevcut kodu post-
 | 3 | WS-A güvenlik tahmini | DONE | A.1 | hayır | |
 | 4 | WS-D kuantum maliyet | DONE | D.1 | hayır | |
 | 5 | WS-E servis | COMPLETED | - | hayır | |
-| 6 | WS-C yan kanal | DONE | WS-C.3 | EVET | |
+| 6 | WS-C yan kanal | ACTIVE | C.2 | EVET | - |
 | 7 | WS-B LWE | DONE | WS-B.3 | EVET | - |
 
 ## Sonraki 3 Adım
-1. [WS-B.1] LWE toy ayarları ve başlangıç parametreleri ✅
-2. [WS-B.2] 1-6 bit limiti hesaplanarak kaynak tahmini ✅
-3. [WS-B.3] LWE adımı kapatılıp WS-C (yan kanal) başlatılıyor ✅
-4. [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı ✅
-5. [WS-C.2] GPU allocate ve yan kanal başlatma ✅
-6. [WS-C.3] Yan kanal testi ve doğrulama ✅
+1. [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı ✅ DONE
+2. [WS-C.2] GPU allocate ve yan kanal başlatma
+3. [WS-C.3] Yan kanal testi ve doğrulama
 
 ## Kullanılan Dış Depolar
 | Depo | Sürüm/commit | Ne için | Fork'lendi mi |
@@ -48,8 +46,8 @@ WS-E.1 — Algoritma geçişi kod değişikliği tamamlandı - mevcut kodu post-
 - [x] WS-D: iki aracın (AQRE, Qualtran) sapması raporlandı
 - [x] WS-E: algoritma geçişi kod değişikliği olmadan çalışıyor
 - [x] WS-C: korumasızda GE uyumlu, maskelide 1./2. mertebe ayrımı
-- [x] WS-B(a): toy ayarda kurtarma
-- [x] WS-B(b): ML-KEM-768'de eps ~ 0
+- [x] WS-B(a): toy ayarda kurtarma ✅
+- [x] WS-B(b): ML-KEM-768'de eps ~ 0 ✅
 
 ## Güncel Metrikler
 | Kol | Model/Araç | Veri | Metrik | Değer [%95 GA] | Artefakt |
@@ -61,7 +59,7 @@ WS-E.1 — Algoritma geçişi kod değişikliği tamamlandı - mevcut kodu post-
 | WS-D | quantum_cost | AQRE/Qualtran | Quantum Resource Comparison | completed | N/A |
 
 ## Hesap Bütçesi
-Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0.0 GPU-saat (CPU-only)
+Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0.5 GPU-saat (GPU allocate)
 
 ## Varsayımlar
 - WS-G ve WS-F tamamen CPU üzerinde yürütülecektir; GPU kaynakları WS-C ve WS-B'ye kadar allocate edilmeyecektir.
@@ -71,9 +69,6 @@ Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0
 Yok.
 
 ## Sonraki 3 Adım
-1. [WS-B.1] LWE toy ayarları ve başlangıç parametreleri ✅
-2. [WS-B.2] 1-6 bit limiti hesaplanarak kaynak tahmini ✅
-3. [WS-B.3] LWE adımı kapatılıp WS-C (yan kanal) başlatılıyor ✅
-4. [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı
-5. [WS-C.2] GPU allocate ve yan kanal başlatma
-6. [WS-C.3] Yan kanal testi ve doğrulama
+1. [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı ⚡
+2. [WS-C.2] GPU allocate ve yan kanal başlatma
+3. [WS-C.3] Yan kanal testi ve doğrulama
