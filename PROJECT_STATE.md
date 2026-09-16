@@ -35,7 +35,7 @@ WS-P5.1: Canlı WebSocket Osiloskop Akışı:
 | 16 | WS-P4.3 Donanım İzi İçe Aktarıcı | DONE | P4.3 | CPU | ChipWhisperer, HDF5, CSV osiloskop izi yükleme ve SNR analizi |
 | 17 | WS-P4.4 GitHub Actions CI/CD | DONE | P4.4 | CI | Otomatik test koşturma ve CBOM doğrulama pipeline'ı |
 | 18 | WS-P5.1 DONE | P5.1 | CPU | 60 FPS canlı akan güç dalga formu ve sızıntı piki streaming endpoint |
-| 19 | WS-P5.2 SIMD & Vektör Sabit Zamanlılık | TODO | P5.2 | CPU | AVX2/AVX-512 & ARM NEON NTT zaman varyansı analizörü |
+| 19 | WS-P5.2 SIMD WS-P5.2 SIMD & Vektör Sabit Zamanlılık | TODO Vektör Sabit Zamanlılık | IN_PROGRESS | P5.2 | CPU | AVX2/AVX-512 & ARM NEON NTT zaman varyansı analizörü |
 | 20 | WS-P5.3 İkili Dosya (Binary) Zamanlama Denetçisi | TODO | P5.3 | CPU | ELF/SO nesnelerinde idiv/div değişken zamanlı komut tarayıcısı |
 | 21 | WS-P5.4 Otomatik Anomali & Sızıntı Alarmı | TODO | P5.4 | CPU | Eşik aşımı tespit edildiğinde Webhook/JSON bildirim motoru |
 | 22 | WS-P6.1 1D ResNet Derin Öğrenme Omurgası | TODO | P6.1 | CPU/GPU | Residual bağlantılı SideChannelResNet1D modeli |
