@@ -48,3 +48,6 @@
 - 2026-09-16T06:30:00Z | [WS-D.3] Kuantum maliyet birim testleri (test_quantum_cost.py) yazıldı ve çalıştırıldı. Tüm 5 test passed. | state: DONE
 2026-09-16T06:20:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations ve side-channel channel integration, tüm birim testler passed; git add/commit executed [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: DONE
 2026-09-16T06:15:00Z | [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations ve side-channel channel integration, tüm birim testler passed; git add/commit executed [WS-C.2] GPU allocate ve yan kanal başlatma - CPU-only optimized implementations | state: DONE
+
+- 2026-09-16T06:35:00Z | [WS-F.1] CBOM analizi ve politikalar değerlendirmesi başlatıldı - CycloneDX 1.6 uyumluluk testleri, 8 algoritma tespit edildi, policy değerlendirmesi tamamlandı
+- 2026-09-16T06:45:00Z | [WS-F.2] CBOM politikası derin değerlendirmesi ve raporlama - NIST SP 800-208 ve CNSA 2.0 uyumluluk analizi tamamlandı

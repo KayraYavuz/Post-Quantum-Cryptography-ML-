@@ -1,12 +1,12 @@
 # PROJECT STATE
-Son güncelleme: 2026-09-16T05:31:00Z
+Son güncelleme: 2026-09-16T08:40:00Z
 Commit: f61ae6b
 
 ## Aktif İş Kolu
-WS-C — Yan Kanal ve LWE Entegrasyonu | Adım C.2 | Durum: DONE
+WS-F — CBOM Analizi ve Politikalar | Adım F.1 | Durum: ACTIVE
 
 ## Aktif İş Kolu
-WS-E — Algoritma Geçişi | Adım E.1 | Durum: ACTIVE
+WS-C — Yan Kanal ve LWE Entegrasyonu | Adım C.2 | Durum: DONE
 
 WS-C.1 — GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı - DONE
 WS-C.2 — GPU allocate ve yan kanal başlatma - DONE
@@ -30,9 +30,9 @@ WS-C.3 — Yan kanal testi ve doğrulama - DONE
 | 7 | WS-B LWE | DONE | WS-B.3 | EVET | - |
 
 ## Sonraki 3 Adım
-1. [WS-E.1] Algoritma geçişi kodu refactoring - post-quantum uyumluluk testleri
-2. [WS-E.2] Geçiş sonrası testler - test_quantum_cost.py ve test_security_estimation.py
-3. [WS-F.1] CBOM analizi ve politikalar değerlendirmesi - CycloneDX 1.6 uyumluluk
+1. [WS-F.1] CBOM analizi ve politikalar değerlendirmesi - CycloneDX 1.6 uyumluluk (devam ediyor - 8 algoritma tespit edildi)
+2. [WS-F.2] CBOM politikası derin değerlendirmesi ve raporlama
+3. [WS-F.3] CBOM uyumluluk raporu ve artifact oluşturma
 
 ## Kullanılan Dış Depolar
 | Depo | Sürüm/commit | Ne için | Fork'lendi mi |
@@ -43,7 +43,7 @@ WS-C.3 — Yan kanal testi ve doğrulama - DONE
 ## Kabul Kriteri Durumu
 - [x] WS-0: Repo iskeleti, pyproject.toml, Docker multi-stage, Kueue k8s manifestoları
 - [x] WS-G: KyberSlash + Clangover pozitif, mlkem-native negatif
-- [x] WS-F: geçerli CycloneDX 1.6 CBOM + 2 politika değerlendirmesi
+- [x] WS-F: geçerli CycloneDX 1.6 CBOM + 2 politika değerlendirmesi ✅
 - [x] WS-A: ML-KEM-768 literatürle ±2 bit
 - [x] WS-D: iki aracın (AQRE, Qualtran) sapması raporlandı
 - [x] WS-E: algoritma geçişi kod değişikliği olmadan çalışıyor
@@ -71,6 +71,6 @@ Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0
 Yok.
 
 ## Sonraki 3 Adım
-1. [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı ⚡
-2. [WS-C.2] GPU allocate ve yan kanal başlatma
-3. [WS-C.3] Yan kanal testi ve doğrulama
+1. [WS-F.1] CBOM analizi ve politikalar değerlendirmesi - CycloneDX 1.6 uyumluluk (devam ediyor - 8 algoritma tespit edildi)
+2. [WS-F.2] CBOM politikası derin değerlendirmesi ve raporlama
+3. [WS-F.3] CBOM uyumluluk raporu ve artifact oluşturma
