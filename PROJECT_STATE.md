@@ -13,7 +13,7 @@ WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: DONE
 WS-E — Algoritma Geçişi | Adım E.3 | Durum: DONE
 
 ## Sıradaki Adım
-WS-C (yan kanal) başlatılıyor - korumasız GE uyumlu, maskelide 1./2. mertebe ayrımı
+WS-B (LWE) başlatılıyor - 1-6 bit limitine uyarılmadan önce toy ayarları
 
 ## İş Kolu Durum Tablosu (öncelik sırasıyla)
 | # | Kol | Durum | Son adım | GPU? | Engel |
