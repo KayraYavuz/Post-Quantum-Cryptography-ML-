@@ -130,7 +130,7 @@ def detect_pqc_components(
 
         # Detect ML-DSA references
         if "ml-dsa" in content or "mldsa" in content:
-            # Find specific ML-DSA level
+            # Find specific ML-DSA level(s)
             for level in ["44", "65", "87"]:
                 if f"ml-dsa-{level}" in content.lower() or f"mldsa-{level}" in content.lower():
                     key = f"ml-dsa-{level}"
@@ -146,7 +146,6 @@ def detect_pqc_components(
                     detected[key]["files"].append(
                         {"path": str(py_file), "relative": str(py_file.relative_to(scan_path))}
                     )
-                break  # Only match first level found
 
         # Detect SLH-DSA references
         if "slh-dsa" in content or "slhdsa" in content:
@@ -181,9 +180,9 @@ def detect_pqc_components(
                         "files": [],
                         "description": f"Hybrid PQC configuration: {hybrid_key.replace('_', ' ')}",
                     }
-                detected[hybrid_key]["files"].append(
-                    {"path": str(py_file), "relative": str(py_file.relative_to(scan_path))}
-                )
+                    detected[hybrid_key]["files"].append(
+                        {"path": str(py_file), "relative": str(py_file.relative_to(scan_path))}
+                    )
 
     return detected
 
