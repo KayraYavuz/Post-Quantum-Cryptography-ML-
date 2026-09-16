@@ -64,6 +64,6 @@ Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0
 Yok.
 
 ## Sonraki 3 Adım
-1. [WS-E.1] Algoritma geçişi kod değişikliği - mevcut kodu post-quantum uyumlu hale getirme
-2. [WS-E.2] Geçiş sonrası testler çalıştırıldı, tüm mevcut testler passed
-3. [WS-E.3] WS-E adımı kapatılıp WS-F (yan kanal) başlatılıyor
+1. [WS-B.1] LWE toy ayarları ve başlangıç parametreleri
+2. [WS-B.2] 1-6 bit limiti hesaplanarak kaynak tahmini
+3. [WS-B.3] LWE adımı kapatılıp WS-C (yan kanal) başlatılıyor
