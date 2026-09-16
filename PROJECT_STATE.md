@@ -1,16 +1,16 @@
-# PROJECT STATE — AŞAMA 2: MODEL EĞİTİMİ & CANLI SERVİS (EXPANSION)
-Son güncelleme: 2026-09-16T12:55:00Z
+# PROJECT STATE — AŞAMA 3: İLERİ SEVİYE ANALİZ, CPA VE SABİT ZAMANLILIK (ADVANCED)
+Son güncelleme: 2026-09-16T14:35:00Z
 Commit: HEAD
 
 ## Aktif İş Kolu
-WS-EXP — Model Eğitimi, Canlı Web Servisi & Dashboard | Adım EXP.3 | Durum: DONE (Tüm İş Kolları Tamamlandı)
+WS-ADV — İleri Düzey Güvenlik Kütüphanesi & Analiz Araçları | Adım ADV.3 | Durum: DONE (Tüm İş Kolları Tamamlandı)
 
 ## Sıradaki Adım
-Tüm iş kolları (WS-0'dan WS-EXP.3'e kadar 11 iş kolunun tamamı) başarıyla tamamlandı, 46/46 test passed.
+Tüm iş kolları (WS-0'dan WS-ADV.3'e kadar 14 iş kolunun tamamı) başarıyla tamamlandı, 55/55 test passed.
 Canlı Web Servisi ve Dashboard: http://claw.lan:8090 (http://192.168.1.23:8090) üzerinde 7/24 aktif.
-Gözlem ve periyodik sistem sağlık kontrolleri devrede.
+Yeni Eklenen Özellikler: CPA vs Deep Learning Kıyaslama Laboratuvarı, KyberSlash TVLA & Disassembly İnceleyici, NIST SP 800-208 / CNSA 2.0 Denetim Raporu İhraç Edici.
 
-## İş Kolu Durum Tablosu (Aşama 2 Yol Haritası)
+## İş Kolu Durum Tablosu (Aşama 3 Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
 |---|---|---|---|---|---|
 | 0 | WS-0 altyapı | DONE | 0.4 | CPU | Repo iskeleti, Docker, Kueue manifestoları |
@@ -24,8 +24,11 @@ Gözlem ve periyodik sistem sağlık kontrolleri devrede.
 | 8 | WS-EXP.1 Model Eğitimi | DONE | EXP.1 | CPU | PyTorch 1D-CNN/MLP eğitimi, weights & metrics artifacts/ |
 | 9 | WS-EXP.2 Canlı FastAPI Servisi | DONE | EXP.2 | Port 8090 | 0.0.0.0:8090 REST API & interaktif glassmorphism web UI |
 | 10 | WS-EXP.3 E2E Test & Dokümantasyon | DONE | EXP.3 | CPU | 46/46 birim ve entegrasyon testi passed, kapsamlı README |
+| 11 | WS-ADV.1 CPA vs DL Attack Lab | DONE | ADV.1 | CPU | Pearson CPA motoru & 1. mertebe Boolean maskeleme direnci kıyaslaması |
+| 12 | WS-ADV.2 KyberSlash TVLA Suite | DONE | ADV.2 | CPU | CVE-2024-37880 idiv vs Montgomery ASM & Welch t-test simülasyonu |
+| 13 | WS-ADV.3 Compliance Exporter | DONE | ADV.3 | CPU | NIST SP 800-208 ve CNSA 2.0 uyumluluk matrisi & Markdown ihracı |
 
-## Kabul Kriteri Durumu (Aşama 2)
+## Kabul Kriteri Durumu (Aşama 3)
 - [x] WS-0: Repo iskeleti, pyproject.toml, Docker multi-stage, Kueue k8s manifestoları
 - [x] WS-G: KyberSlash + Clangover pozitif, mlkem-native negatif
 - [x] WS-F: geçerli CycloneDX 1.6 CBOM + 2 politika değerlendirmesi
@@ -38,8 +41,12 @@ Gözlem ve periyodik sistem sağlık kontrolleri devrede.
 - [x] WS-EXP.1: PyTorch modeli eğitildi, loss azaldı, checkpoint ve metrikler artifacts/ altında
 - [x] WS-EXP.2: FastAPI servisi 0.0.0.0:8090 portunda ayakta ve tarayıcıdan Swagger/Dashboard erişilebilir
 - [x] WS-EXP.3: Uçtan uca API testleri başarılı (46/46 passed), README güncel
+- [x] WS-ADV.1: Pearson CPA motoru maskeli/maskesiz izlerde çalıştırıldı, DL-CNN üstünlüğü doğrulandı
+- [x] WS-ADV.2: KyberSlash assembly ve Welch's t-testi simülasyonu entegre edildi (|t| > 4.5 eşiği)
+- [x] WS-ADV.3: Otomatik NIST SP 800-208 ve CNSA 2.0 denetim raporu üreticisi ve API uç noktası eklendi
+- [x] E2E: 55/55 birim ve entegrasyon testi eksiksiz geçti
 
 ## Sonraki 3 Adım
 1. [PROD.1] Canlı servis sağlığının periyodik cron üzerinden izlenmesi.
-2. [PROD.2] Yeni NIST PQC standart revizyonları yayınlandıkça CBOM ve lattice estimator eşiklerinin güncellenmesi.
-3. [PROD.3] ASCAD v2 ve gerçek donanım EM probu veri setleri eklendikçe PyTorch 1D-CNN modelinin fine-tuning yapılması.
+2. [PROD.2] ASCAD v2 ve gerçek donanım EM probu veri setleri eklendikçe PyTorch 1D-CNN modelinin fine-tuning yapılması.
+3. [PROD.3] Donanım hızlandırma için AVX-512 ve ARM NEON için NTT sabit zamanlılık kıyaslamalarının genişletilmesi.

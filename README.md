@@ -1,12 +1,12 @@
 # NIST Post-Quantum Cryptography & Machine Learning (PQC-ML) Toolchain
 
-[![Build Status](https://img.shields.io/badge/tests-46%20passed-00ff87?style=flat-square)](https://github.com/KayraYavuz/Post-Quantum-Cryptography-ML-)
+[![Build Status](https://img.shields.io/badge/tests-55%20passed-00ff87?style=flat-square)](https://github.com/KayraYavuz/Post-Quantum-Cryptography-ML-)
 [![CBOM](https://img.shields.io/badge/CycloneDX-1.6%20Compliant-00f2fe?style=flat-square)](artifacts/cbom.json)
 [![Compliance](https://img.shields.io/badge/NIST-SP%20800--208%20%7C%20CNSA%202.0-a855f7?style=flat-square)](artifacts/cbom_policy_report.json)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.14.0%2Bcpu-ee4c2c?style=flat-square)](artifacts/checkpoints/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.141.1%20Live-05998b?style=flat-square)](http://claw.lan:8090)
 
-A comprehensive open-source measurement toolchain for NIST Post-Quantum Cryptography (PQC) algorithm security, constant-time verification, quantum resource estimation, and deep learning-based side-channel leakage detection.
+A comprehensive open-source measurement toolchain for NIST Post-Quantum Cryptography (PQC) algorithm security, constant-time verification, quantum resource estimation, correlation power analysis (CPA), and deep learning-based side-channel leakage detection.
 
 ---
 
@@ -23,15 +23,17 @@ A comprehensive open-source measurement toolchain for NIST Post-Quantum Cryptogr
 |                                   FASTAPI CORE ENGINE                                   |
 |   • /api/v1/cbom             • /api/v1/security-estimate    • /api/v1/quantum-cost      |
 |   • /api/v1/model/predict    • /api/v1/model/metrics        • /health                   |
+|   • /api/v1/model/cpa-benchmark • /api/v1/constant-time/analysis • /api/v1/report/export |
 +---------------------+----------------------+---------------------+----------------------+
                       |                      |                     |
                       v                      v                     v
 +-----------------------------+ +---------------------------+ +---------------------------+
-|    PQC ANALYSIS & CBOM      | |   SECURITY & QUANTUM      | |    DEEP LEARNING ENGINE   |
+|    PQC ANALYSIS & CBOM      | |   SECURITY & QUANTUM      | |    DEEP LEARNING & CPA    |
 | • CycloneDX 1.6 Generator   | | • Lattice Estimator (±2b) | | • PyTorch 1D-CNN (DLSCA)  |
-| • NIST SP 800-208 Policy    | | • ML-KEM-768: 192 bits    | | • Hamming Weight Leakage  |
-| • Constant-Time Matrix      | | • Azure QRE & Qualtran    | | • Guessing Entropy (1.0)  |
-|   (KyberSlash / Clangover)  | | • Logical Qubits & T-Gates| | • LWE MLP Distinguisher   |
+| • NIST SP 800-208 Policy    | | • ML-KEM-768: 192 bits    | | • Pearson CPA Attack Lab  |
+| • KyberSlash Disassembly    | | • Azure QRE & Qualtran    | | • 1st-Order Masking Check |
+|   & TVLA Welch's t-test     | | • Logical Qubits & T-Gates| | • LWE MLP Distinguisher   |
+| • CNSA 2.0 Audit Exporter   | | • Algorithm Migration API | | • Guessing Entropy (1.0)  |
 +-----------------------------+ +---------------------------+ +---------------------------+
                       |                      |                     |
                       +----------------------+---------------------+
@@ -57,14 +59,33 @@ The live web service and glassmorphic dashboard run continuously on port `8090`:
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `GET` | `/` | Single-page interactive dark-mode glassmorphic dashboard |
+| `GET` | `/` | Single-page interactive dark-mode glassmorphic dashboard (with CPA & KyberSlash Labs) |
 | `GET` | `/health` | System uptime, PyTorch device status, checkpoint validation |
 | `GET` | `/api/v1/cbom` | Full CycloneDX 1.6 CBOM inventory and NIST policy evaluation |
 | `POST` | `/api/v1/security-estimate` | Classical bit security estimation for ML-KEM and ML-DSA |
 | `POST` | `/api/v1/quantum-cost` | Logical qubit and T-gate estimation (AQRE vs Qualtran) |
 | `POST` | `/api/v1/model/predict` | Real-time PyTorch CNN side-channel trace inference & vulnerability score |
 | `GET` | `/api/v1/model/metrics` | Model training history, loss curves, and Guessing Entropy |
-| `GET` | `/api/v1/status` | Comprehensive status of all 11 project work streams |
+| `POST` | `/api/v1/model/cpa-benchmark` | Run automated Pearson CPA vs Deep Learning benchmark with Boolean masking |
+| `GET` | `/api/v1/constant-time/analysis` | KyberSlash / Clangover disassembly inspection and Welch's t-test TVLA data |
+| `GET` | `/api/v1/report/export` | Export structured JSON and Markdown NIST SP 800-208 / CNSA 2.0 audit report |
+| `GET` | `/api/v1/status` | Comprehensive status of all 14 project work streams |
+
+---
+
+## 🔬 Advanced Modules (Phase 3: WS-ADV)
+
+### 1. Correlation Power Analysis (CPA) vs Deep Learning Lab (`WS-ADV.1`)
+- **Pearson CPA Engine:** Computes Pearson correlation coefficients $\rho(k)$ between predicted intermediate Hamming weights and simulated EM/power traces across candidate key hypotheses.
+- **Countermeasure Evaluation:** Benchmarks classic CPA vs Deep Learning 1D-CNN under Boolean masking countermeasures. While 1st-order Boolean masking drives classic Pearson CPA Guessing Entropy up to $\approx 25.0$ (defense effective), the non-linear multi-layer CNN bypasses 1st-order masking and achieves $\text{GE} = 1.0$.
+
+### 2. KyberSlash / Clangover Constant-Time Inspector (`WS-ADV.2`)
+- **Assembly Inspection:** Directly inspects disassembly outputs comparing vulnerable variable-time operations (`idivl`, `divl`) against constant-time Montgomery and Barrett reduction implementations (mitigating CVE-2024-37880).
+- **TVLA Timing Leakage Simulation:** Implements Welch's two-sample t-test ($t = \frac{\mu_1 - \mu_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}$). A $|t| > 4.5$ score marks statistically significant side-channel timing leakage.
+
+### 3. Compliance Audit Report Exporter (`WS-ADV.3`)
+- **Automated Audit:** Evaluates the cryptographic inventory against NIST SP 800-208 (stateful hash-based signatures) and NSA CNSA 2.0 (commercial national security algorithm suite).
+- **Markdown & JSON Export:** Ready-to-file executive compliance summary with immediate remediation flags for legacy algorithms (e.g., RSA-2048, ECC P-256).
 
 ---
 
@@ -93,7 +114,7 @@ The project features a tailored 1D Convolutional Neural Network (`SideChannel1DC
 
 ## 📊 Workstream Status Table
 
-All 11 workstreams are completed and verified:
+All 14 workstreams across Phase 1, Phase 2, and Phase 3 are completed and verified:
 
 | # | Workstream | Status | Details |
 |---|---|---|---|
@@ -108,22 +129,37 @@ All 11 workstreams are completed and verified:
 | **WS-EXP.1** | Deep Learning Training | `DONE` | PyTorch CNN/MLP training, saved checkpoints and JSON metrics |
 | **WS-EXP.2** | Live FastAPI Web Service | `DONE` | Real-time REST endpoints and dashboard on `0.0.0.0:8090` |
 | **WS-EXP.3** | E2E Tests & Documentation | `DONE` | 46/46 unit & integration tests passing |
+| **WS-ADV.1** | CPA vs DL Attack Lab | `DONE` | Pearson CPA engine & 1st-order Boolean masking benchmark |
+| **WS-ADV.2** | KyberSlash TVLA Suite | `DONE` | CVE-2024-37880 idiv vs Montgomery ASM & Welch t-test simulation |
+| **WS-ADV.3** | Compliance Exporter | `DONE` | NIST SP 800-208 and CNSA 2.0 audit matrix & Markdown exporter |
 
 ---
 
 ## 🛠️ Quickstart Guide
 
-### 1. Run Unit & Integration Tests
+### 1. Run Complete Unit & Integration Test Suite (55 Tests)
 ```bash
 PYTHONPATH=src python3 -m unittest discover tests/ -v
 ```
 
-### 2. Train Deep Learning Models
+### 2. Run CPA vs Deep Learning Benchmark
 ```bash
-python3 -m pqc_bench.models.train_side_channel --epochs 20 --batch-size 64
+curl -X POST http://localhost:8090/api/v1/model/cpa-benchmark \
+     -H "Content-Type: application/json" \
+     -d '{"num_traces": 100, "masked": true}'
 ```
 
-### 3. Launch the Live Web Service
+### 3. Inspect Constant-Time & KyberSlash Disassembly
+```bash
+curl http://localhost:8090/api/v1/constant-time/analysis
+```
+
+### 4. Export NIST & CNSA Compliance Report
+```bash
+curl http://localhost:8090/api/v1/report/export
+```
+
+### 5. Launch the Live Web Service
 ```bash
 PYTHONPATH=src python3 -m uvicorn pqc_bench.api.main:app --host 0.0.0.0 --port 8090
 ```

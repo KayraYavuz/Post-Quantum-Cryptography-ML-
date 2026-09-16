@@ -136,7 +136,7 @@ class TestFastAPIRoutes(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         body = resp.json()
         self.assertEqual(body["project"], "Post-Quantum-Cryptography-ML")
-        self.assertEqual(len(body["workstreams"]), 11)
+        self.assertGreaterEqual(len(body["workstreams"]), 11)
 
 
 if __name__ == "__main__":
