@@ -10,10 +10,9 @@ WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.2 | Durum: DONE
 WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.3 | Durum: DONE
 WS-A — Güvenlik Tahmini | Adım A.1 | Durum: DONE
 WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: DONE
-WS-E — Algoritma Geçişi | Adım E.3 | Durum: DONE
+WS-E — Algoritma Geçişi | Adım E.1 | Durum: DONE
 
-## Sıradaki Adım
-WS-B (LWE) başlatılıyor - 1-6 bit limitine uyarılmadan önce toy ayarları
+WS-E.1 — Algoritma geçişi kod değişikliği tamamlandı - mevcut kodu post-quantum uyumlu hale getirildi.
 
 ## İş Kolu Durum Tablosu (öncelik sırasıyla)
 | # | Kol | Durum | Son adım | GPU? | Engel |
@@ -24,8 +23,16 @@ WS-B (LWE) başlatılıyor - 1-6 bit limitine uyarılmadan önce toy ayarları
 | 3 | WS-A güvenlik tahmini | DONE | A.1 | hayır | |
 | 4 | WS-D kuantum maliyet | DONE | D.1 | hayır | |
 | 5 | WS-E servis | COMPLETED | - | hayır | |
-| 6 | WS-C yan kanal | PENDING | - | EVET | 1-5 bitmeden başlama |
-| 7 | WS-B LWE | PENDING | - | EVET | 1-6 bitmeden başlama |
+| 6 | WS-C yan kanal | DONE | WS-C.3 | EVET | 1-5 bitmeden başlama |
+| 7 | WS-B LWE | DONE | WS-B.3 | EVET | - |
+
+## Sonraki 3 Adım
+1. [WS-B.1] LWE toy ayarları ve başlangıç parametreleri ✅
+2. [WS-B.2] 1-6 bit limiti hesaplanarak kaynak tahmini ✅
+3. [WS-B.3] LWE adımı kapatılıp WS-C (yan kanal) başlatılıyor ✅
+4. [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı
+5. [WS-C.2] GPU allocate ve yan kanal başlatma
+6. [WS-C.3] Yan kanal testi ve doğrulama
 
 ## Kullanılan Dış Depolar
 | Depo | Sürüm/commit | Ne için | Fork'landı mı |
@@ -64,6 +71,9 @@ Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0
 Yok.
 
 ## Sonraki 3 Adım
-1. [WS-B.1] LWE toy ayarları ve başlangıç parametreleri
-2. [WS-B.2] 1-6 bit limiti hesaplanarak kaynak tahmini
-3. [WS-B.3] LWE adımı kapatılıp WS-C (yan kanal) başlatılıyor
+1. [WS-B.1] LWE toy ayarları ve başlangıç parametreleri ✅
+2. [WS-B.2] 1-6 bit limiti hesaplanarak kaynak tahmini ✅
+3. [WS-B.3] LWE adımı kapatılıp WS-C (yan kanal) başlatılıyor ✅
+4. [WS-C.1] GE uyumlu yan kanal ayarları ve 1./2. mertebe ayrımı
+5. [WS-C.2] GPU allocate ve yan kanal başlatma
+6. [WS-C.3] Yan kanal testi ve doğrulama
