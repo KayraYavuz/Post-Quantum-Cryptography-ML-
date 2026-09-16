@@ -7,6 +7,8 @@ Validates:
 3. Statistical analysis and recommendations
 """
 
+from itertools import permutations
+
 import pytest
 
 from pqc_bench.simd_timing import (
@@ -160,3 +162,83 @@ class TestReportFormatting:
         
         # Should mention which is best/worst
         assert "best" in report.lower() or "worst" in report.lower()
+
+
+class TestSyntheticStatisticsRegression:
+    @pytest.mark.parametrize('variances', list(permutations([1., 2., 3.])))
+    def test_all_rank_orders(self, variances):
+        report = analyze_timing_variance(*[
+            {'mean_cycles': 10., 'timing_variance': v} for v in variances
+        ])
+        for key, variance in zip(('avx2', 'avx512', 'neon'), variances):
+            assert report[key]['rank'] == int(variance)
+        names = ('AVX2', 'AVX-512', 'ARM NEON')
+        assert report['analysis']['best_architecture'] == names[variances.index(1.)]
+        assert report['analysis']['worst_architecture'] == names[variances.index(3.)]
+
+    @pytest.mark.parametrize('variances,ranks', [
+        ([0., 0., 0.], [1, 1, 1]), ([1., 1., 3.], [1, 1, 3]),
+        ([3., 1., 1.], [3, 1, 1]), ([3., 3., 1.], [2, 2, 1]),
+    ])
+    def test_ties_and_json(self, variances, ranks):
+        import json
+        result = analyze_timing_variance(*[
+            {'mean_cycles': 1., 'timing_variance': v} for v in variances
+        ])
+        assert [result[k]['rank'] for k in ('avx2', 'avx512', 'neon')] == ranks
+        json.dumps(result, allow_nan=False)
+        if variances[0] == 0:
+            assert result['comparisons']['avx512_vs_avx2_variance_ratio'] is None
+
+    def test_ratio_direction(self):
+        result = analyze_timing_variance(*[
+            {'mean_cycles': 1., 'timing_variance': v} for v in [2., 4., 8.]
+        ])
+        assert result['comparisons']['avx512_vs_avx2_variance_ratio'] == 2.
+        assert result['comparisons']['neon_vs_avx2_variance_ratio'] == 4.
+
+    @pytest.mark.parametrize('function', [simulate_avx2_ntt_timing,
+                                         simulate_avx512_ntt_timing,
+                                         simulate_neon_ntt_timing])
+    def test_reproducibility_scaling_and_rng_isolation(self, function):
+        import numpy as np
+        np.random.seed(123)
+        expected = np.random.random(5)
+        np.random.seed(123)
+        first = function(n_iterations=20)
+        assert first == function(n_iterations=20)
+        assert np.array_equal(np.random.random(5), expected)
+        double = function(n_samples=512, n_iterations=20)
+        assert double['mean_cycles'] == pytest.approx(first['mean_cycles'] * 2)
+        assert double['timing_variance'] == pytest.approx(first['timing_variance'] * 4)
+        assert first['source'] == 'synthetic'
+        assert 'no hardware measurement' in first['limitation']
+
+    @pytest.mark.parametrize('kwargs', [
+        {'n_iterations': 0}, {'n_iterations': 1}, {'n_iterations': True},
+        {'n_iterations': 2.5}, {'n_iterations': 1000001},
+        {'n_samples': 0}, {'n_samples': -1}, {'n_samples': '256'},
+        {'n_samples': True}, {'n_samples': 65537},
+    ])
+    @pytest.mark.parametrize('function', [simulate_avx2_ntt_timing,
+                                         simulate_avx512_ntt_timing,
+                                         simulate_neon_ntt_timing])
+    def test_invalid_simulation_inputs(self, function, kwargs):
+        with pytest.raises(ValueError):
+            function(**kwargs)
+
+    @pytest.mark.parametrize('value', [-1, float('inf'), float('nan'), True, '1', None])
+    @pytest.mark.parametrize('key', ['mean_cycles', 'timing_variance'])
+    def test_invalid_summary(self, key, value):
+        good = {'mean_cycles': 1., 'timing_variance': 1.}
+        bad = dict(good, **{key: value})
+        with pytest.raises(ValueError):
+            analyze_timing_variance(bad, good, good)
+
+    def test_cli_and_disclaimer(self):
+        import subprocess
+        import sys
+        result = subprocess.run([sys.executable, '-m', 'pqc_bench.simd_timing'],
+                                capture_output=True, text=True, timeout=20, check=True)
+        assert 'Synthetic, uncalibrated' in result.stdout
+        assert 'does not prove constant-time' in result.stdout

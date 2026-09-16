@@ -1,17 +1,21 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
-Son güncelleme: 2026-09-17T01:50:00ZZ
-Commit: efa907d
+Son güncelleme: 2026-09-17T02:47:26+03:00
+Referans commit (bu güncelleme öncesi): 05b99b9
 
 ## Aktif İş Kolu
-WS-P5 — Canlı WebSocket Telemetrisi & Donanım SIMD Analizörü | Adım P5.1 | Durum: DONE
+WS-P5 — Canlı WebSocket Telemetrisi & SIMD İstatistikleri | Adım P5.2 | Durum: IN_PROGRESS
 
 ## Sıradaki Adım
-WS-P5.1: Canlı WebSocket Osiloskop Akışı Tamamlandı.
-1. `src/pqc_bench/api/main.py` içine `/ws/traces` WebSocket uç noktası eklendi. İstemci bağlandığında sentetik ya da gerçek güç/EM dalga formları, sızıntı pikleri ve korumalı/korumasız izler canlı yayınlanır.
-2. Web arayüzündeki osiloskop bileşenine WebSocket ile canlı otomatik oynatma (Live Play/Pause) desteği eklendi.
-3. `tests/test_phase5.py` birim testleri yazıldı, tüm testler geçti (pytest: 9/9 passed).
-4. Başarılı testlerin ardından git commit at ve push et: `[WS-P5.1] Implement Live WebSocket Trace Streaming Endpoint and Tests | state: WS-P5.1.DONE`
-5. Ardından PROJECT_STATE.md içindeki adımı WS-P5.2'ye ilerlet.
+WS-P5.2: Mevcut sentetik SIMD istatistik modülünün doğruluk düzeltmelerini ve regresyonlarını tamamla.
+1. Sıralama, eşitlik, sıfır varyans, RNG izolasyonu ve girdi doğrulamasını test et.
+2. Sentetik model sonuçlarını gerçek donanım ölçümü veya sabit zamanlılık kanıtı olarak sunma.
+3. Başarılı testlerden sonra WS-P5.3'e ilerle; dokümantasyon, commit ve push sonucunu kaydet.
+
+## Doğrulanmış Kapsam ve Sınırlar
+- P5.1: `05b99b9` commit'indeki WebSocket Live Play/Pause yalnızca sentetik görselleştirme sağlar. HDF5/donanım akışı sağlamaz; 60 FPS istek üst sınırıdır, ölçülmüş hız garantisi değildir.
+- P4 + P5.1 regresyonları: `python3 -m pytest tests/test_phase4.py tests/test_phase5.py -q` → 50 passed, 2 bağımlılık deprecation uyarısı.
+- P5.2: AVX2/AVX-512/ARM NEON etiketleri kalibre edilmemiş sentetik model senaryolarıdır; gerçek SIMD NTT çekirdeği veya donanım çevrim ölçümü uygulanmış değildir.
+- Önceki DONE kayıtları donanım doğrulaması veya GitHub CI başarısı olarak yorumlanmamalıdır. Bu çalışmada GitHub CI çalışması doğrulanmadı.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -34,8 +38,8 @@ WS-P5.1: Canlı WebSocket Osiloskop Akışı Tamamlandı.
 | 15 | WS-P4.2 Savunma ve Karşı Önlem Motoru | DONE | P4.2 | CPU | 2. mertebe maskeleme, shuffle ve dummy döngü koruma modülü |
 | 16 | WS-P4.3 Donanım İzi İçe Aktarıcı | DONE | P4.3 | CPU | ChipWhisperer, HDF5, CSV osiloskop izi yükleme ve SNR analizi |
 | 17 | WS-P4.4 GitHub Actions CI/CD | DONE | P4.4 | CI | Otomatik test koşturma ve CBOM doğrulama pipeline'ı |
-| 18 | WS-P5.1 DONE | P5.1 | CPU | 60 FPS canlı akan güç dalga formu ve sızıntı piki streaming endpoint |
-| 19 | WS-P5.2 SIMD | IN_PROGRESS | Vektör Sabit Zamanlılık | P5.2 | CPU | AVX2/AVX-512 & ARM NEON NTT zaman varyansı analizörü |
+| 18 | WS-P5.1 WebSocket | DONE | P5.1 | CPU | Sentetik Live Play/Pause; 1–60 FPS istek sınırı; donanım akışı yok |
+| 19 | WS-P5.2 SIMD İstatistikleri | IN_PROGRESS | P5.2 | CPU | AVX2/AVX-512/ARM NEON etiketli sentetik model; donanım ölçümü yok |
 | 20 | WS-P5.3 İkili Dosya (Binary) Zamanlama Denetçisi | TODO | P5.3 | CPU | ELF/SO nesnelerinde idiv/div değişken zamanlı komut tarayıcısı |
 | 21 | WS-P5.4 Otomatik Anomali & Sızıntı Alarmı | TODO | P5.4 | CPU | Eşik aşımı tespit edildiğinde Webhook/JSON bildirim motoru |
 | 22 | WS-P6.1 1D ResNet Derin Öğrenme Omurgası | TODO | P6.1 | CPU/GPU | Residual bağlantılı SideChannelResNet1D modeli |

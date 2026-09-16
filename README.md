@@ -73,6 +73,31 @@ The live web service and glassmorphic dashboard run continuously on port `8090`:
 
 ---
 
+## Phase 5: Synthetic Telemetry and SIMD Timing Statistics
+
+- `/ws/traces` supports bounded synthetic snapshots, playback, and Live Play/Pause.
+  Requests accept 8–1024 samples and 1–60 requested frames per second; actual
+  throughput is not guaranteed. Frames explicitly identify `source: synthetic`.
+  This endpoint does not read HDF5 files or acquire hardware traces.
+- `pqc_bench.simd_timing` compares **synthetic, uncalibrated modeled cycle units**
+  under AVX2, AVX-512, and ARM NEON labels. It does not execute SIMD NTT kernels,
+  measure processor cycles, reproduce a CVE, or prove constant-time behavior.
+  Lower modeled variance is not evidence that an architecture is more secure.
+- Existing NumPy statistics and the existing module are reused; no new dependency
+  or hardware benchmark framework is introduced.
+
+Run the scoped regression tests and the synthetic report:
+
+```bash
+python3 -m pytest tests/test_phase5.py tests/test_simd_timing.py -q
+python3 -m pqc_bench.simd_timing
+```
+
+The authoritative next work item and outstanding hardware limitations are tracked
+in [PROJECT_STATE.md](PROJECT_STATE.md).
+
+---
+
 ## 🔬 Advanced Modules (Phase 3: WS-ADV)
 
 ### 1. Correlation Power Analysis (CPA) vs Deep Learning Lab (`WS-ADV.1`)
