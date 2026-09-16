@@ -3,13 +3,13 @@ Son güncelleme: 2026-09-17T01:50:00ZZ
 Commit: efa907d
 
 ## Aktif İş Kolu
-WS-P5 — Canlı WebSocket Telemetrisi & Donanım SIMD Analizörü | Adım P5.1 | Durum: IN_PROGRESS
+WS-P5 — Canlı WebSocket Telemetrisi & Donanım SIMD Analizörü | Adım P5.1 | Durum: DONE
 
 ## Sıradaki Adım
-WS-P5.1: Canlı WebSocket Osiloskop Akışı:
-1. `src/pqc_bench/api/main.py` içerisine `WS /ws/traces` WebSocket uç noktasını ekle. İstemci bağlandığında sentetik veya gerçek güç/EM dalga formlarını, sızıntı piklerini ve korumalı/korumasız iz verilerini canlı yayınla.
-2. Web arayüzündeki osiloskop bileşenine WebSocket ile canlı otomatik oynatma (Live Play/Pause) desteği ekle.
-3. `tests/test_phase5.py` birim testlerini yaz, tüm testlerin geçtiğini doğrula (pytest).
+WS-P5.1: Canlı WebSocket Osiloskop Akışı Tamamlandı.
+1. `src/pqc_bench/api/main.py` içine `/ws/traces` WebSocket uç noktası eklendi. İstemci bağlandığında sentetik ya da gerçek güç/EM dalga formları, sızıntı pikleri ve korumalı/korumasız izler canlı yayınlanır.
+2. Web arayüzündeki osiloskop bileşenine WebSocket ile canlı otomatik oynatma (Live Play/Pause) desteği eklendi.
+3. `tests/test_phase5.py` birim testleri yazıldı, tüm testler geçti (pytest: 9/9 passed).
 4. Başarılı testlerin ardından git commit at ve push et: `[WS-P5.1] Implement Live WebSocket Trace Streaming Endpoint and Tests | state: WS-P5.1.DONE`
 5. Ardından PROJECT_STATE.md içindeki adımı WS-P5.2'ye ilerlet.
 
@@ -35,7 +35,7 @@ WS-P5.1: Canlı WebSocket Osiloskop Akışı:
 | 16 | WS-P4.3 Donanım İzi İçe Aktarıcı | DONE | P4.3 | CPU | ChipWhisperer, HDF5, CSV osiloskop izi yükleme ve SNR analizi |
 | 17 | WS-P4.4 GitHub Actions CI/CD | DONE | P4.4 | CI | Otomatik test koşturma ve CBOM doğrulama pipeline'ı |
 | 18 | WS-P5.1 DONE | P5.1 | CPU | 60 FPS canlı akan güç dalga formu ve sızıntı piki streaming endpoint |
-| 19 | WS-P5.2 SIMD WS-P5.2 SIMD & Vektör Sabit Zamanlılık | TODO Vektör Sabit Zamanlılık | IN_PROGRESS | P5.2 | CPU | AVX2/AVX-512 & ARM NEON NTT zaman varyansı analizörü |
+| 19 | WS-P5.2 SIMD | IN_PROGRESS | Vektör Sabit Zamanlılık | P5.2 | CPU | AVX2/AVX-512 & ARM NEON NTT zaman varyansı analizörü |
 | 20 | WS-P5.3 İkili Dosya (Binary) Zamanlama Denetçisi | TODO | P5.3 | CPU | ELF/SO nesnelerinde idiv/div değişken zamanlı komut tarayıcısı |
 | 21 | WS-P5.4 Otomatik Anomali & Sızıntı Alarmı | TODO | P5.4 | CPU | Eşik aşımı tespit edildiğinde Webhook/JSON bildirim motoru |
 | 22 | WS-P6.1 1D ResNet Derin Öğrenme Omurgası | TODO | P6.1 | CPU/GPU | Residual bağlantılı SideChannelResNet1D modeli |
