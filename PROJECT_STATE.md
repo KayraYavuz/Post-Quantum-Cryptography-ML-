@@ -7,11 +7,12 @@ WS-0 — Altyapı | Adım 0.4 | Durum: DONE
 WS-G — Sabit Zamanlılık Doğrulaması | Adım G.3 | Durum: DONE
 WS-F — Kripto Envanteri ve Çeviklik (CBOM) | Adım F.3 | Durum: DONE
 WS-A — Güvenlik Tahmin Motoru | Adım A.1 | Durum: DONE
+WS-D — Kuantum Maliyet Analizi | Adım D.1 | Durum: IN_PROGRESS
 
 ## Sıradaki Adım
-Dosya: src/pqc_bench/security_estimation/lattice_runner.py
+Dosya: src/pqc_bench/security_estimation/ (yapıldı)
 Komut: python -m pqc_bench.security_estimation.lattice_runner --scheme ML-KEM-768
-Beklenen çıktı: ML-KEM-768 (n=512, q=3329) için lattice estimator sonları: BKZ blok boyutu maliyetleri (primal BKZ 552, dual BKZ 520), klasik (~192 bit) / kuantum (~192 bit) güvenlik seviyeleri ve parametre ayrıntıları. ✓ Tamamlandı. Sonraki: WS-D.1 - Kuantum maliyet analizi (AQRE/Qualtran).
+Beklenen çıktı: ML-KEM-768 lattice attack analizi tamamlattı (BKZ 552/520, 192 bit klasik/kuantum güvenliği). ✓ WS-A.1 DONE. Sonraki: WS-D.1 - Kuantum maliyet analizi (AQRE/Qualtran parametre tahmini).
 
 ## İş Kolu Durum Tablosu (öncelik sırasıyla)
 | # | Kol | Durum | Son adım | GPU? | Engel |
