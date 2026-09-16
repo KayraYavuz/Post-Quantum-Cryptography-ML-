@@ -8,4 +8,6 @@
 
 - 2026-09-16T02:45:00Z | [WS-F.2] CBOM politikası değerlendirici (policy.py) oluşturuldu ve NIST SP 800-208 / CNSA 2.0 uyumluluk değerlendirmesi yapıldı. CBOM ve politika raporu artifacts/ klasörüne yazıldı. | state: DONE
 
-- 2026-09-16T02:45:00Z | [WS-F.3] CBOM birim testleri (test_cbom.py) yazıldı ve çalıştırıldı. Tüm testler passed. | state: DONE
+- 2026-09-16T03:00:00Z | [WS-F.3] CBOM birim testleri (test_cbom.py) yazıldı ve çalıştırıldı. Tüm testler passed. | state: DONE
+
+- 2026-09-16T03:00:00Z | [WS-A.1] Security estimation implementation ve testler (test_security_estimation.py) çalıştırıldı; tüm 13 test passed. | state: DONE
