@@ -28,6 +28,11 @@ from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from pydantic import BaseModel, Field
 
 from pqc_bench.cbom.report_exporter import generate_compliance_audit_report
+from pqc_bench.hardware.hdf5_loader import (
+    Hdf5OscilloscopeLoader,
+    load_hdf5_traces,
+    compute_snr_from_hdf5,
+)
 from pqc_bench.constant_time.interactive_analyzer import (
     get_assembly_comparison,
     simulate_timing_t_test,
@@ -1253,6 +1258,85 @@ def index_dashboard() -> str:
 # ---------------------------------------------------------------------------
 # Direct Runner
 # ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# WS-P4.3 Donanım İzi İçe Aktarıcı (Hardware Signal Importer)
+# ChipWhisperer HDF5 trace loading & SNR analysis endpoints
+# ---------------------------------------------------------------------------
+
+class Hdf5TraceRequest(BaseModel):
+    filepath: str = Field(..., description="Path to ChipWhisperer .hdf5 trace file")
+    reference_trace_idx: Optional[int] = Field(None, description="Index of reference trace (default: 0)")
+    noise_trace_indices: Optional[List[int]] = Field(None, description="List of trace indices for noise average")
+    signal_indices: Optional[List[int]] = Field(None, description="List of trace indices for signal average")
+    noise_sample_indices: Optional[List[int]] = Field(None, description="List of sample indices for noise")
+
+class Hdf5TraceResponse(BaseModel):
+    n_traces: int
+    n_samples: int
+    sample_rate: float
+    sample_axis_first_10: List[float]
+    trace_0_first_10: List[float]
+    hw_intermediates: List[int]
+    metadata: Dict[str, Any]
+    snr: Dict[str, float]
+
+@app.post("/api/v1/hdf5-trace")
+def load_hdf5_trace(filepath: str, reference_trace_idx: int = None, 
+                    noise_trace_indices: List[int] = None, 
+                    signal_indices: List[int] = None, 
+                    noise_sample_indices: List[int] = None):
+    """Load a ChipWhisperer HDF5 oscilloscope trace file and return summary.
+
+    Returns trace metadata, sample axis, first trace samples, stored intermediates (HW, points, labels),
+    and SNR analysis. Useful for side-channel measurement import from ChipWhisperer capture files.
+    """
+    loader = Hdf5OscilloscopeLoader(filepath)
+    loader.open()
+    try:
+        # Load SNR with specified parameters
+        snr = loader.compute_snr(
+            signal_indices=signal_indices if signal_indices else [reference_trace_idx] if reference_trace_idx else None,
+            noise_trace_indices=noise_trace_indices,
+            noise_indices=noise_sample_indices,
+        )
+
+        summary = load_hdf5_traces(filepath)
+        # Add SNR to summary
+        summary["snr"] = snr
+
+        # Convert numpy types to Python types for JSON serialization
+        return {
+            "n_traces": int(summary["n_traces"]),
+            "n_samples": int(summary["n_samples"]),
+            "sample_rate": float(summary["metadata"]["sample_rate"]),
+            "sample_axis_first_10": summary["sample_axis_first_10"],
+            "trace_0_first_10": summary["trace_0_first_10"],
+            "hw_intermediates": list(loader.intermediates.get("HW", [])) if summary.get("intermediates_available") else [],
+            "metadata": summary["metadata"],
+            "snr": snr,
+        }
+    finally:
+        loader.close()
+
+@app.post("/api/v1/hdf5-snr")
+def compute_hdf5_snr(req: Hdf5TraceRequest) -> Dict[str, float]:
+    """Compute SNR from a ChipWhisperer HDF5 trace file.
+
+    Convenience endpoint for SNR-only analysis without full trace summary.
+    """
+    loader = Hdf5OscilloscopeLoader(filepath)
+    loader.open()
+    try:
+        snr = loader.compute_snr(
+            signal_indices=signal_indices,
+            noise_trace_indices=noise_trace_indices,
+            noise_indices=noise_sample_indices,
+        )
+        return snr
+    finally:
+        loader.close()
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8090, log_level="info")
