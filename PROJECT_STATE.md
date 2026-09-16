@@ -1,6 +1,6 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
 Son güncelleme: 2026-09-16T23:55:28+00:00
-Referans commit (bu güncelleme öncesi): 86a4177; P5.2 kodu: efd3a98
+Referans commit (bu güncelleme öncesi): b3e25ff; P5.2 kodu: efd3a98
 
 ## Aktif İş Kolu
 WS-P5 — Canlı WebSocket Telemetrisi & SIMD İstatistikleri | Adım P5.3 | Durum: TODO
@@ -13,6 +13,7 @@ WS-P5.3: Yerel, projeye ait ELF/SO dosyaları için savunma amaçlı statik zama
 4. Testlerden sonra commit/push sonucunu kaydet ve WS-P5.4'e ilerle.
 
 ## Doğrulanmış Kapsam ve Sınırlar
+- Yayın engeli: `git push origin main` GitHub tarafından reddedildi; mevcut PAT, `.github/workflows/ci-cd-pipeline.yml` için gereken `workflow` yetkisine sahip değil. Yerel commitler korunuyor, uzak yayın tamamlanmadı. Yetkili operatör GitHub bağlantısını uygun workflow yazma yetkisiyle yeniden kurduktan sonra push tekrar denenebilir.
 - Son yerel doğrulama: `pytest -q` → 174 passed, 2 bağımlılık deprecation uyarısı (8.92 s). P5.2 sentetik kapsamı tamamlandı; aktif adım P5.3.
 - P5.1: `05b99b9` commit'indeki WebSocket Live Play/Pause yalnızca sentetik görselleştirme sağlar. HDF5/donanım akışı sağlamaz; 60 FPS istek üst sınırıdır, ölçülmüş hız garantisi değildir.
 - P4 + P5.1 regresyonları: `python3 -m pytest tests/test_phase4.py tests/test_phase5.py -q` → 50 passed, 2 bağımlılık deprecation uyarısı.
