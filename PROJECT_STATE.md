@@ -1,12 +1,12 @@
 # PROJECT STATE
-Son güncelleme: 2026-09-16T08:40:00Z
+Son güncelleme: 2026-09-16T08:56:00Z
 Commit: f61ae6b
 
 ## Aktif İş Kolu
 WS-F — CBOM Analizi ve Politikalar | Adım F.3 | Durum: DONE
 
 ## Aktif İş Kolu
-WS-A — Güvenlik Tahmini ve Bit Hesaplaması | Adım A.1 | Durum: ACTIVE
+WS-A — Güvenlik Tahmini ve Bit Hesaplaması | Adım A.1 | Durum: DONE
 
 ## Aktif İş Kolu
 WS-C — Yan Kanal ve LWE Entegrasyonu | Adım C.2 | Durum: DONE
@@ -33,9 +33,9 @@ WS-C.3 — Yan kanal testi ve doğrulama - DONE
 | 7 | WS-B LWE | DONE | WS-B.3 | EVET | - |
 
 ## Sonraki 3 Adım
-1. [WS-F.1] CBOM analizi ve politikalar değerlendirmesi - CycloneDX 1.6 uyumluluk (devam ediyor - 8 algoritma tespit edildi)
-2. [WS-F.2] CBOM politikası derin değerlendirmesi ve raporlama
-3. [WS-F.3] CBOM uyumluluk raporu ve artifact oluşturma
+1. [WS-F.2] CBOM politikası derin değerlendirmesi ve raporlama
+2. [WS-F.3] CBOM uyumluluk raporu ve artifact oluşturma
+3. [WS-A] Security estimation ve bit toleransı kontrolü (aktif adım)
 
 ## Kullanılan Dış Depolar
 | Depo | Sürüm/commit | Ne için | Fork'lendi mi |
@@ -74,6 +74,6 @@ Bu oturum: 0.0 GPU-saat | Kümülatif: 0.0 GPU-saat | Sıradaki işin tahmini: 0
 Yok.
 
 ## Sonraki 3 Adım
-1. [WS-F.1] CBOM analizi ve politikalar değerlendirmesi - CycloneDX 1.6 uyumluluk (devam ediyor - 8 algoritma tespit edildi)
-2. [WS-F.2] CBOM politikası derin değerlendirmesi ve raporlama
-3. [WS-F.3] CBOM uyumluluk raporu ve artifact oluşturma
+1. [WS-F.2] CBOM politikası derin değerlendirmesi ve raporlama
+2. [WS-F.3] CBOM uyumluluk raporu ve artifact oluşturma
+3. [WS-A] Security estimation ve bit toleransı kontrolü (aktif adım)
