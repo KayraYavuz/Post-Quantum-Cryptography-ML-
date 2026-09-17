@@ -1,6 +1,6 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
-Son güncelleme: 2026-09-17T00:10:46+00:00
-Referans commit (bu güncelleme öncesi): f3f56ab; P5.3 commit/push sonucu RUN_LOG.md içinde kaydedilir.
+Son güncelleme: 2026-09-17T00:11:02+00:00
+P5.3 uygulama commit: e99301a; push reddedildi (workflow yetkisi eksik). Yerel aktif adım: P5.4 TODO.
 
 ## Aktif İş Kolu
 WS-P5 — Canlı WebSocket Telemetrisi & SIMD İstatistikleri | Adım P5.4 | Durum: TODO
@@ -13,7 +13,7 @@ WS-P5.4: Projeye ait sentetik/yerel telemetri için eşik tabanlı anomali bildi
 4. Eşik/girdi sınırları, tekrar bildirim kontrolü ve taşıma hatalarını test et; kapsamı belgele, commit/push sonucunu kaydet ve WS-P6.1'e ilerle.
 
 ## Doğrulanmış Kapsam ve Sınırlar
-- Yayın engeli: `git push origin main` GitHub tarafından reddedildi; mevcut PAT, `.github/workflows/ci-cd-pipeline.yml` için gereken `workflow` yetkisine sahip değil. Yerel commitler korunuyor, uzak yayın tamamlanmadı. Yetkili operatör GitHub bağlantısını uygun workflow yazma yetkisiyle yeniden kurduktan sonra push tekrar denenebilir.
+- Yayın engeli: P5.3 uygulama commit'i `e99301a` sonrasında `git push origin main` yeniden denendi ve GitHub tarafından reddedildi (exit 1); mevcut PAT, `.github/workflows/ci-cd-pipeline.yml` için gereken `workflow` yetkisine sahip değil. Yerel commitler korunuyor, uzak yayın tamamlanmadı. Yetkili operatör GitHub bağlantısını uygun workflow yazma yetkisiyle yeniden kurduktan sonra push tekrar denenebilir.
 - Son yerel doğrulama: `python3 -m pytest -q` → 235 passed, 2 bağımlılık deprecation uyarısı (7.71 s). P5.3 hedef testi: 61 passed (0.65 s). Aktif adım P5.4.
 - P5.3: pyelftools + Capstone ile yerel x86 ELF32/ELF64 ET_REL/ET_EXEC/ET_DYN bölüm incelemesi tamamlandı. Dosyalar çalıştırılmaz; div/idiv bulguları sızıntı veya sabit zamanlılık kanıtı değildir. Eksik çözümleme açıkça raporlanır; kapsam: docs/binary_timing_review.md. Testler projeye ait küçük inert ELF örnekleridir, donanım/üretim ikilisi doğrulaması değildir.
 - P5.1: `05b99b9` commit'indeki WebSocket Live Play/Pause yalnızca sentetik görselleştirme sağlar. HDF5/donanım akışı sağlamaz; 60 FPS istek üst sınırıdır, ölçülmüş hız garantisi değildir.
