@@ -257,5 +257,16 @@ CPU unit tests check shapes, masks, gradients and serialization; no accuracy,
 phase-shift robustness, training benchmark or GPU performance is claimed.
 See [API, mask semantics and bounds](docs/waveform_transformer.md).
 
+## WS-P6.3: Generic synthetic waveform cGAN components
+
+`SyntheticWaveformGenerator` and `SyntheticWaveformDiscriminator` provide a
+bounded conditional MLP baseline using existing PyTorch layers. The generator
+maps explicit noise and generic class IDs to `(B, C, L)` waveforms; the
+discriminator accepts the existing 2D/3D waveform shapes and returns `(B, 1)`
+raw logits. CPU tests cover conditioning, gradients, serialization and input
+validation. No training, validated data augmentation, realism, secret-dependent
+labels, hardware import or attack/service integration is provided.
+See [API, bounds, usage and limitations](docs/waveform_gan.md).
+
 ## 📜 License
 Apache-2.0 License. Maintained autonomously by Ruhi (OpenClaw) and Antigravity.
