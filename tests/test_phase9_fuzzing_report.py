@@ -33,7 +33,7 @@ class TestFuzzingReportStructure:
         kem_results = {
             "mlkem512": {
                 "passed": True,
-                "timing_data": [{"elapsed_ns": 1000}],
+                "timing_data": [{"elapsed_ns": 1000}, {"elapsed_ns": 1200}],
                 "exceptions": [],
             }
         }
@@ -55,7 +55,7 @@ class TestFuzzingReportStructure:
         kem_results = {
             "mlkem512": {
                 "passed": True,
-                "timing_data": [{"elapsed_ns": 1000}],
+                "timing_data": [{"elapsed_ns": 1000}, {"elapsed_ns": 1200}],
                 "exceptions": [],
             },
             "mlkem768": {
@@ -131,7 +131,7 @@ class TestReportExportFormats:
         kem_results = {
             "mlkem512": {
                 "passed": True,
-                "timing_data": [{"elapsed_ns": 1000}],
+                "timing_data": [{"elapsed_ns": 1000}, {"elapsed_ns": 1200}],
                 "exceptions": [],
             }
         }
@@ -255,7 +255,7 @@ class TestReportExportValidation:
         kem_results = {
             "mlkem768": {
                 "passed": True,
-                "timing_data": [{"elapsed_ns": 1000}],
+                "timing_data": [{"elapsed_ns": 1000}, {"elapsed_ns": 1200}],
                 "exceptions": [],
             }
         }
@@ -276,7 +276,7 @@ class TestReportExportValidation:
         kem_results = {
             "mlkem512": {
                 "passed": True,
-                "timing_data": [{"elapsed_ns": 1000}],
+                "timing_data": [{"elapsed_ns": 1000}, {"elapsed_ns": 1200}],
                 "exceptions": [],
             }
         }

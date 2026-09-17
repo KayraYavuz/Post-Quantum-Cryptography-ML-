@@ -3,14 +3,14 @@ Son güncelleme: 2026-09-17T10:35:00ZZ
 Commit: fe6b200
 
 ## Aktif İş Kolu
-WS-P9 — Kuantum Sonrası Otomatik Fuzzing WS-P9 — Kuantum Sonrası Otomatik Fuzzing & Bellek Güvenliği | Adım P9.3 | Durum: IN_PROGRESS Bellek Güvenliği | Adım P9.4 | Durum: TODO (WS-P9.2 completed)
+WS-P9 — Kuantum Sonrası Otomatik Fuzzing WS-P9 — Kuantum Sonrası Otomatik Fuzzing & Bellek Güvenliği | Adım P9.3 | Durum: DONE Bellek Güvenliği | Adım P9.4 | Durum: IN_PROGRESS (WS-P9.3 completed)
 
 ## Sıradaki Adım
-WS-P9.3: Polynomial Traversal Browser and Overflow Detection:
-1. `src/pqc_bench/lwe_toy.py` ve polinom işlemleri modülünü geliştir. NTT katsayı çarpımında modüler integer overflow tespiti.
-2. `tests/test_phase9_overflow.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
-3. Değişiklikleri `[WS-P9.3] Implement Polynomial Traversal Browser and Overflow Detection | state: WS-P9.3.DONE` formatıyla commit et.
-4. PROJECT_STATE.md dosyasını WS-P9.4 adımına ilerlet.
+WS-P9.4: Fuzzing Güvenlik Raporu ve Entegrasyon:
+1. Fuzzing açıkları ve anomali matrisini JSON/Markdown formatıyla derle.
+2. `tests/test_phase9_fuzzing_report.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
+3. Değişiklikleri `[WS-P9.4] Implement Fuzzing Security Report and Integration | state: WS-P9.4.DONE` formatıyla commit et.
+4. PROJECT_STATE.md dosyasını WS-P9.5 adımına ilerlet.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -51,7 +51,7 @@ WS-P9.3: Polynomial Traversal Browser and Overflow Detection:
 | 33 | WS-P9.1 Sabit Zamanlılık Fuzzer | DONE | P9.1 | CPU | ML-KEM/ML-DSA malformed ciphertext fuzzing motoru |
 | 34 | WS-P9.2 Bellek Zeroization Denetörü | DONE | P9.2 | CPU | RAM temizlik ve kalıntı bayt analizörü - 18/18 test passed |
 | 35 | WS-P9.3 Polinom Taşma Tarayıcısı | IN_PROGRESS | P9.3 | CPU | NTT katsayı çarpmalarında modüler integer overflow tarayıcısı - actively in progress (push blocked: GitHub PAT scope) |
-| 36 | WS-P9.4 Fuzzing Güvenlik Raporu | TODO | P9.4 | CPU | Fuzzing açıkları ve anomali matrisi JSON/Markdown ihracı |
+| 36 | WS-P9.4 Fuzzing Güvenlik Raporu | DONE | P9.4 | CPU | Fuzzing açıkları ve anomali matrisi JSON/Markdown ihracı |
 | 37 | WS-P10.1 C-FFI Hızlandırıcı Çekirdek | DONE | P10.1 | CPU | C/Cython ile derlenmiş yüksek hızlı NTT çekirdeği - optimized NTT core eklendildı (WS-P9.4 completed) |
 | 38 | WS-P10.2 CPU Önbellek Zamanlama Simülatörü | TODO | P10.2 | CPU | Flush+Reload & Prime+Probe L1/L3 önbellek sızıntı modeli |
 | 39 | WS-P10.3 Donanım Güç Kalibrasyon Haritası | TODO | P10.3 | CPU | x86_64 vs ARM64 vs Apple Silicon CPU nanometre güç profili |
