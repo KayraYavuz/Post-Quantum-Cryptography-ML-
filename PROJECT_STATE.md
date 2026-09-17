@@ -1,6 +1,6 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
-Son güncelleme: 2026-09-17T00:35:54+00:00
-P6.1 yerel uygulama ve testleri tamamlandı; bu adımın commit/push sonucu henüz doğrulanmadı. Yerel aktif adım: P6.2 TODO.
+Son güncelleme: 2026-09-17T00:36:11+00:00
+P6.1 uygulama commit: 49d53ea; doğrudan push GitHub tarafından reddedildi (workflow yetkisi eksik). Yerel aktif adım: P6.2 TODO.
 
 ## Aktif İş Kolu
 WS-P6 — İleri Derin Öğrenme Mimarileri | Adım P6.2 | Durum: TODO
@@ -13,7 +13,7 @@ WS-P6.2: Transformer & Attention SCA Modeli (genel sentetik dalga biçimleri kap
 4. Kapsamı belgele, commit/push sonucunu kaydet ve tamamlandığında WS-P6.3'e ilerle.
 
 ## Doğrulanmış Kapsam ve Sınırlar
-- Yayın engeli: P5.4 uygulama commit'i `9442f62` sonrasında `git push origin main` yeniden denendi ve GitHub tarafından reddedildi (exit 1); mevcut PAT, `.github/workflows/ci-cd-pipeline.yml` için gereken `workflow` yetkisine sahip değil. Yerel commitler korunuyor, uzak yayın tamamlanmadı. Yetkili operatör GitHub bağlantısını uygun workflow yazma yetkisiyle yeniden kurduktan sonra push tekrar denenebilir.
+- Yayın engeli: P6.1 uygulama commit'i `49d53ea` sonrasında `git push origin main` yeniden denendi ve GitHub tarafından reddedildi (exit 1); mevcut PAT, `.github/workflows/ci-cd-pipeline.yml` için gereken `workflow` yetkisine sahip değil. Yerel commitler korunuyor, uzak yayın tamamlanmadı. Yetkili operatör GitHub bağlantısını uygun workflow yazma yetkisiyle yeniden kurduktan sonra push tekrar denenebilir.
 - Son yerel doğrulama: `python3 -m pytest -q` → 413 passed, 2 bağımlılık deprecation uyarısı (12.77 s). P6.1 hedef testleri: 67 passed (7.29 s). `git diff --check` başarılı. Ruff kurulu değil; lint çalıştırılmadı. Aktif adım P6.2.
 - P5.4: Sınırlı skaler JSON inceleme uyarıları, sonlu/katı girdi doğrulaması, kaynak/metrik bazlı tekrar kontrolü ve isteğe bağlı HTTPS taşıyıcı tamamlandı. Ağ varsayılan kapalı; WebSocket politikası harici taşıyıcı açamaz. Testler sahte taşıyıcılarla çevrimdışı; gerçek webhook teslimi denenmedi. Eşik aşımı sızıntı/istismar kanıtı değildir; P5.3 statik bulguları alınmaz. Kapsam: docs/telemetry_alerts.md.
 - P5.3: pyelftools + Capstone ile yerel x86 ELF32/ELF64 ET_REL/ET_EXEC/ET_DYN bölüm incelemesi tamamlandı. Dosyalar çalıştırılmaz; div/idiv bulguları sızıntı veya sabit zamanlılık kanıtı değildir. Eksik çözümleme açıkça raporlanır; kapsam: docs/binary_timing_review.md. Testler projeye ait küçük inert ELF örnekleridir, donanım/üretim ikilisi doğrulaması değildir.
