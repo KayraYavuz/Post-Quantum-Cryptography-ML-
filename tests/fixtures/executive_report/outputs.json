@@ -1,0 +1,278 @@
+{
+  "cbom": {
+    "cNSA_2_0_status": "partial",
+    "nist_sp_800_208_status": "partial"
+  },
+  "constant_time": {
+    "finding_count": 1,
+    "findings_truncated": false,
+    "instruction_count": 3,
+    "scan_complete": false,
+    "status": "incomplete"
+  },
+  "fips": {
+    "documents": [],
+    "gaps": [
+      {
+        "code": "missing_evidence",
+        "field": "approved_mode"
+      },
+      {
+        "code": "missing_target_scope",
+        "field": "approved_mode"
+      },
+      {
+        "code": "missing_evidence",
+        "field": "certificate_reference"
+      },
+      {
+        "code": "missing_evidence",
+        "field": "certificate_standard"
+      },
+      {
+        "code": "missing_evidence",
+        "field": "certificate_status"
+      },
+      {
+        "code": "missing_evidence",
+        "field": "environment"
+      },
+      {
+        "code": "missing_target_scope",
+        "field": "environment"
+      },
+      {
+        "code": "missing_evidence",
+        "field": "module_id"
+      },
+      {
+        "code": "authenticity_not_verified",
+        "field": "review"
+      },
+      {
+        "code": "current_cmvp_status_not_verified",
+        "field": "review"
+      },
+      {
+        "code": "runtime_mode_not_verified",
+        "field": "review"
+      },
+      {
+        "code": "missing_evidence",
+        "field": "security_policy_reference"
+      },
+      {
+        "code": "missing_evidence",
+        "field": "services"
+      },
+      {
+        "code": "missing_target_scope",
+        "field": "services"
+      },
+      {
+        "code": "missing_evidence",
+        "field": "version"
+      },
+      {
+        "code": "missing_target_scope",
+        "field": "version"
+      }
+    ],
+    "limitations": [
+      "Local caller-supplied document assertions only; not a module validation or certification.",
+      "Document authenticity, current CMVP status and deployed runtime mode are not verified.",
+      "Algorithm names, FIPS 203/204, cryptography and CBOM policy labels are not module evidence.",
+      "Exact scope comparison only; no environment equivalence, portability or product-wide claim.",
+      "Not an exhaustive FIPS 140-3 requirements audit; no laboratory or service integration."
+    ],
+    "overall_status": "not_verified",
+    "rows": [
+      {
+        "evidence": [],
+        "field": "module_id",
+        "gaps": [
+          "missing_evidence"
+        ],
+        "rule_sources": [
+          "fips140_3",
+          "cmvp_modules",
+          "cmvp_faq"
+        ],
+        "status": "unknown",
+        "target": "Synthetic module"
+      },
+      {
+        "evidence": [],
+        "field": "version",
+        "gaps": [
+          "missing_evidence",
+          "missing_target_scope"
+        ],
+        "rule_sources": [
+          "fips140_3",
+          "cmvp_modules",
+          "cmvp_faq"
+        ],
+        "status": "unknown",
+        "target": null
+      },
+      {
+        "evidence": [],
+        "field": "environment",
+        "gaps": [
+          "missing_evidence",
+          "missing_target_scope"
+        ],
+        "rule_sources": [
+          "fips140_3",
+          "cmvp_modules",
+          "cmvp_faq"
+        ],
+        "status": "unknown",
+        "target": null
+      },
+      {
+        "evidence": [],
+        "field": "certificate_reference",
+        "gaps": [
+          "missing_evidence"
+        ],
+        "rule_sources": [
+          "fips140_3",
+          "cmvp_modules",
+          "cmvp_faq"
+        ],
+        "status": "unknown",
+        "target": null
+      },
+      {
+        "evidence": [],
+        "field": "certificate_standard",
+        "gaps": [
+          "missing_evidence"
+        ],
+        "rule_sources": [
+          "fips140_3",
+          "cmvp_modules",
+          "cmvp_faq"
+        ],
+        "status": "unknown",
+        "target": null
+      },
+      {
+        "evidence": [],
+        "field": "certificate_status",
+        "gaps": [
+          "missing_evidence"
+        ],
+        "rule_sources": [
+          "fips140_3",
+          "cmvp_modules",
+          "cmvp_faq"
+        ],
+        "status": "unknown",
+        "target": null
+      },
+      {
+        "evidence": [],
+        "field": "security_policy_reference",
+        "gaps": [
+          "missing_evidence"
+        ],
+        "rule_sources": [
+          "fips140_3",
+          "cmvp_modules",
+          "cmvp_faq"
+        ],
+        "status": "unknown",
+        "target": null
+      },
+      {
+        "evidence": [],
+        "field": "approved_mode",
+        "gaps": [
+          "missing_evidence",
+          "missing_target_scope"
+        ],
+        "rule_sources": [
+          "fips140_3",
+          "cmvp_modules",
+          "cmvp_faq"
+        ],
+        "status": "unknown",
+        "target": null
+      },
+      {
+        "evidence": [],
+        "field": "services",
+        "gaps": [
+          "missing_evidence",
+          "missing_target_scope"
+        ],
+        "rule_sources": [
+          "fips140_3",
+          "cmvp_modules",
+          "cmvp_faq"
+        ],
+        "status": "unknown",
+        "target": null
+      }
+    ],
+    "schema_version": 1,
+    "scope": "local_document_review",
+    "sources": {
+      "cmvp_faq": "https://csrc.nist.gov/projects/cryptographic-module-validation-program/faqs",
+      "cmvp_modules": "https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules",
+      "fips140_3": "https://csrc.nist.gov/pubs/fips/140-3/final"
+    },
+    "target": {
+      "approved_mode": null,
+      "environment": null,
+      "module_id": "Synthetic module",
+      "services": null,
+      "version": null
+    }
+  },
+  "pki": {
+    "chain_verified": true
+  },
+  "quantum": {
+    "description": "Kyber-768 quantum resource estimate",
+    "logical_qubits": 4215,
+    "n": 512,
+    "physical_qubits": 13459200,
+    "q": 3329,
+    "runtime_seconds": 14400,
+    "scheme": "ml-kem-768",
+    "surface_code_distance": 101,
+    "t_depth": 10948000,
+    "t_gate_count": 5474000
+  },
+  "security": {
+    "classical_security_bits": 192,
+    "description": "Kyber-768: NIST Cat 3, balanced security",
+    "dual_cost_bkz": 520,
+    "n": 512,
+    "primal_cost_bkz": 552,
+    "q": 3329,
+    "quantum_security_bits": 192,
+    "scheme": "ml-kem-768"
+  },
+  "tls": {
+    "client_application_match": true,
+    "confidentiality_claim": false,
+    "fips_certification_claim": false,
+    "hash": "SHA-256",
+    "hybrid_components": [
+      "X25519",
+      "ML-KEM-768"
+    ],
+    "local_duration_ns": 123456,
+    "measurement": "local_simulation_duration_not_network_rtt",
+    "peer_authentication": false,
+    "production_tls": false,
+    "profile": "offline-educational-tls13-style-v1",
+    "server_application_match": true,
+    "transcript_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

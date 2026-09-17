@@ -1,0 +1,11 @@
+{
+  "scheme": "ml-kem-768",
+  "scope": "synthetic_fixture",
+  "fips_request": {
+    "target": {
+      "module_id": "Synthetic module"
+    },
+    "documents": []
+  },
+  "note": "TLS duration, static scan, PKI and CBOM values are fabricated examples, not observed executions."
+}

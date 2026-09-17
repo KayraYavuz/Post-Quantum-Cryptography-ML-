@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "sections": {
+    "cbom": {
+      "evidence_kind": "synthetic_fixture",
+      "input_file": "tests/fixtures/executive_report/inputs.json",
+      "output": {
+        "cNSA_2_0_status": "partial",
+        "nist_sp_800_208_status": "partial"
+      },
+      "output_file": "tests/fixtures/executive_report/outputs.json"
+    },
+    "constant_time": {
+      "evidence_kind": "synthetic_fixture",
+      "input_file": "tests/fixtures/executive_report/inputs.json",
+      "output": {
+        "finding_count": 1,
+        "findings_truncated": false,
+        "instruction_count": 3,
+        "scan_complete": false,
+        "status": "incomplete"
+      },
+      "output_file": "tests/fixtures/executive_report/outputs.json"
+    },
+    "fips": {
+      "evidence_kind": "synthetic_fixture",
+      "input_file": "tests/fixtures/executive_report/inputs.json",
+      "output": {
+        "gaps": [
+          {
+            "code": "missing_evidence",
+            "field": "approved_mode"
+          },
+          {
+            "code": "missing_target_scope",
+            "field": "approved_mode"
+          },
+          {
+            "code": "missing_evidence",
+            "field": "certificate_reference"
+          },
+          {
+            "code": "missing_evidence",
+            "field": "certificate_standard"
+          },
+          {
+            "code": "missing_evidence",
+            "field": "certificate_status"
+          },
+          {
+            "code": "missing_evidence",
+            "field": "environment"
+          },
+          {
+            "code": "missing_target_scope",
+            "field": "environment"
+          },
+          {
+            "code": "missing_evidence",
+            "field": "module_id"
+          },
+          {
+            "code": "authenticity_not_verified",
+            "field": "review"
+          },
+          {
+            "code": "current_cmvp_status_not_verified",
+            "field": "review"
+          },
+          {
+            "code": "runtime_mode_not_verified",
+            "field": "review"
+          },
+          {
+            "code": "missing_evidence",
+            "field": "security_policy_reference"
+          },
+          {
+            "code": "missing_evidence",
+            "field": "services"
+          },
+          {
+            "code": "missing_target_scope",
+            "field": "services"
+          },
+          {
+            "code": "missing_evidence",
+            "field": "version"
+          },
+          {
+            "code": "missing_target_scope",
+            "field": "version"
+          }
+        ],
+        "overall_status": "not_verified"
+      },
+      "output_file": "tests/fixtures/executive_report/outputs.json"
+    },
+    "pki": {
+      "evidence_kind": "synthetic_fixture",
+      "input_file": "tests/fixtures/executive_report/inputs.json",
+      "output": {
+        "chain_verified": true
+      },
+      "output_file": "tests/fixtures/executive_report/outputs.json"
+    },
+    "quantum": {
+      "evidence_kind": "synthetic_fixture",
+      "input_file": "tests/fixtures/executive_report/inputs.json",
+      "output": {
+        "logical_qubits": 4215,
+        "physical_qubits": 13459200,
+        "runtime_seconds": 14400,
+        "scheme": "ml-kem-768",
+        "t_depth": 10948000,
+        "t_gate_count": 5474000
+      },
+      "output_file": "tests/fixtures/executive_report/outputs.json"
+    },
+    "security": {
+      "evidence_kind": "synthetic_fixture",
+      "input_file": "tests/fixtures/executive_report/inputs.json",
+      "output": {
+        "classical_security_bits": 192,
+        "quantum_security_bits": 192,
+        "scheme": "ml-kem-768"
+      },
+      "output_file": "tests/fixtures/executive_report/outputs.json"
+    },
+    "tls": {
+      "evidence_kind": "synthetic_fixture",
+      "input_file": "tests/fixtures/executive_report/inputs.json",
+      "output": {
+        "client_application_match": true,
+        "local_duration_ns": 123456,
+        "server_application_match": true
+      },
+      "output_file": "tests/fixtures/executive_report/outputs.json"
+    }
+  },
+  "title": "PQC offline executive review \u2014 synthetic example"
+}

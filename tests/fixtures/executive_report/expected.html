@@ -1,0 +1,114 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PQC offline executive review — synthetic example</title>
+<style>body{font:16px sans-serif;max-width:72em;margin:2em auto;padding:1em}table{border-collapse:collapse;width:100%;overflow-wrap:anywhere}td,th{border:1px solid #777;padding:.5em;text-align:left}p,li{overflow-wrap:anywhere}@media print{body{margin:0;font-size:10pt}thead{display:table-header-group}tr{break-inside:avoid}h2{break-after:avoid}}</style>
+</head><body><h1>PQC offline executive review — synthetic example</h1>
+<p><strong>Overall: not_verified</strong></p><ul>
+<li>Offline management review only; no production security, attack resistance, certification or hardware claim.</li>
+<li>All supplied excerpts and file locators are caller-attested, not authenticated or read by this exporter.</li>
+<li>Missing fields are unmeasured, never zero, passed or compliant. No aggregate security/compliance score.</li>
+<li>Synthetic fixture values are examples, not observations. A recorded local TLS duration is not network RTT.</li>
+<li>Input files and full module outputs must be retained separately; excerpt hashes do not verify those files.</li>
+</ul><h2>Always unmeasured</h2><p>production_security, attack_resistance, hardware_cycles, network_rtt, fips_module_validation</p>
+<section><h2>Security estimate</h2>
+<p>Static lookup estimates, not a fresh lattice-estimator run or measured security.</p><ul>
+<li>module: pqc_bench.security_estimation.lattice_runner</li>
+<li>input_file: tests/fixtures/executive_report/inputs.json</li>
+<li>output_file: tests/fixtures/executive_report/outputs.json</li>
+<li>evidence_kind: synthetic_fixture</li>
+<li>excerpt_sha256: 54b2d423d2d158e3e51e5ce69bf8fb1b67a3e6928fc90f70b0d99a6aebb05642</li>
+</ul><table><thead><tr><th>Output excerpt field</th><th>Caller-supplied value</th></tr></thead><tbody>
+<tr><td>scheme</td><td>ml-kem-768</td></tr>
+<tr><td>classical_security_bits</td><td>192</td></tr>
+<tr><td>quantum_security_bits</td><td>192</td></tr>
+</tbody></table></section>
+<section><h2>Quantum cost</h2>
+<p>Placeholder resource model, not an AQRE/Qualtran run or hardware measurement.</p><ul>
+<li>module: pqc_bench.quantum_cost</li>
+<li>input_file: tests/fixtures/executive_report/inputs.json</li>
+<li>output_file: tests/fixtures/executive_report/outputs.json</li>
+<li>evidence_kind: synthetic_fixture</li>
+<li>excerpt_sha256: 97f652758680bf7bebf6fcf8f9fdc06a3089e60ca5684199aae1d6bab3ca9dd5</li>
+</ul><table><thead><tr><th>Output excerpt field</th><th>Caller-supplied value</th></tr></thead><tbody>
+<tr><td>scheme</td><td>ml-kem-768</td></tr>
+<tr><td>logical_qubits</td><td>4215</td></tr>
+<tr><td>t_gate_count</td><td>5474000</td></tr>
+<tr><td>t_depth</td><td>10948000</td></tr>
+<tr><td>physical_qubits</td><td>13459200</td></tr>
+<tr><td>runtime_seconds</td><td>14400</td></tr>
+</tbody></table></section>
+<section><h2>CBOM policy labels</h2>
+<p>Legacy heuristic policy labels, not normative NIST/CNSA compliance or certification.</p><ul>
+<li>module: pqc_bench.cbom.policy</li>
+<li>input_file: tests/fixtures/executive_report/inputs.json</li>
+<li>output_file: tests/fixtures/executive_report/outputs.json</li>
+<li>evidence_kind: synthetic_fixture</li>
+<li>excerpt_sha256: d1f707a2a71bd916c5f28dde3c31ae189d8dd7818f19d1ebc6312c972f9c5960</li>
+</ul><table><thead><tr><th>Output excerpt field</th><th>Caller-supplied value</th></tr></thead><tbody>
+<tr><td>cNSA_2_0_status</td><td>partial</td></tr>
+<tr><td>nist_sp_800_208_status</td><td>partial</td></tr>
+</tbody></table></section>
+<section><h2>Static instruction review</h2>
+<p>Findings and their absence prove neither leakage nor constant-time behavior.</p><ul>
+<li>module: pqc_bench.constant_time.binary_auditor</li>
+<li>input_file: tests/fixtures/executive_report/inputs.json</li>
+<li>output_file: tests/fixtures/executive_report/outputs.json</li>
+<li>evidence_kind: synthetic_fixture</li>
+<li>excerpt_sha256: a7db816304c5da09f62c5fc373a9c18975fb7a50da42301a237ee80672872204</li>
+</ul><table><thead><tr><th>Output excerpt field</th><th>Caller-supplied value</th></tr></thead><tbody>
+<tr><td>status</td><td>incomplete</td></tr>
+<tr><td>finding_count</td><td>1</td></tr>
+<tr><td>instruction_count</td><td>3</td></tr>
+<tr><td>scan_complete</td><td>false</td></tr>
+<tr><td>findings_truncated</td><td>false</td></tr>
+</tbody></table></section>
+<section><h2>Offline hybrid test PKI</h2>
+<p>Caller-recorded local verify_chain outcome; experimental envelope, not production PKI.</p><ul>
+<li>module: pqc_bench.pki.hybrid_certs</li>
+<li>input_file: tests/fixtures/executive_report/inputs.json</li>
+<li>output_file: tests/fixtures/executive_report/outputs.json</li>
+<li>evidence_kind: synthetic_fixture</li>
+<li>excerpt_sha256: 268b0d747b1484a135a83c3831f0f5cab5b7f7cc2809c99d87899cb66b38621a</li>
+</ul><table><thead><tr><th>Output excerpt field</th><th>Caller-supplied value</th></tr></thead><tbody>
+<tr><td>chain_verified</td><td>true</td></tr>
+</tbody></table></section>
+<section><h2>Offline handshake model</h2>
+<p>Custom local model, not production TLS, peer authentication, confidentiality or network RTT.</p><ul>
+<li>module: pqc_bench.tls_simulator</li>
+<li>input_file: tests/fixtures/executive_report/inputs.json</li>
+<li>output_file: tests/fixtures/executive_report/outputs.json</li>
+<li>evidence_kind: synthetic_fixture</li>
+<li>excerpt_sha256: e61b669a137910877baf6bd2de4c68e918566540f9419dc62c9298cd079b9d0d</li>
+</ul><table><thead><tr><th>Output excerpt field</th><th>Caller-supplied value</th></tr></thead><tbody>
+<tr><td>local_duration_ns</td><td>123456</td></tr>
+<tr><td>client_application_match</td><td>true</td></tr>
+<tr><td>server_application_match</td><td>true</td></tr>
+</tbody></table></section>
+<section><h2>FIPS 140-3 document review</h2>
+<p>Document assertions only; authenticity, current CMVP status and runtime mode not verified.</p><ul>
+<li>module: pqc_bench.fips_evidence</li>
+<li>input_file: tests/fixtures/executive_report/inputs.json</li>
+<li>output_file: tests/fixtures/executive_report/outputs.json</li>
+<li>evidence_kind: synthetic_fixture</li>
+<li>excerpt_sha256: 8f750fe3cb1fa1f3b1c1560adcbb941ecda71db09c5fe9ec28b5a67913882c24</li>
+</ul><table><thead><tr><th>Output excerpt field</th><th>Caller-supplied value</th></tr></thead><tbody>
+<tr><td>overall_status</td><td>not_verified</td></tr>
+<tr><td>gap: approved_mode</td><td>missing_evidence</td></tr>
+<tr><td>gap: approved_mode</td><td>missing_target_scope</td></tr>
+<tr><td>gap: certificate_reference</td><td>missing_evidence</td></tr>
+<tr><td>gap: certificate_standard</td><td>missing_evidence</td></tr>
+<tr><td>gap: certificate_status</td><td>missing_evidence</td></tr>
+<tr><td>gap: environment</td><td>missing_evidence</td></tr>
+<tr><td>gap: environment</td><td>missing_target_scope</td></tr>
+<tr><td>gap: module_id</td><td>missing_evidence</td></tr>
+<tr><td>gap: review</td><td>authenticity_not_verified</td></tr>
+<tr><td>gap: review</td><td>current_cmvp_status_not_verified</td></tr>
+<tr><td>gap: review</td><td>runtime_mode_not_verified</td></tr>
+<tr><td>gap: security_policy_reference</td><td>missing_evidence</td></tr>
+<tr><td>gap: services</td><td>missing_evidence</td></tr>
+<tr><td>gap: services</td><td>missing_target_scope</td></tr>
+<tr><td>gap: version</td><td>missing_evidence</td></tr>
+<tr><td>gap: version</td><td>missing_target_scope</td></tr>
+</tbody></table></section>
+</body></html>

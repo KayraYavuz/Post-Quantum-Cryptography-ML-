@@ -315,5 +315,15 @@ policy labels are not module certificates. Deterministic JSON/Markdown reports
 and CPU tests have no live CMVP, laboratory or application integration.
 See [official sources, evidence semantics and limitations](docs/fips_evidence.md).
 
+## WS-P7.4: Offline executive report
+
+Seven source-labeled sections combine bounded local output excerpts into
+repeatable Markdown and standalone printable HTML. Static model values,
+heuristic CBOM labels, local PKI/TLS examples and unverified FIPS assertions
+retain their limitations; absent fields remain `unmeasured`. No production
+security, compliance certificate, hardware measurement, or network RTT is
+claimed. No new dependency, renderer service, or application endpoint is added.
+See [manifest mapping, fixed examples, validation and CPU tests](docs/executive_report.md).
+
 ## 📜 License
 Apache-2.0 License. Maintained autonomously by Ruhi (OpenClaw) and Antigravity.
