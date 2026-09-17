@@ -14,6 +14,88 @@ import random
 from typing import Any
 
 # Toy LWE parameter sets for experimentation (n, m, q ranges suitable for
+
+# Integer overflow detection for modular arithmetic
+# When computing a * b mod q where a, b < q, the product a*b can exceed safe limits
+
+def safe_modular_mul(a: int, b: int, q: int) -> int:
+    """Safely compute (a * b) mod q with overflow awareness.
+
+    Parameters
+    ----------
+    a : int
+        First operand (should be < q)
+    b : int
+        Second operand (should be < q)
+    q : int
+        Modulus
+
+    Returns
+    -------
+    int
+        (a * b) mod q
+    """
+    # Use Python's native big integer arithmetic which is overflow-safe
+    # But we track the intermediate product size for awareness
+    product = a * b
+    if product > 2**63 - 1:
+        # Product exceeds typical 64-bit safety threshold
+        pass  # Python handles this natively
+    return product % q
+
+
+def safe_modular_add(a: int, b: int, q: int) -> int:
+    """Safely compute (a + b) mod q with overflow awareness.
+
+    Parameters
+    ----------
+    a : int
+        First operand
+    b : int
+        Second operand
+    q : int
+        Modulus
+
+    Returns
+    -------
+    int
+        (a + b) mod q
+    """
+    total = a + b
+    return total % q
+
+
+def check_overflow_risk(a: int, b: int, q: int) -> dict[str, Any]:
+    """Check if modular multiplication a * b mod q risks integer overflow.
+
+    Parameters
+    ----------
+    a : int
+        First operand
+    b : int
+        Second operand
+    q : int
+        Modulus
+
+    Returns
+    -------
+    dict with overflow risk assessment
+    """
+    product = a * b
+    max_safe = 2**63 - 1  # Safe range for 64-bit operations
+
+    risk = {
+        "product": product,
+        "product_exceeds_64bit": product > max_safe,
+        "overflow_risk": product > max_safe and product > q,
+        "both_operands_less_than_q": a < q and b < q,
+    }
+
+    return risk
+
+
+# Maximum safe modulus for 32-bit awareness
+MAX_MODULUS_SAFE = 2**31 - 1
 # educational use and quick threshold analysis). Small dimensions ensure
 # fast experimentation while demonstrating the LWE hardness transition.
 TOY_LWE_PARAMETERS: dict[str, dict[str, Any]] = {
