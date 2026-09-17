@@ -1,6 +1,6 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
-Son güncelleme: 2026-09-17T02:57:02+00:00
-P7.4 çevrimdışı yönetici raporu tamamlandı: hedef 81 passed (0.71 s); son tam CPU regresyonu 1305 passed, 2 bağımlılık uyarısı (28.31 s), exit 0. Markdown + yazdırılabilir HTML; PDF üretimi ve görsel baskı doğrulaması yapılmadı. Aktif adım P8.1 TODO. Önceki yayın engeli workflow yetkisi eksikliği; bu adımın commit/push sonucu henüz bekleniyor.
+Son güncelleme: 2026-09-17T02:57:25+00:00
+P7.4 çevrimdışı yönetici raporu tamamlandı: hedef 81 passed (0.71 s); son tam CPU regresyonu 1305 passed, 2 bağımlılık uyarısı (28.31 s), exit 0. Markdown + yazdırılabilir HTML; PDF üretimi ve görsel baskı doğrulaması yapılmadı. Aktif adım P8.1 TODO. Uygulama commit 5ab1508. git push origin main GitHub tarafından reddedildi (exit 1): mevcut PAT, geçmişteki .github/workflows/ci-cd-pipeline.yml için workflow yetkisi taşımıyor. Uzak yayın tamamlanmadı; yerel commitler korunuyor, yetki/workflow/geçmiş değiştirilmedi.
 
 ## Aktif İş Kolu
 WS-P8 — Donanım Emülasyonu ve Telemetri | Adım P8.1 | Durum: TODO
