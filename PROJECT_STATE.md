@@ -1,6 +1,6 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
 Son güncelleme: 2026-09-17T02:34:35+00:00
-P7.3 yerel belge inceleme FIPS 140-3 kanıt/boşluk matrisi tamamlandı: hedef testler 195 passed (0.67 s); güncel tam CPU regresyonu 1224 passed, 2 bağımlılık uyarısı (27.26 s), exit 0; git diff --check başarılı. RUN_LOG.md geçmişine göre git push origin main, mevcut PAT .github/workflows/ci-cd-pipeline.yml için workflow yetkisi taşımadığı için önceki adımlarda reddedildi; bu adımın push sonucu RUN_LOG.md kaydında tutulur. Aktif adım P7.4 TODO.
+P7.3 yerel belge inceleme FIPS 140-3 kanıt/boşluk matrisi tamamlandı: hedef testler 195 passed (0.67 s); güncel tam CPU regresyonu 1224 passed, 2 bağımlılık uyarısı (27.26 s), exit 0; git diff --check başarılı. RUN_LOG.md geçmişine göre git push origin main, mevcut PAT .github/workflows/ci-cd-pipeline.yml için workflow yetkisi taşımadığı için önceki adımlarda reddedildi; git push origin main 06e4d03 commitinden sonra da aynı workflow scope eksikliğiyle reddedildi (exit 1); uzak yayın tamamlanmadı, yerel commitler korunuyor. Aktif adım P7.4 TODO.
 
 ## Aktif İş Kolu
 WS-P7 — Kuantum Sonrası PKI, Hibrit TLS & FIPS | Adım P7.4 | Durum: TODO
