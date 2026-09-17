@@ -204,5 +204,27 @@ See [scope, JSON/exit semantics, limits and tests](docs/binary_timing_review.md)
 For current workstream and validation status, use [PROJECT_STATE.md](PROJECT_STATE.md).
 Historical test counts above are not the current suite total.
 
+## WS-P5.4: Bounded telemetry review notifications
+
+The optional `alerts` policy on `/ws/traces` adds a `telemetry_alert` JSON result
+inside each frame. Example request (sent over the existing WebSocket):
+
+```json
+{"trace_type":"playback","n_chunks":2,"alerts":{"visual_score_threshold":0.8,"cooldown_seconds":60.0}}
+```
+
+No alert field is added by default. Threshold exceedance means **review only**,
+not leakage, exploitation, or a constant-time violation. The historical
+`leakage_score` field is evaluated as a synthetic `visual_score`, not a statistical
+leakage test. Alerts do not consume P5.3 static findings. P5.2 modeled cycles are
+not converted to real latency.
+
+Cooldown history is connection-local, survives pause with the same policy, and
+resets when the policy changes or a new connection opens. It is not a durable,
+distributed rate limiter. WebSocket clients cannot configure webhook URLs.
+For project-owned local scalar measurements, use `TelemetrySample` and
+`AlertEngine` directly; network sending is disabled unless an operator explicitly
+supplies a transport. See [schema, transport limits and tests](docs/telemetry_alerts.md).
+
 ## 📜 License
 Apache-2.0 License. Maintained autonomously by Ruhi (OpenClaw) and Antigravity.

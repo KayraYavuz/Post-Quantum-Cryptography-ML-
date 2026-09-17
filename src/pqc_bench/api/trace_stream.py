@@ -16,6 +16,7 @@ from fastapi import WebSocket, WebSocketDisconnect
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from pqc_bench.visualize.waveform import generate_power_trace
+from pqc_bench.telemetry_alerts import AlertEngine, AlertPolicy, TelemetrySample
 
 
 class WsTraceRequest(BaseModel):
@@ -29,6 +30,8 @@ class WsTraceRequest(BaseModel):
     n_chunks: int = Field(10, ge=1, le=100, strict=True)
     fps: int = Field(10, ge=1, le=60, strict=True)
     session_id: str | None = Field(None, max_length=128)
+    # Connection-local JSON only; clients cannot configure external delivery.
+    alerts: AlertPolicy | None = None
 
 
 def _frame(request: WsTraceRequest, rng: np.random.Generator, index: int) -> dict:
@@ -57,10 +60,25 @@ def _frame(request: WsTraceRequest, rng: np.random.Generator, index: int) -> dic
     }
 
 
+def _evaluated_frame(
+    request: WsTraceRequest, rng: np.random.Generator, index: int,
+    engine: AlertEngine | None,
+) -> dict:
+    frame = _frame(request, rng, index)
+    if engine is not None:
+        # Legacy leakage_score is a synthetic visual ratio, not a leakage test.
+        frame["telemetry_alert"] = engine.evaluate(TelemetrySample(
+            source="synthetic", metric="visual_score", value=frame["leakage_score"],
+        ))
+    return frame
+
+
 async def websocket_traces(ws: WebSocket) -> None:
     await ws.accept()
     rng = np.random.default_rng()
     active: WsTraceRequest | None = None
+    alert_engine: AlertEngine | None = None
+    alert_policy: AlertPolicy | None = None
     index = 0
     try:
         while True:
@@ -73,7 +91,7 @@ async def websocket_traces(ws: WebSocket) -> None:
                     data = await asyncio.wait_for(ws.receive_json(), timeout=1 / active.fps)
                 request = WsTraceRequest.model_validate(data)
             except asyncio.TimeoutError:
-                await ws.send_json(_frame(active, rng, index))
+                await ws.send_json(_evaluated_frame(active, rng, index, alert_engine))
                 index += 1
                 if active.trace_type == "playback" and index >= active.n_chunks:
                     active = None
@@ -83,15 +101,19 @@ async def websocket_traces(ws: WebSocket) -> None:
                 await ws.send_json({"type": "error", "message": "Invalid trace request"})
                 continue
 
+            # Pause preserves dedup; new connections/policies start a new scope.
+            if request.trace_type != "pause" and request.alerts != alert_policy:
+                alert_policy = request.alerts
+                alert_engine = AlertEngine(alert_policy) if alert_policy is not None else None
             if request.trace_type == "pause":
                 active = None
                 await ws.send_json({"type": "paused"})
             elif request.trace_type == "synthetic":
                 active = None
-                await ws.send_json(_frame(request, rng, 0))
+                await ws.send_json(_evaluated_frame(request, rng, 0, alert_engine))
             else:
                 active, index = request, 1
-                await ws.send_json(_frame(request, rng, 0))
+                await ws.send_json(_evaluated_frame(request, rng, 0, alert_engine))
                 if request.trace_type == "playback" and request.n_chunks == 1:
                     active = None
     except WebSocketDisconnect:

@@ -1,20 +1,21 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
-Son güncelleme: 2026-09-17T00:11:02+00:00
-P5.3 uygulama commit: e99301a; push reddedildi (workflow yetkisi eksik). Yerel aktif adım: P5.4 TODO.
+Son güncelleme: 2026-09-17T00:23:50+00:00
+P5.4 yerel uygulama ve testler tamamlandı; yeni commit/push sonucu henüz bekleniyor. Yerel aktif adım: P6.1 TODO.
 
 ## Aktif İş Kolu
-WS-P5 — Canlı WebSocket Telemetrisi & SIMD İstatistikleri | Adım P5.4 | Durum: TODO
+WS-P6 — İleri Derin Öğrenme Mimarileri | Adım P6.1 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P5.4: Projeye ait sentetik/yerel telemetri için eşik tabanlı anomali bildirim motoru.
-1. Mevcut telemetri ve raporlama arayüzlerini değerlendir; sınırlı JSON bildirim şemasını uygula.
-2. Eşik aşımını yalnızca inceleme uyarısı olarak raporla; sızıntı veya istismar kanıtı sayma. Statik P5.3 bulguları ile ölçüm alarmını ayır.
-3. Varsayılan olarak ağ gönderimini kapalı tut; webhook taşımasını isteğe bağlı, zaman aşımı ve hata yönetimli tasarla. Testlerde sahte taşıyıcı kullan, gerçek harici servislere veri gönderme.
-4. Eşik/girdi sınırları, tekrar bildirim kontrolü ve taşıma hatalarını test et; kapsamı belgele, commit/push sonucunu kaydet ve WS-P6.1'e ilerle.
+WS-P6.1: Projeye ait sentetik dalga biçimleri için residual bağlantılı 1D sınıflandırma omurgası.
+1. Mevcut PyTorch model arayüzlerini değerlendir; sınırlı giriş boyutlarıyla yeniden kullanılabilir ResNet1D omurgasını uygula.
+2. Doğrulamayı yalnızca sentetik, gizli anahtar içermeyen genel dalga biçimi sınıflandırmasıyla sınırla; anahtar kurtarma veya üçüncü taraf sistemlere yönelik saldırı entegrasyonu yapma.
+3. Girdi/çıktı şekli, residual bağlantı, gradient ve serileştirme birim testlerini CPU üzerinde çalıştır. Eğitim/başarım iddialarını gerçekten ölçülen sonuçlarla sınırla.
+4. Kapsamı belgele, commit/push sonucunu kaydet ve tamamlandığında WS-P6.2'ye ilerle.
 
 ## Doğrulanmış Kapsam ve Sınırlar
 - Yayın engeli: P5.3 uygulama commit'i `e99301a` sonrasında `git push origin main` yeniden denendi ve GitHub tarafından reddedildi (exit 1); mevcut PAT, `.github/workflows/ci-cd-pipeline.yml` için gereken `workflow` yetkisine sahip değil. Yerel commitler korunuyor, uzak yayın tamamlanmadı. Yetkili operatör GitHub bağlantısını uygun workflow yazma yetkisiyle yeniden kurduktan sonra push tekrar denenebilir.
-- Son yerel doğrulama: `python3 -m pytest -q` → 235 passed, 2 bağımlılık deprecation uyarısı (7.71 s). P5.3 hedef testi: 61 passed (0.65 s). Aktif adım P5.4.
+- Son yerel doğrulama: `python3 -m pytest -q` → 346 passed, 2 bağımlılık deprecation uyarısı (8.09 s). P5.4 hedef testleri: 111 passed (5.49 s). `git diff --check` başarılı. Ruff kurulu değil; lint çalıştırılmadı. Aktif adım P6.1.
+- P5.4: Sınırlı skaler JSON inceleme uyarıları, sonlu/katı girdi doğrulaması, kaynak/metrik bazlı tekrar kontrolü ve isteğe bağlı HTTPS taşıyıcı tamamlandı. Ağ varsayılan kapalı; WebSocket politikası harici taşıyıcı açamaz. Testler sahte taşıyıcılarla çevrimdışı; gerçek webhook teslimi denenmedi. Eşik aşımı sızıntı/istismar kanıtı değildir; P5.3 statik bulguları alınmaz. Kapsam: docs/telemetry_alerts.md.
 - P5.3: pyelftools + Capstone ile yerel x86 ELF32/ELF64 ET_REL/ET_EXEC/ET_DYN bölüm incelemesi tamamlandı. Dosyalar çalıştırılmaz; div/idiv bulguları sızıntı veya sabit zamanlılık kanıtı değildir. Eksik çözümleme açıkça raporlanır; kapsam: docs/binary_timing_review.md. Testler projeye ait küçük inert ELF örnekleridir, donanım/üretim ikilisi doğrulaması değildir.
 - P5.1: `05b99b9` commit'indeki WebSocket Live Play/Pause yalnızca sentetik görselleştirme sağlar. HDF5/donanım akışı sağlamaz; 60 FPS istek üst sınırıdır, ölçülmüş hız garantisi değildir.
 - P4 + P5.1 regresyonları: `python3 -m pytest tests/test_phase4.py tests/test_phase5.py -q` → 50 passed, 2 bağımlılık deprecation uyarısı.
@@ -45,7 +46,7 @@ WS-P5.4: Projeye ait sentetik/yerel telemetri için eşik tabanlı anomali bildi
 | 18 | WS-P5.1 WebSocket | DONE | P5.1 | CPU | Sentetik Live Play/Pause; 1–60 FPS istek sınırı; donanım akışı yok |
 | 19 | WS-P5.2 SIMD İstatistikleri | DONE (sentetik kapsam) | P5.2 | CPU | AVX2/AVX-512/ARM NEON etiketli sentetik model; donanım ölçümü yok |
 | 20 | WS-P5.3 İkili Dosya (Binary) Zamanlama Denetçisi | DONE (statik inceleme) | P5.3 | CPU | Sınırlı yerel x86 ELF/SO div/idiv incelemesi; zamanlama/sızıntı kanıtı değil |
-| 21 | WS-P5.4 Otomatik Anomali & Sızıntı Alarmı | TODO | P5.4 | CPU | Eşik aşımı tespit edildiğinde Webhook/JSON bildirim motoru |
+| 21 | WS-P5.4 Telemetri İnceleme Bildirimleri | DONE (yerel/sentetik) | P5.4 | CPU | Sınırlı JSON, tekrar kontrolü, varsayılan kapalı isteğe bağlı HTTPS; sızıntı kanıtı değil |
 | 22 | WS-P6.1 1D ResNet Derin Öğrenme Omurgası | TODO | P6.1 | CPU/GPU | Residual bağlantılı SideChannelResNet1D modeli |
 | 23 | WS-P6.2 Transformer & Attention SCA Modeli | TODO | P6.2 | CPU/GPU | Multi-Head Self-Attention ile faz kaymasına dayanıklı yan kanal modeli |
 | 24 | WS-P6.3 GAN Tabanlı Sentetik İz Veri Artırımı | TODO | P6.3 | CPU/GPU | cGAN ile gerçekçi sentetik gürültülü osiloskop izi üretimi |
@@ -61,7 +62,7 @@ WS-P5.4: Projeye ait sentetik/yerel telemetri için eşik tabanlı anomali bildi
 
 ## Kabul Kriteri Durumu
 - [x] Aşama 1-4 kapsamındaki tüm 18 iş kolu tamamlandı (76/76 test passed).
-- [ ] Aşama 5: Gerçek Zamanlı Telemetri ve SIMD Analizi (WS-P5.1 - WS-P5.4)
+- [x] Aşama 5: Yerel/sentetik ve statik inceleme kapsamı tamamlandı (WS-P5.1 - WS-P5.4); gerçek donanım/SIMD/harici teslim doğrulaması yok, GitHub yayın engeli ayrı.
 - [ ] Aşama 6: İleri Derin Öğrenme Mimarileri - ResNet, Transformer & GAN (WS-P6.1 - WS-P6.4)
 - [ ] Aşama 7: Kuantum Sonrası PKI, Hibrit TLS 1.3 & FIPS 140-3 (WS-P7.1 - WS-P7.4)
 - [ ] Aşama 8: Donanım-Döngüde Emülasyon & Sürekli Öğrenme (WS-P8.1 - WS-P8.4)
