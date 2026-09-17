@@ -1,6 +1,6 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
-Son güncelleme: 2026-09-17T03:04:54+00:00
-P8.1 fizibilite ve ölçüm sözleşmesi tamamlandı; emülasyon araç eksikliği nedeniyle çalıştırılmadı. Hedef 262 passed (0.65 s); tam CPU regresyonu 1567 passed, 2 bağımlılık uyarısı (27.05 s). QEMU/ARM araçları PATH üzerinde yok; bütün metrikler null/unmeasured. Aktif adım P8.2 TODO. Bu adımın commit/push sonucu henüz bekleniyor; önceki yayın engeli workflow yetkisi eksikliğidir, uzak yayın doğrulanmadı.
+Son güncelleme: 2026-09-17T03:10:04+00:00
+P8.1 fizibilite ve ölçüm sözleşmesi commit 71bd77b ile tamamlandı; hedef 262 passed (0.65 s), tam CPU regresyonu 1567 passed, 2 bağımlılık uyarısı (27.05 s). Emülasyon araç eksikliği nedeniyle çalıştırılmadı; bütün metrikler null/unmeasured. git push origin main GitHub tarafından aynı nedenle reddedildi (exit 1): mevcut PAT, geçmişteki .github/workflows/ci-cd-pipeline.yml değişikliği için workflow yetkisi taşımıyor; uzak yayın tamamlanmadı, yerel main 38 commit ileride. Salt-okunur inceleme alt görevi sağlayıcı akış zaman aşımıyla sonuç üretmeden sona erdi; bağımsız inceleme onayı iddiası yok, kendi incelemede somut kusur bulunmadı. Aktif adım P8.2 TODO; yayın için workflow yetkili GitHub bağlantısı gerekir.
 
 ## Aktif İş Kolu
 WS-P8 — Donanım Emülasyonu ve Telemetri | Adım P8.2 | Durum: TODO
