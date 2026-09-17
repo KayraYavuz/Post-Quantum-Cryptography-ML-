@@ -1,0 +1,759 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Post-Quantum Cryptography & ML Engine",
+    "description": "NIST PQC Security, Implementation & Side-Channel Measurement Platform",
+    "version": "0.3.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Health Check Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cbom": {
+      "get": {
+        "summary": "Get Cbom Data",
+        "operationId": "get_cbom_data_api_v1_cbom_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Get Cbom Data Api V1 Cbom Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/security-estimate": {
+      "post": {
+        "summary": "Estimate Security",
+        "operationId": "estimate_security_api_v1_security_estimate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SecurityEstimateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Estimate Security Api V1 Security Estimate Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/quantum-cost": {
+      "post": {
+        "summary": "Calculate Quantum Cost",
+        "operationId": "calculate_quantum_cost_api_v1_quantum_cost_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuantumCostRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Calculate Quantum Cost Api V1 Quantum Cost Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model/predict": {
+      "post": {
+        "summary": "Predict Side Channel Leakage",
+        "operationId": "predict_side_channel_leakage_api_v1_model_predict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TraceInferenceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Predict Side Channel Leakage Api V1 Model Predict Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model/cpa-benchmark": {
+      "post": {
+        "summary": "Benchmark Cpa Vs Deep Learning",
+        "description": "Runs a side-by-side benchmark between Pearson 1st-order CPA and Deep Learning CNN.",
+        "operationId": "benchmark_cpa_vs_deep_learning_api_v1_model_cpa_benchmark_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CPABenchmarkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Benchmark Cpa Vs Deep Learning Api V1 Model Cpa Benchmark Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/constant-time/analysis": {
+      "get": {
+        "summary": "Get Constant Time Analysis",
+        "description": "Returns KyberSlash assembly comparison and Welch's t-test TVLA timing distribution.",
+        "operationId": "get_constant_time_analysis_api_v1_constant_time_analysis_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Get Constant Time Analysis Api V1 Constant Time Analysis Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/report/export": {
+      "get": {
+        "summary": "Export Compliance Report",
+        "description": "Generates and exports the NIST SP 800-208 & CNSA 2.0 compliance audit report.",
+        "operationId": "export_compliance_report_api_v1_report_export_get",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "markdown",
+              "title": "Format"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Export Compliance Report Api V1 Report Export Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model/metrics": {
+      "get": {
+        "summary": "Get Model Training Metrics",
+        "operationId": "get_model_training_metrics_api_v1_model_metrics_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Get Model Training Metrics Api V1 Model Metrics Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/status": {
+      "get": {
+        "summary": "Get Project Status",
+        "operationId": "get_project_status_api_v1_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Get Project Status Api V1 Status Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/visualize/trace": {
+      "get": {
+        "summary": "Get Visualize Trace",
+        "description": "Get a power/EM trace waveform for dashboard visualization.\n\nParameters\n----------\nmodel:\n    Leakage model: \"unprotected\", \"protected\", or \"masked\".\ninclude_markers:\n    If True, includes NTT butterfly peak markers at the dominant leakage point.\n\nReturns\n-------\nDict with trace data suitable for SVG/Canvas rendering.",
+        "operationId": "get_visualize_trace_api_v1_visualize_trace_get",
+        "parameters": [
+          {
+            "name": "model",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "unprotected",
+              "title": "Model"
+            }
+          },
+          {
+            "name": "include_markers",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true,
+              "title": "Include Markers"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Visualize Trace Api V1 Visualize Trace Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Index Dashboard",
+        "operationId": "index_dashboard__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/hdf5-trace": {
+      "post": {
+        "summary": "Load Hdf5 Trace",
+        "description": "Load a ChipWhisperer HDF5 oscilloscope trace file and return summary.\n\nReturns trace metadata, sample axis, first trace samples, stored intermediates (HW, points, labels),\nand SNR analysis. Useful for side-channel measurement import from ChipWhisperer capture files.",
+        "operationId": "load_hdf5_trace_api_v1_hdf5_trace_post",
+        "parameters": [
+          {
+            "name": "filepath",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Filepath"
+            }
+          },
+          {
+            "name": "reference_trace_idx",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "title": "Reference Trace Idx"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_load_hdf5_trace_api_v1_hdf5_trace_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/hdf5-snr": {
+      "post": {
+        "summary": "Compute Hdf5 Snr",
+        "description": "Compute SNR from a ChipWhisperer HDF5 trace file.\n\nConvenience endpoint for SNR-only analysis without full trace summary.",
+        "operationId": "compute_hdf5_snr_api_v1_hdf5_snr_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Hdf5TraceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "number"
+                  },
+                  "type": "object",
+                  "title": "Response Compute Hdf5 Snr Api V1 Hdf5 Snr Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_load_hdf5_trace_api_v1_hdf5_trace_post": {
+        "properties": {
+          "noise_trace_indices": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Noise Trace Indices"
+          },
+          "signal_indices": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Signal Indices"
+          },
+          "noise_sample_indices": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Noise Sample Indices"
+          }
+        },
+        "type": "object",
+        "title": "Body_load_hdf5_trace_api_v1_hdf5_trace_post"
+      },
+      "CPABenchmarkRequest": {
+        "properties": {
+          "num_traces": {
+            "type": "integer",
+            "maximum": 120.0,
+            "minimum": 10.0,
+            "title": "Num Traces",
+            "description": "Number of attack power traces",
+            "default": 35
+          },
+          "masked": {
+            "type": "boolean",
+            "title": "Masked",
+            "description": "Whether 1st-order Boolean masking is applied",
+            "default": false
+          },
+          "noise_std": {
+            "type": "number",
+            "maximum": 1.5,
+            "minimum": 0.05,
+            "title": "Noise Std",
+            "description": "Trace Gaussian noise standard deviation",
+            "default": 0.35
+          }
+        },
+        "type": "object",
+        "title": "CPABenchmarkRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Hdf5TraceRequest": {
+        "properties": {
+          "filepath": {
+            "type": "string",
+            "title": "Filepath",
+            "description": "Path to ChipWhisperer .hdf5 trace file"
+          },
+          "reference_trace_idx": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reference Trace Idx",
+            "description": "Index of reference trace (default: 0)"
+          },
+          "noise_trace_indices": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Noise Trace Indices",
+            "description": "List of trace indices for noise average"
+          },
+          "signal_indices": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Signal Indices",
+            "description": "List of trace indices for signal average"
+          },
+          "noise_sample_indices": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Noise Sample Indices",
+            "description": "List of sample indices for noise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "filepath"
+        ],
+        "title": "Hdf5TraceRequest"
+      },
+      "QuantumCostRequest": {
+        "properties": {
+          "scheme": {
+            "type": "string",
+            "title": "Scheme",
+            "description": "PQC algorithm identifier",
+            "default": "ml-kem-768"
+          },
+          "physical_error_rate": {
+            "type": "number",
+            "title": "Physical Error Rate",
+            "description": "Physical qubit error rate",
+            "default": 0.001
+          }
+        },
+        "type": "object",
+        "title": "QuantumCostRequest"
+      },
+      "SecurityEstimateRequest": {
+        "properties": {
+          "scheme": {
+            "type": "string",
+            "title": "Scheme",
+            "description": "Algorithm name (e.g. ml-kem-512, ml-kem-768, ml-kem-1024, ml-dsa-65)",
+            "default": "ml-kem-768"
+          },
+          "k": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "K",
+            "description": "Lattice dimension module rank k"
+          },
+          "q": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Q",
+            "description": "Prime modulus q"
+          },
+          "eta": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eta",
+            "description": "Noise distribution parameter eta"
+          }
+        },
+        "type": "object",
+        "title": "SecurityEstimateRequest"
+      },
+      "TraceInferenceRequest": {
+        "properties": {
+          "trace": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace",
+            "description": "Normalized power trace of length 256."
+          },
+          "target_operation": {
+            "type": "string",
+            "title": "Target Operation",
+            "description": "Target intermediate operation",
+            "default": "ML-KEM-768 NTT Butterfly / Unpack"
+          }
+        },
+        "type": "object",
+        "title": "TraceInferenceRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
