@@ -1,26 +1,27 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
-Son güncelleme: 2026-09-17T00:24:53+00:00
-P5.4 uygulama commit: 9442f62; doğrudan push reddedildi (workflow yetkisi eksik). Yerel aktif adım: P6.1 TODO.
+Son güncelleme: 2026-09-17T00:35:54+00:00
+P6.1 yerel uygulama ve testleri tamamlandı; bu adımın commit/push sonucu henüz doğrulanmadı. Yerel aktif adım: P6.2 TODO.
 
 ## Aktif İş Kolu
-WS-P6 — İleri Derin Öğrenme Mimarileri | Adım P6.1 | Durum: TODO
+WS-P6 — İleri Derin Öğrenme Mimarileri | Adım P6.2 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P6.1: Projeye ait sentetik dalga biçimleri için residual bağlantılı 1D sınıflandırma omurgası.
-1. Mevcut PyTorch model arayüzlerini değerlendir; sınırlı giriş boyutlarıyla yeniden kullanılabilir ResNet1D omurgasını uygula.
-2. Doğrulamayı yalnızca sentetik, gizli anahtar içermeyen genel dalga biçimi sınıflandırmasıyla sınırla; anahtar kurtarma veya üçüncü taraf sistemlere yönelik saldırı entegrasyonu yapma.
-3. Girdi/çıktı şekli, residual bağlantı, gradient ve serileştirme birim testlerini CPU üzerinde çalıştır. Eğitim/başarım iddialarını gerçekten ölçülen sonuçlarla sınırla.
-4. Kapsamı belgele, commit/push sonucunu kaydet ve tamamlandığında WS-P6.2'ye ilerle.
+WS-P6.2: Transformer & Attention SCA Modeli (genel sentetik dalga biçimleri kapsamı).
+1. Mevcut ResNet1D omurgası API'siyle tutarlı, Multi-Head Self-Attention tabanlı model arayüzünü uygula.
+2. Kapsamı yalnızca sentetik, gizli anahtar içermeyen genel dalga biçimi sınıflandırmasıyla sınırla; anahtar kurtarma veya üçüncü taraf sistemlere yönelik saldırı entegrasyonu yapma.
+3. Girdi/çıktı şekli, attention maskesi, gradient ve serileştirme birim testlerini CPU üzerinde çalıştır. Eğitim/başarım iddialarını gerçekten ölçülen sonuçlarla sınırla.
+4. Kapsamı belgele, commit/push sonucunu kaydet ve tamamlandığında WS-P6.3'e ilerle.
 
 ## Doğrulanmış Kapsam ve Sınırlar
 - Yayın engeli: P5.4 uygulama commit'i `9442f62` sonrasında `git push origin main` yeniden denendi ve GitHub tarafından reddedildi (exit 1); mevcut PAT, `.github/workflows/ci-cd-pipeline.yml` için gereken `workflow` yetkisine sahip değil. Yerel commitler korunuyor, uzak yayın tamamlanmadı. Yetkili operatör GitHub bağlantısını uygun workflow yazma yetkisiyle yeniden kurduktan sonra push tekrar denenebilir.
-- Son yerel doğrulama: `python3 -m pytest -q` → 346 passed, 2 bağımlılık deprecation uyarısı (8.09 s). P5.4 hedef testleri: 111 passed (5.49 s). `git diff --check` başarılı. Ruff kurulu değil; lint çalıştırılmadı. Aktif adım P6.1.
+- Son yerel doğrulama: `python3 -m pytest -q` → 413 passed, 2 bağımlılık deprecation uyarısı (12.77 s). P6.1 hedef testleri: 67 passed (7.29 s). `git diff --check` başarılı. Ruff kurulu değil; lint çalıştırılmadı. Aktif adım P6.2.
 - P5.4: Sınırlı skaler JSON inceleme uyarıları, sonlu/katı girdi doğrulaması, kaynak/metrik bazlı tekrar kontrolü ve isteğe bağlı HTTPS taşıyıcı tamamlandı. Ağ varsayılan kapalı; WebSocket politikası harici taşıyıcı açamaz. Testler sahte taşıyıcılarla çevrimdışı; gerçek webhook teslimi denenmedi. Eşik aşımı sızıntı/istismar kanıtı değildir; P5.3 statik bulguları alınmaz. Kapsam: docs/telemetry_alerts.md.
 - P5.3: pyelftools + Capstone ile yerel x86 ELF32/ELF64 ET_REL/ET_EXEC/ET_DYN bölüm incelemesi tamamlandı. Dosyalar çalıştırılmaz; div/idiv bulguları sızıntı veya sabit zamanlılık kanıtı değildir. Eksik çözümleme açıkça raporlanır; kapsam: docs/binary_timing_review.md. Testler projeye ait küçük inert ELF örnekleridir, donanım/üretim ikilisi doğrulaması değildir.
 - P5.1: `05b99b9` commit'indeki WebSocket Live Play/Pause yalnızca sentetik görselleştirme sağlar. HDF5/donanım akışı sağlamaz; 60 FPS istek üst sınırıdır, ölçülmüş hız garantisi değildir.
 - P4 + P5.1 regresyonları: `python3 -m pytest tests/test_phase4.py tests/test_phase5.py -q` → 50 passed, 2 bağımlılık deprecation uyarısı.
 - P5.2: AVX2/AVX-512/ARM NEON etiketleri kalibre edilmemiş sentetik model senaryolarıdır; gerçek SIMD NTT çekirdeği veya donanım çevrim ölçümü uygulanmış değildir.
 - Önceki DONE kayıtları donanım doğrulaması veya GitHub CI başarısı olarak yorumlanmamalıdır. Bu çalışmada GitHub CI çalışması doğrulanmadı.
+- P6.1: `SideChannelResNet1D` yalnızca projeye ait sentetik, genel dalga biçimi sınıflandırması içindir; anahtar kurtarma/saldırı entegrasyonu yoktur. Eğitim/başarım iddiası yoktur; doğrulama şekil, residual bağlantı, gradient, serileştirme ve sınırlı girdi doğrulaması CPU testleriyle sınırlıdır (tests/test_resnet1d.py). BatchNorm kısıtı: tek örnekli batch + en derin aşamada tek zaman konumu (özel 3 aşamalı yapılandırmada input_length=32; varsayılan 2 aşama) eğitim modunda PyTorch hatası verir; değerlendirme modu tüm desteklenen boylarda (32-4096) çalışır.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -47,7 +48,7 @@ WS-P6.1: Projeye ait sentetik dalga biçimleri için residual bağlantılı 1D s
 | 19 | WS-P5.2 SIMD İstatistikleri | DONE (sentetik kapsam) | P5.2 | CPU | AVX2/AVX-512/ARM NEON etiketli sentetik model; donanım ölçümü yok |
 | 20 | WS-P5.3 İkili Dosya (Binary) Zamanlama Denetçisi | DONE (statik inceleme) | P5.3 | CPU | Sınırlı yerel x86 ELF/SO div/idiv incelemesi; zamanlama/sızıntı kanıtı değil |
 | 21 | WS-P5.4 Telemetri İnceleme Bildirimleri | DONE (yerel/sentetik) | P5.4 | CPU | Sınırlı JSON, tekrar kontrolü, varsayılan kapalı isteğe bağlı HTTPS; sızıntı kanıtı değil |
-| 22 | WS-P6.1 1D ResNet Derin Öğrenme Omurgası | TODO | P6.1 | CPU/GPU | Residual bağlantılı SideChannelResNet1D modeli |
+| 22 | WS-P6.1 1D ResNet Derin Öğrenme Omurgası | DONE (genel sentetik kapsam) | P6.1 | CPU | Residual bağlantılı SideChannelResNet1D modeli; sentetik genel dalga biçimi sınıflandırma; anahtar kurtarma yok |
 | 23 | WS-P6.2 Transformer & Attention SCA Modeli | TODO | P6.2 | CPU/GPU | Multi-Head Self-Attention ile faz kaymasına dayanıklı yan kanal modeli |
 | 24 | WS-P6.3 GAN Tabanlı Sentetik İz Veri Artırımı | TODO | P6.3 | CPU/GPU | cGAN ile gerçekçi sentetik gürültülü osiloskop izi üretimi |
 | 25 | WS-P6.4 Otomatik Model Liderlik Tablosu | TODO | P6.4 | CPU | CNN vs ResNet vs Transformer vs CPA karşılaştırmalı leaderboard API |

@@ -137,6 +137,26 @@ The project features a tailored 1D Convolutional Neural Network (`SideChannel1DC
 
 ---
 
+## WS-P6.1: Residual 1D waveform backbone (generic synthetic)
+
+`SideChannelResNet1D` (in `src/pqc_bench/models/resnet1d.py`) is a residual 1D
+ResNet-style classifier for **project-owned synthetic waveforms**, in the spirit
+of standard residual architectures using the existing PyTorch dependency. It accepts
+`(batch, length)` or `(batch, channels, length)` inputs and produces `(batch,
+num_classes)` logits; the head is independent of `input_length` thanks to
+adaptive average pooling.
+
+Scope: general waveform classification only — no secret-key material, no
+key-recovery targets, and no third-party attack-tool integration. No accuracy,
+training, or attack-success claims are made. Unit tests cover shape handling,
+residual connectivity, gradient flow, serialization round-trips, and bounded
+configuration/input validation on CPU (`tests/test_resnet1d.py`). Known
+BatchNorm constraint: in training mode with a single-sample batch, inputs whose
+stem+stages collapse to one temporal position (with an explicitly selected 3-stage
+configuration at `input_length = 32`) raise PyTorch's standard "more than
+1 value per channel" error; evaluation mode handles all supported lengths
+(32-4096). The default has **two** stages. See [API and limits](docs/resnet1d.md).
+
 ## 📊 Workstream Status Table
 
 All 14 workstreams across Phase 1, Phase 2, and Phase 3 are completed and verified:
