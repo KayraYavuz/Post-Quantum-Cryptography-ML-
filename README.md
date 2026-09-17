@@ -293,5 +293,16 @@ Keys are generated locally with the cryptography library's secure randomness;
 no live CA, ACME, HSM, service integration or FIPS module certification is claimed.
 See [schema, trust model and CPU tests](docs/hybrid_certificates.md).
 
+## WS-P7.2: Offline hybrid handshake simulation
+
+The in-memory simulator combines ephemeral X25519 and ML-KEM-768 with a
+SHA-256 transcript and TLS 1.3-style HKDF key schedule. It models ordered hello
+and Finished messages, checks agreement between client/server derivations,
+and measures local simulation duration only (not network latency or RTT).
+It reuses `cryptography`; no new dependency or network endpoint is introduced.
+This is educational custom framing, not wire-compatible TLS, a standardized
+hybrid group, authenticated PKI, or a production security implementation.
+See [API, CPU tests and limitations](docs/tls_simulator.md).
+
 ## 📜 License
 Apache-2.0 License. Maintained autonomously by Ruhi (OpenClaw) and Antigravity.
