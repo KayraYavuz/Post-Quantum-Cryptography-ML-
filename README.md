@@ -268,5 +268,19 @@ validation. No training, validated data augmentation, realism, secret-dependent
 labels, hardware import or attack/service integration is provided.
 See [API, bounds, usage and limitations](docs/waveform_gan.md).
 
+## WS-P6.4: Generic synthetic waveform leaderboard
+
+`SyntheticSplit`, `EvaluationResult` and `build_leaderboard` form a bounded,
+in-memory data contract that compares CNN/ResNet/Transformer evaluations of the
+project's generic synthetic waveform classes (sine/cosine/noise). Accuracy is
+always derived from supplied class predictions, never injected as a scalar;
+GAN discriminator scores, CPA or other arbitrary metrics cannot be submitted.
+Rows are ranked by descending exact rational accuracy with competition ranks
+(1, 1, 3), and a SHA-256 split fingerprint rejects mixes of different data,
+label order, preprocessing or training status. Timing, throughput and loss stay
+explicit `null` under `unmeasured_metrics`; provenance is caller-attested, not
+authenticated. No training, service endpoint, dashboard integration or score
+file is provided. See [contract, comparability and limitations](docs/waveform_leaderboard.md).
+
 ## 📜 License
 Apache-2.0 License. Maintained autonomously by Ruhi (OpenClaw) and Antigravity.

@@ -1,21 +1,22 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
-Son güncelleme: 2026-09-17T00:52:44+00:00
-P6.3 uygulama commit: c6310bb; doğrudan push GitHub tarafından reddedildi (workflow yetkisi eksik). Yerel aktif adım: P6.4 TODO.
+Son güncelleme: 2026-09-17T00:59:00+00:00
+P6.4 uygulaması yerel olarak tamamlandı ve CPU testleriyle doğrulandı (tests/test_waveform_leaderboard.py 82 passed; P6 regresyonu 495 passed). Push sonucu RUN_LOG.md'deki ayrı kayıtta; önceki adımlarda GitHub PAT workflow yetkisi eksikliği nedeniyle push reddedilmişti. Yerel aktif adım: P7.1 TODO.
 
 ## Aktif İş Kolu
-WS-P6 — İleri Derin Öğrenme Mimarileri | Adım P6.4 | Durum: TODO
+WS-P7 — Kuantum Sonrası PKI, Hibrit TLS & FIPS | Adım P7.1 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P6.4: Otomatik Model Liderlik Tablosu (yalnızca genel sentetik sınıflandırma kapsamı).
-1. Projeye ait, gizli anahtar içermeyen genel sentetik dalga biçimi sınıfları için CNN/ResNet/Transformer değerlendirme sonuçlarını karşılaştıran sınırlı, doğrulanmış bir leaderboard veri sözleşmesi uygula.
-2. Yalnızca gerçekten ölçülmüş, aynı veri bölmesi/etiket sözleşmesine sahip sonuçları karşılaştır; ölçülmeyen alanları açıkça belirt. GAN discriminator skorlarını sınıflandırma başarımıyla karşılaştırma; CPA, anahtar kurtarma, gerçek donanım izi veya saldırı entegrasyonu yapma.
-3. Sıralama, eşitlik, geçersiz/sonlu olmayan metrikler, karşılaştırılabilirlik ve varsa salt-okunur API sözleşmesini CPU birim testleriyle doğrula; ölçülmemiş hız/başarım iddiası yapma.
-4. Kapsamı belgele, commit/push sonucunu kaydet ve tamamlandığında WS-P7.1'e ilerle.
+WS-P7.1: X.509 Hibrit Sertifika Üreticisi (yalnızca yerel, çevrimdışı kapsam).
+1. Yerel hibrit sertifika zinciri oluşturucu uygula: projeye ait kök CA + yaprak sertifika; RSA-4096 klasik imza ve ML-DSA-65 (FIPS 204) PQC imzası. Mümkünse sürdürülen bir kütüphane (ör. güncel `cryptography`) kullan; yeni bağımlılık gerekiyorsa gerekçeyi pyproject'a not düş.
+2. Yalnızca kendi ürettiğin, dağıtıma konu olmayan test anahtarlarıyla çalış; zincir doğrulamayı (klasik + PQC katmanı) CPU'da doğrula. Ağ, canlı CA/ACME, HSM veya servis entegrasyonu yapma; geçerlilik/dağıtım iddiası bulunma.
+3. Sertifika alan şeması, zincir doğrulaması, süresi dolmuş/bozuk zincir reddi, katı girdi doğrulaması ve doğrulama testlerinin tekrarlanabilirliğini CPU birim testleriyle doğrula; anahtar üretiminde kütüphanenin güvenli rastgelelik kaynağını kullan.
+4. Kapsamı belgele, commit/push sonucunu kaydet ve tamamlandığında WS-P7.2'ye ilerle.
 
 ## Doğrulanmış Kapsam ve Sınırlar
+- P6.4: `SyntheticSplit`, `EvaluationResult` ve `build_leaderboard` ile sınırlı, bellek-içi liderlik tablosu veri sözleşmesi tamamlandı. Yalnızca genel sentetik sınıflar (sine/cosine/noise) sınıflandırma sonuçları karşılaştırılır; doğruluk yalnızca verilen sınıf tahminlerinden türetilir, skalar metrik/GAN discriminator/CPA/saldırı girişi reddedilir. Eşitlikler yarışma sıralaması (1,1,3) ve model_id sözlük sırasıyla çözülür; SHA-256 split parmak izi farklı veri/etiket sırası/ön işleme/eğitim durumu karışımlarını reddeder. latency/throughput/loss her zaman null + açık `unmeasured_metrics`; kanıt caller-attested, kimlik doğrulaması yok. Testler: hedef 82 passed (5.04 s); P6 regresyonu (leaderboard+GAN+ResNet+Transformer) 495 passed (11.27 s). CPU çıkarım duman testi eğitilmemiş rastgele CNN/ResNet/Transformer ile aynı üç küçük sentetik örnekte gerçek tahmin üretir; yüksek doğruluk/hız/eğitim başarımı iddiası yok. Kapsam: docs/waveform_leaderboard.md. Aktif adım P7.1. <!-- project: github.com/KayraYavuz/Post-Quantum-Cryptography-ML- -->
 - P6.3: `SyntheticWaveformGenerator` ve `SyntheticWaveformDiscriminator`, mevcut PyTorch Linear/Embedding katmanlarıyla sınırlı koşullu MLP bileşenleri olarak tamamlandı. G: açık gürültü + genel sınıf kimliği → (B,C,L), tanh [-1,1]; D: 2D/3D dalga biçimi + sınıf kimliği → (B,1) ham logit. Eğitim/veri karıştırma/otomatik artırma hattı, gerçekçilik veya başarı iddiası, kriptografik etiket, donanım/saldırı/servis entegrasyonu yok. CPU şekil, koşullandırma, gradient, float64, state_dict round-trip ve katı girdi doğrulaması testli. Kapsam: docs/waveform_gan.md.
 - P6.2: `WaveformTransformer1D` yalnızca projeye ait sentetik, genel dalga biçimi sınıflandırması içindir; kriptografik etiket, anahtar kurtarma, saldırı veya servis entegrasyonu yoktur. `torch.nn.MultiheadAttention` üzerine kurulu; girdi/çıktı sözleşmesi ResNet1D ile uyumludur (2D/3D girdi, tahmin yardımcısı). Boolean `padding_mask` örnek düzeyidir: maskeli değerler yamalamadan önce sıfırlanır, tamamen maskeli token'lar attention ve havuzlama dışında kalır, her satırda en az bir geçerli örnek zorunludur. Sabit sinüzoidal konum kodlaması kullanılır; faz kayması dayanıklılık veya doğruluk iddiası yoktur. Eğitim/başarım ölçümü yapılmadı; doğrulama CPU testleriyle sınırlıdır (tests/test_waveform_transformer.py: 137 passed, 7.59 s). CPU eval testlerinde maskeli değerlerin değiştirilmesi ve state_dict round-trip sonrası çıktılar bit düzeyinde eşit doğrulandı; tamsayı yapılandırma bool/float kabul etmez; geçersiz maske/girdi reddi testlidir.
-- Son yerel doğrulama: `python3 -m pytest -q tests/test_waveform_gan.py` → 209 passed (6.82 s); `python3 -m pytest tests/test_waveform_gan.py tests/test_resnet1d.py tests/test_waveform_transformer.py -q` → 413 passed (10.35 s). `git diff --check` başarılı. Bu adımda yalnızca ilgili genel sentetik model regresyon paketi çalıştırıldı; tam depo paketi ve GitHub CI çalıştırılmadı. Ruff kurulu değil; lint iddiası yok. Aktif adım P6.4.
+- Önceki P6.3 doğrulaması: `python3 -m pytest -q tests/test_waveform_gan.py` → 209 passed (6.82 s); `python3 -m pytest tests/test_waveform_gan.py tests/test_resnet1d.py tests/test_waveform_transformer.py -q` → 413 passed (10.35 s). `git diff --check` başarılı. Bu adımda yalnızca ilgili genel sentetik model regresyon paketi çalıştırıldı; tam depo paketi ve GitHub CI çalıştırılmadı. Ruff kurulu değil; lint iddiası yok. Güncel doğrulama yukarıdaki P6.4 kaydındadır.
 - Yayın engeli: P6.3 uygulama commit’i `c6310bb` sonrasında `git push origin main` denendi ve GitHub tarafından reddedildi (exit 1); mevcut PAT, geçmişteki `.github/workflows/ci-cd-pipeline.yml` değişikliği için gereken `workflow` yetkisine sahip değil. P6.3 bu workflow dosyasını değiştirmedi. Yerel commitler korunuyor, uzak yayın tamamlanmadı; yetkiler veya geçmiş değiştirilmedi. Yetkili operatör GitHub bağlantısını uygun workflow yazma yetkisiyle yeniden kurduktan sonra push tekrar denenebilir.
 - P5.4: Sınırlı skaler JSON inceleme uyarıları, sonlu/katı girdi doğrulaması, kaynak/metrik bazlı tekrar kontrolü ve isteğe bağlı HTTPS taşıyıcı tamamlandı. Ağ varsayılan kapalı; WebSocket politikası harici taşıyıcı açamaz. Testler sahte taşıyıcılarla çevrimdışı; gerçek webhook teslimi denenmedi. Eşik aşımı sızıntı/istismar kanıtı değildir; P5.3 statik bulguları alınmaz. Kapsam: docs/telemetry_alerts.md.
 - P5.3: pyelftools + Capstone ile yerel x86 ELF32/ELF64 ET_REL/ET_EXEC/ET_DYN bölüm incelemesi tamamlandı. Dosyalar çalıştırılmaz; div/idiv bulguları sızıntı veya sabit zamanlılık kanıtı değildir. Eksik çözümleme açıkça raporlanır; kapsam: docs/binary_timing_review.md. Testler projeye ait küçük inert ELF örnekleridir, donanım/üretim ikilisi doğrulaması değildir.
@@ -53,7 +54,7 @@ WS-P6.4: Otomatik Model Liderlik Tablosu (yalnızca genel sentetik sınıflandı
 | 22 | WS-P6.1 1D ResNet Derin Öğrenme Omurgası | DONE (genel sentetik kapsam) | P6.1 | CPU | Residual bağlantılı SideChannelResNet1D modeli; sentetik genel dalga biçimi sınıflandırma; anahtar kurtarma yok |
 | 23 | WS-P6.2 Transformer & Attention SCA Modeli | DONE (genel sentetik kapsam) | P6.2 | CPU | WaveformTransformer1D; örnek maskesi, attention ve havuzlama testleri; faz kayması dayanıklılık iddiası yok |
 | 24 | WS-P6.3 GAN Tabanlı Sentetik İz Veri Artırımı | DONE (genel sentetik bileşenler) | P6.3 | CPU | Koşullu G/D modülleri ve CPU sözleşme testleri; eğitim/artırma başarımı iddiası yok |
-| 25 | WS-P6.4 Otomatik Model Liderlik Tablosu | TODO | P6.4 | CPU | Genel sentetik CNN/ResNet/Transformer metrikleri; CPA/anahtar kurtarma entegrasyonu yok |
+| 25 | WS-P6.4 Otomatik Model Liderlik Tablosu | DONE (genel sentetik kapsam) | P6.4 | CPU | Sınırlı veri sözleşmesi; doğruluk yalnızca tahminlerden; GAN/CPA/saldırı girişi yok |
 | 26 | WS-P7.1 X.509 Hibrit Sertifika Üreticisi | TODO | P7.1 | CPU | RSA-4096 + ML-DSA-65 hibrit sertifika zinciri oluşturucu |
 | 27 | WS-P7.2 PQC TLS 1.3 El Sıkışma Simülatörü | TODO | P7.2 | CPU | X25519Kyber768 hibrit anahtar değişimi ve RTT gecikme ölçümü |
 | 28 | WS-P7.3 FIPS 140-3 Güvenlik Doğrulama Matrisi | TODO | P7.3 | CPU | NIST FIPS 140-3 kriptografik modül uyumluluk denetleyicisi |
@@ -66,6 +67,6 @@ WS-P6.4: Otomatik Model Liderlik Tablosu (yalnızca genel sentetik sınıflandı
 ## Kabul Kriteri Durumu
 - [x] Aşama 1-4 kapsamındaki tüm 18 iş kolu tamamlandı (76/76 test passed).
 - [x] Aşama 5: Yerel/sentetik ve statik inceleme kapsamı tamamlandı (WS-P5.1 - WS-P5.4); gerçek donanım/SIMD/harici teslim doğrulaması yok, GitHub yayın engeli ayrı.
-- [ ] Aşama 6: İleri Derin Öğrenme Mimarileri - ResNet, Transformer & GAN (WS-P6.1 - WS-P6.4)
+- [x] Aşama 6: İleri Derin Öğrenme Mimarileri - ResNet, Transformer, GAN & Liderlik Tablosu (WS-P6.1 - WS-P6.4) — yerel genel sentetik kapsam; eğitim başarımı, donanım veya GitHub CI doğrulaması yok
 - [ ] Aşama 7: Kuantum Sonrası PKI, Hibrit TLS 1.3 & FIPS 140-3 (WS-P7.1 - WS-P7.4)
 - [ ] Aşama 8: Donanım-Döngüde Emülasyon & Sürekli Öğrenme (WS-P8.1 - WS-P8.4)
