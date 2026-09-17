@@ -83,7 +83,7 @@ and key-schedule references, both hybrid components, independent peer equality,
 transcript/Finished boundaries, tampering, canonical framing, bounds, invalid
 shares, replay/order rejection, redacted representations and socket-denied
 simulation. Final full repository run: **1029 passed, 2 dependency warnings,
-30.07 s** (includes all 74 simulator cases). No GitHub CI result is asserted.
+26.33 s** on final committed source (includes all 74 simulator cases). No GitHub CI result is asserted.
 
 References: [RFC 8446 §7](https://www.rfc-editor.org/rfc/rfc8446.html#section-7),
 [RFC 5869](https://www.rfc-editor.org/rfc/rfc5869.html),
