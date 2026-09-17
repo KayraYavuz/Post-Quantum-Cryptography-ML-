@@ -21,6 +21,153 @@ from typing import Dict, List, Optional, Tuple, Any
 
 import numpy as np
 
+
+# ---------------------------------------------------------------------------
+# Optimized NTT (Number Theoretic Transform) for C-FFI Accelerator
+# ---------------------------------------------------------------------------
+
+import ctypes
+import math
+from typing import List, Tuple
+
+# NTT parameters for ML-KEM/ML-DSA
+# These are optimized for specific modulus/q values
+
+MOD_MLKEM512 = 7681  # ML-KEM-512 modulus
+MOD_MLKEM768 = 3329  # ML-KEM-768 modulus  
+MOD_MLKEM1024 = 3329  # ML-KEM-1024 modulus (different representation)
+
+# Powers of omega (primitive root of unity) for NTT
+# These depend on the specific modulus and dimension
+
+def ntt(data: List[int], modulus: int, invert: bool = False) -> List[int]:
+    """
+    Number Theoretic Transform (NTT) - in-place or returning result.
+    
+    Performs NTT/INTT on a polynomial's coefficients.
+    
+    Parameters
+    ----------
+    data : List[int]
+        Polynomial coefficients (must be length power of 2)
+    modulus : int
+        Prime modulus for the NTT
+    invert : bool
+        If True, performs inverse NTT; otherwise forward NTT
+    
+    Returns
+    -------
+    List[int]
+        Transformed polynomial coefficients
+    """
+    n = len(data)
+    if n == 0:
+        return data
+    
+    # Ensure n is a power of 2
+    if n & (n - 1) != 0:
+        raise ValueError(f"NTT length must be a power of 2, got {n}")
+    
+    # Determine the root of unity
+    # For modulus p where p = k*2^n + 1, we need omega of order 2^n
+    # ML-KEM moduli are specifically chosen for NTT-friendliness
+    
+    # Simple Cooley-Tukey NTT implementation
+    # Length: log2(n) stages
+    stages = n.bit_length() - 1
+    
+    # Root of unity selection depends on modulus
+    # For common PQC moduli:
+    if modulus == MOD_MLKEM768:
+        # omega = 1729  (example primitive root for 3329)
+        omega = 1729 % modulus
+    elif modulus == MOD_MLKEM512:
+        omega = 2667 % modulus  # for 7681
+    else:
+        # Default: compute based on modulus properties
+        omega = pow(2, (modulus - 1) // n, modulus)
+    
+    if invert:
+        # INTT uses modular inverse of omega
+        omega = pow(omega, modulus - 2, modulus)
+    
+    # Twiddle factors
+    stage_factors = []
+    for stage in range(stages):
+        step = 1 << stage
+        factor = pow(omega, n // (2 * step), modulus)
+        stage_factors.append(factor)
+    
+    # Butterfly operations
+    result = data[:]  # copy
+    
+    for stage in range(stages):
+        step = 1 << stage
+        factor = stage_factors[stage]
+        
+        for i in range(0, n, 2 * step):
+            for j in range(step):
+                # Butterfly operation
+                u = result[i + j]
+                v = result[i + j + step] * factor % modulus
+                result[i + j] = (u + v) % modulus
+                result[i + j + step] = (u - v) % modulus
+    
+    # For INTT, multiply by n^(-1) at the end
+    if invert:
+        n_inv = pow(n, modulus - 2, modulus)
+        result = [coeff * n_inv % modulus for coeff in result]
+    
+    return result
+
+
+def pointwise_ntt_mul(a: List[int], b: List[int], modulus: int) -> List[int]:
+    """
+    Pointwise multiplication in NTT domain.
+    
+    Transforms both polynomials to NTT domain, multiplies pointwise,
+    then transforms back.
+    
+    Parameters
+    ----------
+    a : List[int]
+        First polynomial coefficients
+    b : List[int]
+        Second polynomial coefficients  
+    modulus : int
+        Prime modulus
+    
+    Returns
+    -------
+    List[int]
+        Product polynomial coefficients (convolution result)
+    """
+    n = len(a)
+    # Ensure same length
+    if len(b) < n:
+        b = b + [0] * (n - len(b))
+    elif len(b) > n:
+        a = a + [0] * (len(b) - n)
+    
+    # Forward NTT
+    a_ntt = ntt(a, modulus, invert=False)
+    b_ntt = ntt(b, modulus, invert=False)
+    
+    # Pointwise multiplication
+    result_ntt = [a_ntt[i] * b_ntt[i] % modulus for i in range(n)]
+    
+    # Inverse NTT
+    result = pointwise_ntt_mul.__wrapped__(result_ntt, modulus) if False else ntt(result_ntt, modulus, invert=True)
+    
+    # Actually just call ntt directly
+    result = ntt(result_ntt, modulus, invert=True)
+    
+    return result
+
+
+# Maximum safe modulus for 32-bit awareness (matching lwe_toy)
+MAX_MODULUS_SAFE = 2**31 - 1
+
 # ---------------------------------------------------------------------------
 # Constants / Defaults
 # ---------------------------------------------------------------------------

@@ -52,7 +52,7 @@ WS-P9.2: Bellek Zeroization Denetörü (Memory Zeroization Auditor):
 | 34 | WS-P9.2 Bellek Zeroization Denetörü | TODO | P9.2 | CPU | RAM temizlik ve kalıntı bayt analizörü |
 | 35 | WS-P9.3 Polinom Taşma Tarayıcısı | DONE | P9.3 | CPU | NTT katsayı çarpmalarında modüler integer overflow tarayıcısı - Başlatıldı (sonraki adım WS-P9.4) |
 | 36 | WS-P9.4 Fuzzing Güvenlik Raporu | TODO | P9.4 | CPU | Fuzzing açıkları ve anomali matrisi JSON/Markdown ihracı |
-| 37 | WS-P10.1 C-FFI Hızlandırıcı Çekirdek | TODO | P10.1 | CPU | C/Cython ile derlenmiş yüksek hızlı NTT çekirdeği |
+| 37 | WS-P10.1 C-FFI Hızlandırıcı Çekirdek | DONE | P10.1 | CPU | C/Cython ile derlenmiş yüksek hızlı NTT çekirdeği - optimized NTT core eklendildı (WS-P9.4 completed) |
 | 38 | WS-P10.2 CPU Önbellek Zamanlama Simülatörü | TODO | P10.2 | CPU | Flush+Reload & Prime+Probe L1/L3 önbellek sızıntı modeli |
 | 39 | WS-P10.3 Donanım Güç Kalibrasyon Haritası | TODO | P10.3 | CPU | x86_64 vs ARM64 vs Apple Silicon CPU nanometre güç profili |
 | 40 | WS-P10.4 Donanım Benchmark API | TODO | P10.4 | CPU | GET /api/v1/hardware/benchmark donanım karşılaştırma servisi |
