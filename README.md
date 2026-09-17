@@ -325,5 +325,16 @@ security, compliance certificate, hardware measurement, or network RTT is
 claimed. No new dependency, renderer service, or application endpoint is added.
 See [manifest mapping, fixed examples, validation and CPU tests](docs/executive_report.md).
 
+## WS-P8.1: Cortex-M4 emulation feasibility
+
+A read-only stdlib prerequisite adapter reports local QEMU/Arm tool discovery
+without running firmware or a shell. This environment lacks the required tools;
+all timing, instruction, hardware-cycle, stack and size fields remain explicitly
+unmeasured. Upstream documents `mps2-an386` as Cortex-M4, but QEMU is not
+cycle-accurate and local support is unverified. The current pqm4 deprecation
+notice and maintained portable-C alternatives are documented, not installed.
+Run `python3 -m pqc_bench.qemu_feasibility` for a JSON discovery report.
+See [sources, scope, blockers and metric semantics](docs/qemu_feasibility.md).
+
 ## 📜 License
 Apache-2.0 License. Maintained autonomously by Ruhi (OpenClaw) and Antigravity.

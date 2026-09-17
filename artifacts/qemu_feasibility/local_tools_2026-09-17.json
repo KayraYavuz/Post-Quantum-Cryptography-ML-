@@ -1,0 +1,57 @@
+{
+  "evidence": "local_path_lookup",
+  "execution_status": "not_run",
+  "limitations": [
+    "PATH lookup only: versions, tool behavior and local board/CPU support are unverified.",
+    "QEMU icount and virtual time are not Cortex-M4 hardware cycles.",
+    "No firmware was built or run; no benchmark, stack or code-size measurement exists.",
+    "Documented mps2-an386 support does not establish local runtime support.",
+    "No network, service, device, trace capture or attack integration is provided."
+  ],
+  "metrics": {
+    "firmware_size_bytes": null,
+    "guest_instruction_count": null,
+    "guest_virtual_time_ns": null,
+    "hardware_cycles": null,
+    "host_elapsed_ns": null,
+    "stack_high_water_bytes": null
+  },
+  "missing_tools": [
+    "qemu-system-arm",
+    "arm-none-eabi-gcc",
+    "arm-none-eabi-objcopy",
+    "arm-none-eabi-size",
+    "make"
+  ],
+  "remaining_checks": [
+    "tool_versions_and_board_cpu_support",
+    "pinned_implementation_and_build_dependencies",
+    "project_owned_firmware_build_and_functional_test",
+    "bounded_offline_runner_not_implemented"
+  ],
+  "schema_version": 1,
+  "scope": "project_local_functional_benchmark_feasibility",
+  "status": "blocked_missing_tools",
+  "target": {
+    "board": "mps2-an386",
+    "cpu": "cortex-m4",
+    "local_runtime_support": "not_verified",
+    "upstream_documented_support": true
+  },
+  "tools": {
+    "arm-none-eabi-gcc": "not_found_on_path",
+    "arm-none-eabi-objcopy": "not_found_on_path",
+    "arm-none-eabi-size": "not_found_on_path",
+    "make": "not_found_on_path",
+    "qemu-system-arm": "not_found_on_path"
+  },
+  "unknown_tools": [],
+  "unmeasured_metrics": [
+    "host_elapsed_ns",
+    "guest_virtual_time_ns",
+    "guest_instruction_count",
+    "hardware_cycles",
+    "stack_high_water_bytes",
+    "firmware_size_bytes"
+  ]
+}
