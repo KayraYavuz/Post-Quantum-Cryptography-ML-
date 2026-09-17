@@ -13,7 +13,7 @@ Validates:
 
 import json
 import pytest
-from src.pqc_bench.fuzzing.ct_fuzzer import (
+from pqc_bench.fuzzing.ct_fuzzer import (
     constant_time_fuzz,
     fuzz_kem_implementation,
     fuzz_dsa_implementation,

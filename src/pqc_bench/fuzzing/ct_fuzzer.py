@@ -212,6 +212,7 @@ def analyze_timing_variance(
             "threshold_ns": threshold_ns,
             "safe_from_timing_side_channels": True,  # conservative: cannot verify
             "timing_range_percent": 0,
+            "error": "Insufficient timing data (need >= 2 measurements)",
         }
 
     min_t = min(timings)

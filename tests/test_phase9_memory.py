@@ -9,7 +9,7 @@ import ctypes
 import pytest
 from typing import Dict
 
-from src.pqc_bench.security.memory_zeroizer import (
+from pqc_bench.security.memory_zeroizer import (
     ZERO_PATTERNS,
     zero_memory,
     zero_memory_bytes,

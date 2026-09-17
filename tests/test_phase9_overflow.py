@@ -6,7 +6,7 @@ implemented in src/pqc_bench/lwe_toy.py.
 """
 
 import pytest
-from src.pqc_bench.lwe_toy import safe_ntt_coeff_mul, check_ntt_overflow_risk
+from pqc_bench.lwe_toy import safe_ntt_coeff_mul, check_ntt_overflow_risk
 
 
 class TestSafeNttCoeffMul:
