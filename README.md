@@ -304,5 +304,16 @@ This is educational custom framing, not wire-compatible TLS, a standardized
 hybrid group, authenticated PKI, or a production security implementation.
 See [API, CPU tests and limitations](docs/tls_simulator.md).
 
+## WS-P7.3: Local FIPS 140-3 evidence and gap matrix
+
+An isolated document-review component records module identity/version,
+operational environment, certificate and security-policy references, approved
+mode/services, and explicit evidence gaps. Local document assertions are never
+promoted to module validation: missing evidence is unknown, and even complete
+synthetic evidence remains not verified. Algorithm names, FIPS 203/204 and CBOM
+policy labels are not module certificates. Deterministic JSON/Markdown reports
+and CPU tests have no live CMVP, laboratory or application integration.
+See [official sources, evidence semantics and limitations](docs/fips_evidence.md).
+
 ## 📜 License
 Apache-2.0 License. Maintained autonomously by Ruhi (OpenClaw) and Antigravity.
