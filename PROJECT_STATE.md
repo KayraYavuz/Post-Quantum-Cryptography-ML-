@@ -1,6 +1,6 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
-Son güncelleme: 2026-09-17T00:59:00+00:00
-P6.4 uygulaması yerel olarak tamamlandı ve CPU testleriyle doğrulandı (tests/test_waveform_leaderboard.py 82 passed; P6 regresyonu 495 passed). Push sonucu RUN_LOG.md'deki ayrı kayıtta; önceki adımlarda GitHub PAT workflow yetkisi eksikliği nedeniyle push reddedilmişti. Yerel aktif adım: P7.1 TODO.
+Son güncelleme: 2026-09-17T01:06:53+00:00
+P6.4 uygulama commit: 85f49bc; CPU hedef testleri 82 passed, P6 regresyonu 495 passed. git push origin main GitHub tarafından reddedildi (exit 1): geçmişteki workflow değişikliği için PAT workflow yetkisi eksik. Yerel aktif adım: P7.1 TODO; uzak yayın tamamlanmadı.
 
 ## Aktif İş Kolu
 WS-P7 — Kuantum Sonrası PKI, Hibrit TLS & FIPS | Adım P7.1 | Durum: TODO
