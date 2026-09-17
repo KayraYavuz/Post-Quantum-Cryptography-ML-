@@ -3,14 +3,14 @@ Son güncelleme: 2026-09-17T10:35:00ZZ
 Commit: fe6b200
 
 ## Aktif İş Kolu
-WS-P9 — Kuantum Sonrası Otomatik Fuzzing & Bellek Güvenliği | Adım P9.3 | Durum: IN_PROGRESS
+WS-P9 — Kuantum Sonrası Otomatik Fuzzing WS-P9 — Kuantum Sonrası Otomatik Fuzzing & Bellek Güvenliği | Adım P9.3 | Durum: IN_PROGRESS Bellek Güvenliği | Adım P9.4 | Durum: TODO (WS-P9.2 completed)
 
 ## Sıradaki Adım
-WS-P9.2: Bellek Zeroization Denetörü (Memory Zeroization Auditor):
-1. `src/pqc_bench/security/memory_zeroizer.py` modülünü oluştur. RAM temizleme algoritmaları, kalıntı bayt analizi ve sıfırlama doğrulama testleri.
-2. `tests/test_phase9_memory.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
-3. Değişiklikleri `[WS-P9.2] Implement Memory Zeroization Auditor and Tests | state: WS-P9.2.DONE` formatıyla commit et.
-4. PROJECT_STATE.md dosyasını WS-P9.3 adımına ilerlet.
+WS-P9.3: Polynomial Traversal Browser and Overflow Detection:
+1. `src/pqc_bench/lwe_toy.py` ve polinom işlemleri modülünü geliştir. NTT katsayı çarpımında modüler integer overflow tespiti.
+2. `tests/test_phase9_overflow.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
+3. Değişiklikleri `[WS-P9.3] Implement Polynomial Traversal Browser and Overflow Detection | state: WS-P9.3.DONE` formatıyla commit et.
+4. PROJECT_STATE.md dosyasını WS-P9.4 adımına ilerlet.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -49,8 +49,8 @@ WS-P9.2: Bellek Zeroization Denetörü (Memory Zeroization Auditor):
 | 31 | WS-P8.2 Prometheus Telemetrisi | DONE | P8.2 | CPU | /metrics altında model çıkarım süreleri ve bellek telemetrisi |
 | 32 | WS-P8.3 İstemci SDK Üretimi | DONE | P8.3 | CPU | Python ve Go istemci SDK paketleri |
 | 33 | WS-P9.1 Sabit Zamanlılık Fuzzer | DONE | P9.1 | CPU | ML-KEM/ML-DSA malformed ciphertext fuzzing motoru |
-| 34 | WS-P9.2 Bellek Zeroization Denetörü | TODO | P9.2 | CPU | RAM temizlik ve kalıntı bayt analizörü |
-| 35 | WS-P9.3 Polinom Taşma Tarayıcısı | DONE | P9.3 | CPU | NTT katsayı çarpmalarında modüler integer overflow tarayıcısı - Başlatıldı (sonraki adım WS-P9.4) |
+| 34 | WS-P9.2 Bellek Zeroization Denetörü | DONE | P9.2 | CPU | RAM temizlik ve kalıntı bayt analizörü - 18/18 test passed |
+| 35 | WS-P9.3 Polinom Taşma Tarayıcısı | IN_PROGRESS | P9.3 | CPU | NTT katsayı çarpmalarında modüler integer overflow tarayıcısı - actively in progress (push blocked: GitHub PAT scope) |
 | 36 | WS-P9.4 Fuzzing Güvenlik Raporu | TODO | P9.4 | CPU | Fuzzing açıkları ve anomali matrisi JSON/Markdown ihracı |
 | 37 | WS-P10.1 C-FFI Hızlandırıcı Çekirdek | DONE | P10.1 | CPU | C/Cython ile derlenmiş yüksek hızlı NTT çekirdeği - optimized NTT core eklendildı (WS-P9.4 completed) |
 | 38 | WS-P10.2 CPU Önbellek Zamanlama Simülatörü | TODO | P10.2 | CPU | Flush+Reload & Prime+Probe L1/L3 önbellek sızıntı modeli |
