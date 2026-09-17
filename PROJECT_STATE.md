@@ -1,18 +1,20 @@
 # PROJECT STATE — AŞAMA 5-8: BÜYÜK OTOMASYON, İLERİ DERİN ÖĞRENME, HİBRİT PKI & DONANIM EMÜLASYONU
-Son güncelleme: 2026-09-17T00:36:11+00:00
+Son güncelleme: 2026-09-17T00:43:13+00:00
 P6.1 uygulama commit: 49d53ea; doğrudan push GitHub tarafından reddedildi (workflow yetkisi eksik). Yerel aktif adım: P6.2 TODO.
 
 ## Aktif İş Kolu
-WS-P6 — İleri Derin Öğrenme Mimarileri | Adım P6.2 | Durum: TODO
+WS-P6 — İleri Derin Öğrenme Mimarileri | Adım P6.3 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P6.2: Transformer & Attention SCA Modeli (genel sentetik dalga biçimleri kapsamı).
-1. Mevcut ResNet1D omurgası API'siyle tutarlı, Multi-Head Self-Attention tabanlı model arayüzünü uygula.
-2. Kapsamı yalnızca sentetik, gizli anahtar içermeyen genel dalga biçimi sınıflandırmasıyla sınırla; anahtar kurtarma veya üçüncü taraf sistemlere yönelik saldırı entegrasyonu yapma.
-3. Girdi/çıktı şekli, attention maskesi, gradient ve serileştirme birim testlerini CPU üzerinde çalıştır. Eğitim/başarım iddialarını gerçekten ölçülen sonuçlarla sınırla.
-4. Kapsamı belgele, commit/push sonucunu kaydet ve tamamlandığında WS-P6.3'e ilerle.
+WS-P6.3: GAN Tabanlı Sentetik İz Veri Artırımı (yalnızca genel sentetik kapsam).
+1. Proje sahibi sentetik dalga biçimleri için koşullu GAN (generator/discriminator) modülünü, mevcut model API sözleşmeleriyle tutarlı şekilde uygula.
+2. Kapsamı yalnızca sentetik, gizli anahtar içermeyen genel dalga biçimi üretimiyle sınırla; anahtar kurtarma, gerçek donanım izi entegrasyonu veya üçüncü taraf sistemlere yönelik saldırı entegrasyonu yapma.
+3. Generator/discriminator şekil, gradient, serileştirme ve girdi doğrulama birim testlerini CPU üzerinde çalıştır. Eğitim başarımı veya gerçekçilik iddiası yapma.
+4. Kapsamı belgele, commit/push sonucunu kaydet ve tamamlandığında WS-P6.4'e ilerle.
 
 ## Doğrulanmış Kapsam ve Sınırlar
+- P6.2: `WaveformTransformer1D` yalnızca projeye ait sentetik, genel dalga biçimi sınıflandırması içindir; kriptografik etiket, anahtar kurtarma, saldırı veya servis entegrasyonu yoktur. `torch.nn.MultiheadAttention` üzerine kurulu; girdi/çıktı sözleşmesi ResNet1D ile uyumludur (2D/3D girdi, tahmin yardımcısı). Boolean `padding_mask` örnek düzeyidir: maskeli değerler yamalamadan önce sıfırlanır, tamamen maskeli token'lar attention ve havuzlama dışında kalır, her satırda en az bir geçerli örnek zorunludur. Kayan konum kodlaması yok; faz kayması dayanıklılık veya doğruluk iddiası yoktur. Eğitim/başarım ölçümü yapılmadı; doğrulama CPU testleriyle sınırlıdır (tests/test_waveform_transformer.py: 137 passed, 7.59 s). Dropout=0 konfigürasyonunda deterministik, bit benzeri çıkışlar doğrulandı; tamsayı yapılandırma bool/float kabul etmez; geçersiz maske/girdi reddi testlidir.
+- Son yerel doğrulama: `python3 -m pytest -q` → 549 passed, 2 bağımlılık deprecation uyarısı (13.25 s). P6.2 hedef testleri: 136/137 passed (iki ardışık koşuda). `git diff --check` başarılı. Ruff kurulu değil; lint çalıştırılmadı. Aktif adım P6.3.
 - Yayın engeli: P6.1 uygulama commit'i `49d53ea` sonrasında `git push origin main` yeniden denendi ve GitHub tarafından reddedildi (exit 1); mevcut PAT, `.github/workflows/ci-cd-pipeline.yml` için gereken `workflow` yetkisine sahip değil. Yerel commitler korunuyor, uzak yayın tamamlanmadı. Yetkili operatör GitHub bağlantısını uygun workflow yazma yetkisiyle yeniden kurduktan sonra push tekrar denenebilir.
 - Son yerel doğrulama: `python3 -m pytest -q` → 413 passed, 2 bağımlılık deprecation uyarısı (12.77 s). P6.1 hedef testleri: 67 passed (7.29 s). `git diff --check` başarılı. Ruff kurulu değil; lint çalıştırılmadı. Aktif adım P6.2.
 - P5.4: Sınırlı skaler JSON inceleme uyarıları, sonlu/katı girdi doğrulaması, kaynak/metrik bazlı tekrar kontrolü ve isteğe bağlı HTTPS taşıyıcı tamamlandı. Ağ varsayılan kapalı; WebSocket politikası harici taşıyıcı açamaz. Testler sahte taşıyıcılarla çevrimdışı; gerçek webhook teslimi denenmedi. Eşik aşımı sızıntı/istismar kanıtı değildir; P5.3 statik bulguları alınmaz. Kapsam: docs/telemetry_alerts.md.

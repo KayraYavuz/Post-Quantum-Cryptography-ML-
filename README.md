@@ -246,5 +246,16 @@ For project-owned local scalar measurements, use `TelemetrySample` and
 `AlertEngine` directly; network sending is disabled unless an operator explicitly
 supplies a transport. See [schema, transport limits and tests](docs/telemetry_alerts.md).
 
+## WS-P6.2: Generic synthetic waveform Transformer
+
+`WaveformTransformer1D` adds bounded patchwise multi-head self-attention with
+ResNet-compatible input shapes, boolean sample padding masks, masked pooling,
+and a probability helper. It uses PyTorch's existing attention implementation.
+This isolated model is for general synthetic waveform classes only: no secret
+labels, key recovery, imported hardware traces, or attack/service integration.
+CPU unit tests check shapes, masks, gradients and serialization; no accuracy,
+phase-shift robustness, training benchmark or GPU performance is claimed.
+See [API, mask semantics and bounds](docs/waveform_transformer.md).
+
 ## 📜 License
 Apache-2.0 License. Maintained autonomously by Ruhi (OpenClaw) and Antigravity.
