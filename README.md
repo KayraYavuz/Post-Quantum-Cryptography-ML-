@@ -282,5 +282,16 @@ explicit `null` under `unmeasured_metrics`; provenance is caller-attested, not
 authenticated. No training, service endpoint, dashboard integration or score
 file is provided. See [contract, comparability and limitations](docs/waveform_leaderboard.md).
 
+## WS-P7.1: Offline experimental hybrid test PKI
+
+A project-local RSA-4096/SHA-256 X.509 root and leaf are paired with detached
+ML-DSA-65 signatures over the complete certificates. The PQ public keys are
+bound inside an experimental certificate extension; validation requires an
+explicit trusted root and both signature layers. This is a research envelope,
+not a standardized composite X.509 encoding or a deployment-ready TLS PKI.
+Keys are generated locally with the cryptography library's secure randomness;
+no live CA, ACME, HSM, service integration or FIPS module certification is claimed.
+See [schema, trust model and CPU tests](docs/hybrid_certificates.md).
+
 ## 📜 License
 Apache-2.0 License. Maintained autonomously by Ruhi (OpenClaw) and Antigravity.

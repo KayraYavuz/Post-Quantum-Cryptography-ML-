@@ -26,6 +26,8 @@ dependencies = [
     "cyclonedx-python-lib>=6.0.0",
     "pyelftools>=0.32,<1",
     "capstone>=5.0.3,<6",
+    # Maintained RSA/X.509 and ML-DSA primitives; bound to tested major API (50.0.1).
+    "cryptography>=50.0.0,<51",
 ]
 
 [project.optional-dependencies]
