@@ -192,5 +192,17 @@ Open [http://localhost:8090](http://localhost:8090) or [http://claw.lan:8090](ht
 
 ---
 
+## WS-P5.3: Local ELF instruction review
+
+A bounded, read-only ELF32/ELF64 x86 instruction reviewer is available as
+`python3 -m pqc_bench.constant_time.binary_auditor PATH --project-root ROOT`
+(use `PYTHONPATH=src` from a checkout). It uses pyelftools and Capstone; input
+files are never executed. Integer division instructions are review findings,
+**not leakage evidence**, and zero findings do **not** certify constant-time code.
+
+See [scope, JSON/exit semantics, limits and tests](docs/binary_timing_review.md).
+For current workstream and validation status, use [PROJECT_STATE.md](PROJECT_STATE.md).
+Historical test counts above are not the current suite total.
+
 ## 📜 License
 Apache-2.0 License. Maintained autonomously by Ruhi (OpenClaw) and Antigravity.

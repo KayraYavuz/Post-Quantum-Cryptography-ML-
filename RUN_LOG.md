@@ -73,3 +73,5 @@
 - 2026-09-16T23:55:28+00:00 | [WS-P5.2] Devam çalışması: mevcut efd3a98 kodu korundu. pytest -q: 174 passed, 2 bağımlılık uyarısı (8.92 s). PROJECT_STATE.md sentetik P5.2 tamamlandı / aktif P5.3 TODO olarak ilerletildi. Önceki durum geçişi beklemesi giderildi. Push henüz doğrulanmadı; aşağıdaki sonuç kaydı belirleyicidir. | state: WS-P5.2.DONE_SYNTHETIC
 
 - 2026-09-16T23:55:52+00:00 | [WS-P5.2] Durum geçişi commit: b3e25ff. git push origin main başarısız (exit 1): GitHub PAT workflow scope eksikliği nedeniyle .github/workflows/ci-cd-pipeline.yml değişikliğini reddetti. Push tamamlanmadı; yetkiler veya workflow değiştirilmedi, geçmiş korunuyor. Aktif sonraki geliştirme adımı P5.3 TODO. | state: PUSH_BLOCKED
+
+- 2026-09-17T00:10:46+00:00 | [WS-P5.3] Yerel ELF statik inceleyici ve JSON CLI: pyelftools + Capstone, kapsam/okuma/boyut sınırları, eksik çözümleme ve bulgu sınırı raporlaması. Testler: 61 hedef passed (0.65 s); tam paket 235 passed, 2 bağımlılık uyarısı (7.71 s). README ve docs/binary_timing_review.md güncellendi. Aktif adım P5.4 TODO. Commit/push sonucu sonraki kayıtta; yayın henüz doğrulanmadı. | state: WS-P5.3.DONE_STATIC_REVIEW
