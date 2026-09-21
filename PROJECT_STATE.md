@@ -1,17 +1,17 @@
 # PROJECT STATE — AŞAMA 9-12: İLERİ GÜVENLİK FUZZING, DONANIM HIZLANDIRMA, CLOUD/K8S & SÜREKLİ KRİPTOGRAFİK ZEKA
-Son güncelleme: 2026-09-20T03:00:00GMT
-Commit: afb0655
+Son güncelleme: 2026-09-21T14:15:00+03:00
+Commit: 54e66a1
 
 ## Aktif İş Kolu
-WS-P9 — Kuantum Sonrası Otomatik Fuzzing & Bellek Güvenliği | Adım P9.4 | Durum: IN_PROGRESS
+WS-P10 — Donanım Hızlandırma & C-FFI / Önbellek Zamanlama | Adım P10.2 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P9.4: Fuzzing Güvenlik Raporu:
-1. `tests/test_phase9_fuzzing_report.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
-2. FSANITIZE/detest araçları ile toplanmış hata kayıtlarını analiz et, anomali matrisi oluşturun.
-3. JSON, Markdown ve HTML raporlar üretin ve `{repository}/reports/fuzzing_security_report_{date}.json`, `{repository}/reports/fuzzing_security_report_{date}.md`, `{repository}/reports/fuzzing_security_report_{date}.html` olarak kaydedin.
-4. Bu iş kolunu `[WS-P9.4] Implement Fuzzing Security Report Generator | state: WS-P9.4.DONE` formatıyla commit edin.
-5. PROJECT_STATE.md dosyasını WS-P10.1 adımına ilerletin.
+WS-P10.2: CPU Önbellek Zamanlama Simülatörü:
+1. `tests/test_phase10_cache_timing.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
+2. Flush+Reload ve Prime+Probe L1/L3 önbellek sızıntı simülatörünü (`src/pqc_bench/hardware/cache_timing.py`) geliştir.
+3. Bellek hatları (cache-line) çakışma analizini ve sızıntı skorlama motorunu entegre et.
+4. Bu iş kolunu `[WS-P10.2] Implement CPU Cache Timing Simulator & Leakage Models | state: WS-P10.2.DONE` formatıyla commit et.
+5. PROJECT_STATE.md dosyasını WS-P10.3 adımına ilerlet.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -52,7 +52,7 @@ WS-P9.4: Fuzzing Güvenlik Raporu:
 | 33 | WS-P9.1 Sabit Zamanlılık Fuzzing Motoru | DONE | P9.1 | CPU | ML-KEM/ML-DSA malformed ciphertext fuzzing motoru |
 | 34 | WS-P9.2 Bellek Zeroization Denetörü | DONE | P9.2 | CPU | RAM temizlik ve kalıntı bayt analizörü - 18/18 test passed |
 | 35 | WS-P9.3 Polinom Taşma Tarayıcısı | DONE | P9.3 | CPU | NTT katsayı çarpmalarında modüler integer overflow tarayıcısı - 12/12 pytest passed |
-| 36 | WS-P9.4 Fuzzing Güvenlik Raporu | IN_PROGRESS | P9.4 | CPU | Fuzzing açıkları ve anomali matrisi JSON/Markdown ihracı |
+| 36 | WS-P9.4 Fuzzing Güvenlik Raporu | DONE | P9.4 | CPU | Fuzzing açıkları ve anomali matrisi JSON/Markdown ihracı |
 | 37 | WS-P10.1 C-FFI Hızlandırıcı Çekirdek | DONE | P10.1 | CPU | C/Cython ile derlenmiş yüksek hızlı NTT çekirdeği - optimized NTT core eklendildı (WS-P9.4 completed) |
 | 38 | WS-P10.2 CPU Önbellek Zamanlama Simülatörü | TODO | P10.2 | CPU | Flush+Reload & Prime+Probe L1/L3 önbellek sızıntı modeli |
 | 39 | WS-P10.3 Donanım Güç Kalibrasyon Haritası | TODO | P10.3 | CPU | x86_64 vs ARM64 vs Apple Silicon CPU nanometre güç profili |
@@ -69,9 +69,12 @@ WS-P9.4: Fuzzing Güvenlik Raporu:
 ## Kabul Kriteri Durumu
 - [x] Aşama 1-8 kapsamındaki 33 iş kolu tamamlandı (1573/1573 test passed).
 - [x] WS-P9.1: Sabit Zamanlılık Fuzzing Motoru tamamlandı.
-- [x] WS-P9.2: Bellek Zeroization Denetörü tam completed - 18/18 pytest passed
-- [x] WS-P9.3: Polinom Taşma Tarayıcısı tam completed - 12/12 pytest passed
-- [ ] Aşama 9: Kuantum Sonrası Otomatik Fuzzing & Bellek Güvenliği (WS-P9.4 - WS-P9.4)
-- [ ] Aşama 10: Donanım Hızlandırma & C-FFI / Önbellek Zamanlama (WS-P10.1 - WS-P10.4)
+- [x] WS-P9.2: Bellek Zeroization Denetörü tamamlandı - 18/18 pytest passed.
+- [x] WS-P9.3: Polinom Taşma Tarayıcısı tamamlandı - 12/12 pytest passed.
+- [x] WS-P9.4: Fuzzing Güvenlik Raporu tamamlandı - 20/20 pytest passed.
+- [x] WS-P9.5 / P10.1: C-FFI Hızlandırıcı Çekirdek ve Benchmark API tamamlandı - 21/21 pytest passed.
+- [x] Aşama 9: Kuantum Sonrası Otomatik Fuzzing & Bellek Güvenliği tamamlandı (1659/1659 test passed).
+- [x] GitHub Push Engeli Çözüldü: Personal Access Token `workflow` yetkisi ile güncellendi, 53 commit origin/main'e push edildi.
+- [ ] Aşama 10: Donanım Hızlandırma & C-FFI / Önbellek Zamanlama (WS-P10.2 - WS-P10.4)
 - [ ] Aşama 11: Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı (WS-P11.1 - WS-P11.4)
 - [ ] Aşama 12: Sürekli Kriptografik Zeka & Nihai Entegrasyon (WS-P12.1 - WS-P12.4)

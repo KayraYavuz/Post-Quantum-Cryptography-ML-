@@ -1,6 +1,6 @@
 # NIST Post-Quantum Cryptography & Machine Learning (PQC-ML) Toolchain
 
-[![Build Status](https://img.shields.io/badge/tests-55%20passed-00ff87?style=flat-square)](https://github.com/KayraYavuz/Post-Quantum-Cryptography-ML-)
+[![Build Status](https://img.shields.io/badge/tests-1659%20passed-00ff87?style=flat-square)](https://github.com/KayraYavuz/Post-Quantum-Cryptography-ML-)
 [![CBOM](https://img.shields.io/badge/CycloneDX-1.6%20Compliant-00f2fe?style=flat-square)](artifacts/cbom.json)
 [![Compliance](https://img.shields.io/badge/NIST-SP%20800--208%20%7C%20CNSA%202.0-a855f7?style=flat-square)](artifacts/cbom_policy_report.json)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.14.0%2Bcpu-ee4c2c?style=flat-square)](artifacts/checkpoints/)
