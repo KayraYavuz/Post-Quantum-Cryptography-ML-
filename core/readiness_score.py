@@ -1,23 +1,22 @@
-import numpy as np
+import math
 
 class ReadinessScoreEngine:
     def __init__(self):
-        # Ağırlıklar: [FIPS 140-3, PQC-Latency, Memory-Safety, Fuzzing-Pass, Hardware-Accelerated]
-        self.weights = np.array([0.3, 0.2, 0.2, 0.2, 0.1])
-        
-    def calculate_score(self, metrics):
-        """
-        metrics: list of 5 floats (0-100)
-        """
-        if len(metrics) != 5:
-            raise ValueError("Metrics must contain exactly 5 values.")
-            
-        score = np.dot(np.array(metrics), self.weights)
-        return float(np.clip(score, 0, 100))
+        # Default weights for corporate readiness factors
+        self.weights = {
+            "algorithm_compliance": 0.30,
+            "hardware_security": 0.25,
+            "software_integrity": 0.25,
+            "operational_resilience": 0.20
+        }
 
-# Basit bir kullanım örneği
-if __name__ == "__main__":
-    engine = ReadinessScoreEngine()
-    # Örnek metrikler
-    metrics = [95.0, 88.0, 92.0, 98.0, 85.0]
-    print(f"Readiness Score: {engine.calculate_score(metrics)}")
+    def calculate_score(self, metrics: dict) -> float:
+        """
+        0-100 kurumsal kuantum güvenilirlik skoru motoru.
+        metrics örneği: {"algorithm_compliance": 90, "hardware_security": 85, ...}
+        """
+        score = 0.0
+        for factor, weight in self.weights.items():
+            value = metrics.get(factor, 0.0)
+            score += value * weight
+        return round(max(0.0, min(100.0, score)), 2)

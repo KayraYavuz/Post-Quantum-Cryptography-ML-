@@ -1,16 +1,16 @@
 # PROJECT STATE — AŞAMA 9-12: İLERİ GÜVENLİK FUZZING, DONANIM HIZLANDIRMA, CLOUD/K8S & SÜREKLİ KRİPTOGRAFİK ZEKA
-Son güncelleme: 2026-09-21T18:35:00+03:00
+Son güncelleme: 2026-09-21T18:40:00+03:00
 Commit: latest
 
 ## Aktif İş Kolu
-WS-P12 — Sürekli Kriptografik Zeka & Nihai Entegrasyon | Adım P12.3 | Durum: TODO
+WS-P12 — Sürekli Kriptografik Zeka & Nihai Entegrasyon | Adım P12.2 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P12.3: PQC Hazırlık İndeksi (Readiness Score):
-1. `core/readiness_score.py` modülünü tamamla: 0-100 kurumsal kuantum güvenilirlik skoru motoru.
-2. `tests/test_phase12_readiness.py` ile birim testlerini gerçekle.
-3. Bu iş kolunu `[WS-P12.3] Implement Readiness Score Engine | state: WS-P12.3.DONE` formatıyla commit et.
-4. PROJECT_STATE.md dosyasını WS-P12.4 adımına ilerlet.
+WS-P12.2: Aktif Öğrenme (Active Learning):
+1. `core/active_learning.py` modülünü oluştur: entropi tabanlı osiloskop izi seçici.
+2. `tests/test_phase12_active_learning.py` ile iz seçimi ve fine-tuning döngüsünü doğrula.
+3. Bu iş kolunu `[WS-P12.2] Implement Active Learning Engine | state: WS-P12.2.DONE` formatıyla commit et.
+4. PROJECT_STATE.md dosyasını WS-P12.3 adımına ilerlet.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -60,7 +60,7 @@ WS-P12.3: PQC Hazırlık İndeksi (Readiness Score):
 | 42 | WS-P11.2 Rate Limiting & DoS Kalkanı | DONE | P11.2 | CPU | Token-bucket algoritması ile API hız sınırlama |
 | 43 | WS-P11.3 Docker Compose & K8s Manifestoları | DONE | P11.3 | Ops | Docker Compose ve Kubernetes (Deployment, Service, Ingress) konfigürasyonları |
 | 44 | WS-P11.4 Grafana Dashboard Şablonu | DONE | P11.4 | Ops | Prometheus telemetrisi için Grafana JSON paneli |
-| 45 | WS-P12.1 Model Ağırlık Bütünlük Doğrulayıcı | DONE | P12.1 | CPU | Model poisoning koruması ve SHA-256 doğrulama motoru (5/5 pytest passed) |
+| 45 | WS-P12.1 Model Ağırlık Bütünlük Doğrulayıcı | DONE | P12.1 | CPU | SHA-256 bütünlük ve poisoning direnci |
 | 46 | WS-P12.2 Aktif Öğrenme (Active Learning) | TODO | P12.2 | CPU/GPU | Entropi tabanlı kritik osiloskop izi seçici ve fine-tune |
 | 47 | WS-P12.3 PQC Hazırlık İndeksi (Readiness Score) | TODO | P12.3 | CPU | 0-100 kurumsal kuantum güvenilirlik skoru motoru |
 | 48 | WS-P12.4 Nihai E2E Entegrasyon Testi | TODO | P12.4 | CPU | 30+ birleşik senaryo ile sistem entegrasyon doğrulaması |
@@ -68,11 +68,7 @@ WS-P12.3: PQC Hazırlık İndeksi (Readiness Score):
 ## Kabul Kriteri Durumu
 - [x] Aşama 1-8 kapsamındaki 33 iş kolu tamamlandı (1573/1573 test passed).
 - [x] Aşama 9: Kuantum Sonrası Otomatik Fuzzing & Bellek Güvenliği tamamlandı (1659/1659 test passed).
-- [x] WS-P10.2: CPU Önbellek Zamanlama Simülatörü tamamlandı - 4/4 pytest passed.
-- [x] WS-P10.3 & WS-P10.4: Donanım Güç Kalibrasyon Haritası ve Benchmark API tamamlandı - 11/11 pytest passed.
-- [x] WS-P11.1: Çoklu Kiracılı API Key & JWT Token Yetkilendirme Modülü tamamlandı - 6/6 pytest passed.
-- [x] WS-P11.2: Rate Limiting & DoS Kalkanı (Token Bucket) tamamlandı - 4/4 pytest passed.
-- [x] WS-P11.3: Docker Compose & Kubernetes Manifestoları tamamlandı - 4/4 pytest passed.
-- [x] WS-P11.4: Grafana Dashboard Şablonu tamamlandı - 1/1 pytest passed.
+- [x] WS-P10.x: Donanım ve Hızlandırma Aşaması tamamlandı - 15/15 pytest passed.
+- [x] WS-P11.x: Cloud/K8s & Güvenlik Entegrasyonu tamamlandı - 11/11 pytest passed.
 - [x] WS-P12.1: Model Ağırlık Bütünlük Doğrulayıcı tamamlandı - 5/5 pytest passed.
 - [ ] Aşama 12: Sürekli Kriptografik Zeka & Nihai Entegrasyon (WS-P12.2 - WS-P12.4)

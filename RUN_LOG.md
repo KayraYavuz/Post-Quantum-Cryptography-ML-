@@ -143,3 +143,4 @@
 - 2026-09-21 18:35 +03:00 | [WS-P12.1] Model Ağırlık Bütünlük Doğrulayıcı tamamlandı - SHA-256 state_dict hashing, baseline registry ve poisoning detection (5/5 pytest passed), PROJECT_STATE WS-P12.2'ye ilerletildi | state: WS-P12.1.DONE <!-- project: github.com/KayraYavuz/Post-Quantum-Cryptography-ML- -->
 
 [2026-09-21 19:15] WS-P12.2 tamamlandı. Sırada WS-P12.3: Readiness Score var.
+[2026-09-21T16:38:33Z] Step WS-P12.1 completed: Model Weight Integrity Validator implemented and verified. Moving to WS-P12.2.

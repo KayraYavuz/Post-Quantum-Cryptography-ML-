@@ -1,1 +1,1 @@
-# Core package init
+# Placeholder for package discovery
