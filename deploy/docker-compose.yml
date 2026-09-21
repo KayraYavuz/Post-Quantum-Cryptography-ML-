@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  pqc-gateway:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: pqc-cryptography-ml:latest
+    container_name: pqc-security-gateway
+    ports:
+      - "8090:8090"
+    environment:
+      - PORT=8090
+      - WORKERS=4
+      - LOG_LEVEL=info
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8090/docs')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s

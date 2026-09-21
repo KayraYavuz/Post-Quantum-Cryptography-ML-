@@ -1,0 +1,53 @@
+{
+  "id": null,
+  "uid": null,
+  "title": "Post-Quantum Cryptography ML - Gateway and Prometheus Monitoring",
+  "refresh": "5s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "CPU Usage & Memory Utilization",
+      "type": "graph",
+      "targets": [
+        {
+          "expr": "cpu_usage_percent",
+          "legendFormat": "CPU %"
+        },
+        {
+          "expr": "memory_usage_bytes",
+          "legendFormat": "Memory Bytes"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Http Requests & Latency",
+      "type": "graph",
+      "targets": [
+        {
+          "expr": "http_requests_total",
+          "legendFormat": "Requests Total"
+        },
+        {
+          "expr": "http_request_time_seconds_sum",
+          "legendFormat": "Latency Sum"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Rate Limit & JWT Auth Status",
+      "type": "graph",
+      "targets": [
+        {
+          "expr": "rate_limit_exceeded_total",
+          "legendFormat": "Rate Limit Exceeded"
+        },
+        {
+          "expr": "jwt_auth_failures_total",
+          "legendFormat": "JWT Auth Failures"
+        }
+      ]
+    }
+  ]
+}

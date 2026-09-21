@@ -1,16 +1,16 @@
 # PROJECT STATE — AŞAMA 9-12: İLERİ GÜVENLİK FUZZING, DONANIM HIZLANDIRMA, CLOUD/K8S & SÜREKLİ KRİPTOGRAFİK ZEKA
-Son güncelleme: 2026-09-21T17:25:00+03:00
-Commit: 4512168
+Son güncelleme: 2026-09-21T18:05:00+03:00
+Commit: latest
 
 ## Aktif İş Kolu
-WS-P11 — Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı | Adım P11.3 | Durum: TODO
+WS-P12 — Sürekli Kriptografik Zeka & Nihai Entegrasyon | Adım P12.1 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P11.3: Docker Compose & K8s Manifestoları:
-1. `deploy/docker-compose.yml` ve `deploy/k8s/` dizininde Kubernetes Deployment, Service ve Ingress konfigürasyonlarını oluştur.
-2. `tests/test_phase11_deployment.py` ile manifestoların doğruluk testlerini yaz.
-3. Bu iş kolunu `[WS-P11.3] Implement Docker Compose & K8s Manifests | state: WS-P11.3.DONE` formatıyla commit et.
-4. PROJECT_STATE.md dosyasını WS-P11.4 adımına ilerlet.
+WS-P12.1: Model Ağırlık Bütünlük Doğrulayıcı:
+1. `core/model_integrity.py` modülünü oluştur: model poisoning koruması ve SHA-256 doğrulama motoru.
+2. `tests/test_phase12_integrity.py` ile SHA-256 bütünlük testlerini gerçekle.
+3. Bu iş kolunu `[WS-P12.1] Implement Model Weight Integrity Validator | state: WS-P12.1.DONE` formatıyla commit et.
+4. PROJECT_STATE.md dosyasını WS-P12.2 adımına ilerlet.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -57,9 +57,9 @@ WS-P11.3: Docker Compose & K8s Manifestoları:
 | 39 | WS-P10.3 Donanım Güç Kalibrasyon Haritası | DONE | P10.3 | CPU | x86_64 vs ARM64 vs Apple Silicon CPU nanometre güç profili |
 | 40 | WS-P10.4 Donanım Benchmark API | DONE | P10.4 | CPU | GET /api/v1/hardware/benchmark donanım karşılaştırma servisi |
 | 41 | WS-P11.1 API Key & Token Yetkilendirme | DONE | P11.1 | CPU | Çoklu kullanıcı ve kiracı (multi-tenant) JWT middleware & 6/6 tests passed |
-| 42 | WS-P11.2 Rate Limiting & DoS Kalkanı | TODO | P11.2 | CPU | Token-bucket algoritması ile API hız sınırlama |
-| 43 | WS-P11.3 Docker Compose & K8s Manifestoları | TODO | P11.3 | Ops | Cluster dağıtımı için Kubernetes manifestoları & Helm charts |
-| 44 | WS-P11.4 Grafana Dashboard Şablonu | TODO | P11.4 | Ops | Prometheus telemetrisi için Grafana JSON paneli |
+| 42 | WS-P11.2 Rate Limiting & DoS Kalkanı | DONE | P11.2 | CPU | Token-bucket algoritması ile API hız sınırlama |
+| 43 | WS-P11.3 Docker Compose & K8s Manifestoları | DONE | P11.3 | Ops | Docker Compose ve Kubernetes (Deployment, Service, Ingress) konfigürasyonları |
+| 44 | WS-P11.4 Grafana Dashboard Şablonu | DONE | P11.4 | Ops | Prometheus telemetrisi için Grafana JSON paneli |
 | 45 | WS-P12.1 Model Ağırlık Bütünlük Doğrulayıcı | TODO | P12.1 | CPU | Model poisoning koruması ve SHA-256 doğrulama motoru |
 | 46 | WS-P12.2 Aktif Öğrenme (Active Learning) | TODO | P12.2 | CPU/GPU | Entropi tabanlı kritik osiloskop izi seçici ve fine-tune |
 | 47 | WS-P12.3 PQC Hazırlık İndeksi (Readiness Score) | TODO | P12.3 | CPU | 0-100 kurumsal kuantum güvenilirlik skoru motoru |
@@ -72,5 +72,6 @@ WS-P11.3: Docker Compose & K8s Manifestoları:
 - [x] WS-P10.3 & WS-P10.4: Donanım Güç Kalibrasyon Haritası ve Benchmark API tamamlandı - 11/11 pytest passed.
 - [x] WS-P11.1: Çoklu Kiracılı API Key & JWT Token Yetkilendirme Modülü tamamlandı - 6/6 pytest passed.
 - [x] WS-P11.2: Rate Limiting & DoS Kalkanı (Token Bucket) tamamlandı - 4/4 pytest passed.
-- [ ] Aşama 11: Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı (WS-P11.3 - WS-P11.4)
+- [x] WS-P11.3: Docker Compose & Kubernetes Manifestoları tamamlandı - 4/4 pytest passed.
+- [x] WS-P11.4: Grafana Dashboard Şablonu tamamlandı - 1/1 pytest passed.
 - [ ] Aşama 12: Sürekli Kriptografik Zeka & Nihai Entegrasyon (WS-P12.1 - WS-P12.4)

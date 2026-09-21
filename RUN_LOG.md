@@ -1,4 +1,5 @@
 - 2026-09-16T15:43:07Z | [WS-P4.3] Donanım İzi İçe Aktarıcı - ChipWhisperer HDF5 trace loading ve SNR analizi tamamlandı | state: DONE
+- 2026-09-21T18:10:00+03:00 | [WS-P11.4] Implement Grafana Dashboard Template | state: WS-P11.4.DONE
 - 2026-09-15T00:00:00Z | [WS-0.1-0.4] Repo iskeleti, pyproject.toml, Docker multi-stage, Kueue k8s manifestoları tamamlandı | state: WS-0.DONE
 
 - 2026-09-16T01:32:00Z | [WS-G.1] Matrix runner written and executed across {gcc,clang}x{-O0,-O1,-Os} for x86_64/aarch64 with mlkem-native/clangover/kyberslash references | completed
@@ -139,4 +140,4 @@
 2026-09-17T18:45:00Z | [WS-P9.2] Bellek Zeroization Denetörü - RAM temizleme algoritmaları, kalıntı bayt analizi ve sıfırlama doğrulama testleri tamamlandı. 18/18 pytest test passed. [WS-P9.2] Implement Memory Zeroization Auditor and Tests | state: WS-P9.2.DONE
 
 - 2026-09-21T14:15:00+03:00 | [WS-P9.5 / GITHUB_SYNC] C-FFI Hızlandırıcı Çekirdek ve Fuzzing paket ihracı tamamlandı (src/pqc_bench/cffi/nuts_accelerator.py, tests/test_phase9_cffitest.py). 1659/1659 test passed (%100 başarı). Yeni GitHub PAT (workflow scope yetkili) sisteme tanımlandı, birikmiş 53 yerel commit (222164e..54e66a1) GitHub origin/main dalına başarıyla push edildi. Uzak senkronizasyon ve CI engeli tamamen çözüldü. PROJECT_STATE.md güncellendi, Aşama 9 tamamlandı; aktif geliştirme adımı WS-P10.2 TODO. | state: DONE_ALL_TESTS_PASSING_SYNCED <!-- project: github.com/KayraYavuz/Post-Quantum-Cryptography-ML- -->
-## [2026-09-21 17:25] WS-P11.1 Completed
+- 2026-09-21 17:44 +03:00 | [WS-P11.2] Rate Limiting & DoS Kalkanı (Token Bucket) tamamlandı - 4/4 pytest passed, git commit ve push başarılı | state: WS-P11.2.DONE <!-- project: github.com/KayraYavuz/Post-Quantum-Cryptography-ML- -->

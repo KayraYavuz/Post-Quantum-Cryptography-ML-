@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pqc-gateway-deployment
+  namespace: default
+  labels:
+    app: pqc-gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pqc-gateway
+  template:
+    metadata:
+      labels:
+        app: pqc-gateway
+    spec:
+      containers:
+      - name: pqc-gateway
+        image: pqc-cryptography-ml:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8090
+          name: http
+        env:
+        - name: PORT
+          value: "8090"
+        - name: WORKERS
+          value: "4"
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2Gi
+          requests:
+            cpu: "500m"
+            memory: 512Mi
+        livenessProbe:
+          httpGet:
+            path: /docs
+            port: 8090
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /docs
+            port: 8090
+          initialDelaySeconds: 5
+          periodSeconds: 10
