@@ -1,21 +1,26 @@
+import unittest
 import numpy as np
 
 class ReadinessScoreEngine:
     """
-    Kurumsal Kuantum Güvenlik Hazırlık (Readiness) Skoru Hesaplama Motoru.
-    Algoritmalar, donanım, bulut ve kütüphane bazlı güvenlik metriklerini analiz eder.
+    0-100 ölçeğinde kurumsal PQC hazırlık skoru hesaplar.
+    Ağırlıklar:
+    - Kriptografik Uyumluluk (40%): FIPS, CNSA, hibrit yapılar.
+    - Donanım Direnci (30%): Sabit zamanlılık, maskeleme, yan kanal.
+    - İşletimsel Güvenlik (30%): Fuzzing, bellek güvenliği, CI/CD.
     """
-    
-    def __init__(self, weights=None):
-        # Varsayılan ağırlıklar: [Algoritma, Donanım, Bulut, Kütüphane]
-        self.weights = weights or {"algorithm": 0.4, "hardware": 0.2, "cloud": 0.2, "library": 0.2}
-        
-    def calculate_score(self, metrics):
-        """
-        metrics: dict {'algorithm': 0-100, 'hardware': 0-100, 'cloud': 0-100, 'library': 0-100}
-        """
-        score = sum(metrics[k] * self.weights[k] for k in metrics if k in self.weights)
-        return float(np.clip(score, 0, 100))
+    def __init__(self, crypto_score, hardware_score, operational_score):
+        self.crypto_score = np.clip(crypto_score, 0, 100)
+        self.hardware_score = np.clip(hardware_score, 0, 100)
+        self.operational_score = np.clip(operational_score, 0, 100)
 
-def get_engine():
-    return ReadinessScoreEngine()
+    def calculate(self):
+        score = (self.crypto_score * 0.4) + (self.hardware_score * 0.3) + (self.operational_score * 0.3)
+        return round(score, 2)
+
+    def get_status(self):
+        score = self.calculate()
+        if score >= 90: return "EXCELLENT"
+        if score >= 70: return "READY"
+        if score >= 50: return "WARNING"
+        return "CRITICAL"

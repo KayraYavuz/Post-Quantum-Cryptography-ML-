@@ -3,7 +3,7 @@ Son güncelleme: 2026-09-21T18:40:00+03:00
 Commit: latest
 
 ## Aktif İş Kolu
-WS-P12 — Sürekli Kriptografik Zeka & Nihai Entegrasyon | Adım P12.2 | Durum: TODO
+WS-P12 — Sürekli Kriptografik Zeka & Nihai Entegrasyon | Adım P12.3 | Durum: TODO
 
 ## Sıradaki Adım
 WS-P12.3: PQC Hazırlık İndeksi (Readiness Score):
