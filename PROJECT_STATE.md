@@ -3,15 +3,15 @@ Son güncelleme: 2026-09-21T14:15:00+03:00
 Commit: 54e66a1
 
 ## Aktif İş Kolu
-WS-P10 — Donanım Hızlandırma & C-FFI / Önbellek Zamanlama | Adım P10.2 | Durum: TODO
+WS-P10 — Donanım Hızlandırma & C-FFI / Önbellek Zamanlama | Adım P10.3 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P10.2: CPU Önbellek Zamanlama Simülatörü:
-1. `tests/test_phase10_cache_timing.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
-2. Flush+Reload ve Prime+Probe L1/L3 önbellek sızıntı simülatörünü (`src/pqc_bench/hardware/cache_timing.py`) geliştir.
-3. Bellek hatları (cache-line) çakışma analizini ve sızıntı skorlama motorunu entegre et.
-4. Bu iş kolunu `[WS-P10.2] Implement CPU Cache Timing Simulator & Leakage Models | state: WS-P10.2.DONE` formatıyla commit et.
-5. PROJECT_STATE.md dosyasını WS-P10.3 adımına ilerlet.
+WS-P10.3: Donanım Güç Kalibrasyon Haritası:
+1. `tests/test_phase10_power_calibration.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
+2. x86_64 vs ARM64 vs Apple Silicon CPU nanometre güç profili ve simülasyon haritasını (`src/pqc_bench/hardware/power_calibration.py`) geliştir.
+3. Güç tüketimi ile NTT/Keccak operasyonları arasındaki korelasyonu modelle.
+4. Bu iş kolunu `[WS-P10.3] Implement Hardware Power Calibration & Simulation Map | state: WS-P10.3.DONE` formatıyla commit et.
+5. PROJECT_STATE.md dosyasını WS-P10.4 adımına ilerlet.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -54,7 +54,7 @@ WS-P10.2: CPU Önbellek Zamanlama Simülatörü:
 | 35 | WS-P9.3 Polinom Taşma Tarayıcısı | DONE | P9.3 | CPU | NTT katsayı çarpmalarında modüler integer overflow tarayıcısı - 12/12 pytest passed |
 | 36 | WS-P9.4 Fuzzing Güvenlik Raporu | DONE | P9.4 | CPU | Fuzzing açıkları ve anomali matrisi JSON/Markdown ihracı |
 | 37 | WS-P10.1 C-FFI Hızlandırıcı Çekirdek | DONE | P10.1 | CPU | C/Cython ile derlenmiş yüksek hızlı NTT çekirdeği - optimized NTT core eklendildı (WS-P9.4 completed) |
-| 38 | WS-P10.2 CPU Önbellek Zamanlama Simülatörü | TODO | P10.2 | CPU | Flush+Reload & Prime+Probe L1/L3 önbellek sızıntı modeli |
+| 38 | WS-P10.2 CPU Önbellek Zamanlama Simülatörü | DONE | P10.2 | CPU | Flush+Reload & Prime+Probe L1/L3 önbellek sızıntı modeli |
 | 39 | WS-P10.3 Donanım Güç Kalibrasyon Haritası | TODO | P10.3 | CPU | x86_64 vs ARM64 vs Apple Silicon CPU nanometre güç profili |
 | 40 | WS-P10.4 Donanım Benchmark API | TODO | P10.4 | CPU | GET /api/v1/hardware/benchmark donanım karşılaştırma servisi |
 | 41 | WS-P11.1 API Key & Token Yetkilendirme | TODO | P11.1 | CPU | Çoklu kullanıcı ve kiracı (multi-tenant) JWT middleware |
@@ -75,6 +75,7 @@ WS-P10.2: CPU Önbellek Zamanlama Simülatörü:
 - [x] WS-P9.5 / P10.1: C-FFI Hızlandırıcı Çekirdek ve Benchmark API tamamlandı - 21/21 pytest passed.
 - [x] Aşama 9: Kuantum Sonrası Otomatik Fuzzing & Bellek Güvenliği tamamlandı (1659/1659 test passed).
 - [x] GitHub Push Engeli Çözüldü: Personal Access Token `workflow` yetkisi ile güncellendi, 53 commit origin/main'e push edildi.
-- [ ] Aşama 10: Donanım Hızlandırma & C-FFI / Önbellek Zamanlama (WS-P10.2 - WS-P10.4)
+- [x] WS-P10.2: CPU Önbellek Zamanlama Simülatörü tamamlandı - 4/4 pytest passed.
+- [ ] Aşama 10: Donanım Hızlandırma & C-FFI / Önbellek Zamanlama (WS-P10.3 - WS-P10.4)
 - [ ] Aşama 11: Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı (WS-P11.1 - WS-P11.4)
 - [ ] Aşama 12: Sürekli Kriptografik Zeka & Nihai Entegrasyon (WS-P12.1 - WS-P12.4)
