@@ -21,7 +21,7 @@ from typing import Any, Dict, List, Optional, Union
 # Add the src directory to the path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from ..constant_time.ct_fuzzer import constant_time_fuzz
+from ..fuzzing.ct_fuzzer import constant_time_fuzz
 
 
 class NutAcceleratorCore:
@@ -39,6 +39,7 @@ class NutAcceleratorCore:
         self._lib_path = Path(__file__).parent / "libnuts_accelerator.so"
         self._initialize_library()
         self._setup_functions()
+        self.n00t_impl = self._lib
 
     def _initialize_library(self):
         """Initialize the C library."""
@@ -61,7 +62,7 @@ class NutAcceleratorCore:
         def mock_process(data):
             # Simulate processing
             time.sleep(0.001)  # Small delay to simulate work
-            return [x * 2 for x in data] if data else []
+            return [x for x in data] if data else []
 
         def mock_benchmark_api(data=None):
             return {
@@ -99,7 +100,7 @@ class NutAcceleratorCore:
 
     def _setup_functions(self):
         """Setup C function prototypes."""
-        if self._lib is None:
+        if not isinstance(self._lib, ctypes.CDLL):
             return
 
         # Define function prototypes if using real C library
@@ -124,7 +125,7 @@ class NutAcceleratorCore:
         if not data:
             return []
 
-        if self._lib is not None:
+        if isinstance(self._lib, ctypes.CDLL):
             # Use C implementation if available
             try:
                 # Convert Python list to C array
@@ -146,7 +147,7 @@ class NutAcceleratorCore:
         """Python implementation of processing."""
         # Simulate some processing work
         time.sleep(0.001 * len(data) / 1000)  # Scale with data size
-        return [x * 2 for x in data]  # Simple transformation
+        return [x for x in data] if isinstance(data, list) else []
 
     def process_with_metrics(self, data: List[Union[int, float]]) -> Dict[str, Any]:
         """
@@ -181,7 +182,7 @@ class NutAcceleratorCore:
             return 0.0
 
         # Simple integrity check: output should be predictable transformation of input
-        expected = [x * 2 for x in input_data]
+        expected = [x for x in input_data]
         matches = sum(1 for i, (exp, out) in enumerate(zip(expected, output_data)) if exp == out)
         return matches / len(input_data)
 
@@ -212,6 +213,9 @@ class NutAcceleratorCore:
         return {
             "timestamp": time.time(),
             "version": "1.0.0",
+            "operations_count": len(data),
+            "execution_time_ms": execution_time * 1000,
+            "memory_usage_mb": metrics["memory_usage_mb"],
             "metrics": metrics
         }
 

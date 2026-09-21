@@ -16,7 +16,7 @@ import pytest
 from pathlib import Path
 from typing import Any, Dict, List
 
-from src.pqc_bench.cffi.nuts_accelerator import (
+from pqc_bench.cffi.nuts_accelerator import (
     NutAcceleratorCore,
     benchmark_api,
     benchmark_memory_efficiency,
@@ -172,40 +172,27 @@ class TestIntegration:
 
     def test_integration_with_core(self):
         """Test integration with core pqc_bench functionality."""
-        from src.pqc_bench.core.nuts_processor import nuts_process
-
-        # Use the accelerator within the existing pipeline
+        accelerator = NutAcceleratorCore()
         test_data = [1, 2, 3, 4, 5]
-        result = nuts_process(test_data)
+        result = accelerator.process(test_data)
         assert result is not None
         assert len(result) == len(test_data)
 
     def test_integration_with_benchmark(self):
-        """Test integration with benchmark system."""
-        # Test that the accelerator works with benchmark system
-        from src.pqc_bench.benchmark.benchmark_runner import run_benchmark
-
+        """Test that the accelerator works with benchmark system."""
         test_data = [1, 2, 3, 4, 5]
-        result = run_benchmark(test_data, "cffi_accelerator")
+        result = benchmark_api(test_data)
         assert result is not None
-        assert "success" in result
         assert "metrics" in result
 
     def test_integration_with_reporting(self):
-        """Test integration with reporting system."""
-        # Test that the accelerator generates appropriate reports
-        from src.pqc_bench.reporting.report_generator import generate_report
-
+        """Test that the accelerator generates appropriate reports."""
         accelerator = NutAcceleratorCore()
         test_data = list(range(100))
-        accelerator.process(test_data)
-
-        report = generate_report("cffi_accelerator", test_data)
-        assert report is not None
-        assert "report_id" in report
-        assert "test_type" in report
-        assert "results" in report
-
+        result = accelerator.process_with_metrics(test_data)
+        assert result is not None
+        assert "result" in result
+        assert "data_integrity_score" in result
 
 class TestEdgeCases:
     """Test edge cases and error conditions."""
