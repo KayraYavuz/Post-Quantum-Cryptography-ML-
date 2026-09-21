@@ -1,17 +1,17 @@
 # PROJECT STATE — AŞAMA 9-12: İLERİ GÜVENLİK FUZZING, DONANIM HIZLANDIRMA, CLOUD/K8S & SÜREKLİ KRİPTOGRAFİK ZEKA
-Son güncelleme: 2026-09-21T14:15:00+03:00
-Commit: 54e66a1
+Son güncelleme: 2026-09-21T17:15:00+03:00
+Commit: 4512168
 
 ## Aktif İş Kolu
-WS-P10 — Donanım Hızlandırma & C-FFI / Önbellek Zamanlama | Adım P10.3 | Durum: TODO
+WS-P11 — Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı | Adım P11.1 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P10.3: Donanım Güç Kalibrasyon Haritası:
-1. `tests/test_phase10_power_calibration.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
-2. x86_64 vs ARM64 vs Apple Silicon CPU nanometre güç profili ve simülasyon haritasını (`src/pqc_bench/hardware/power_calibration.py`) geliştir.
-3. Güç tüketimi ile NTT/Keccak operasyonları arasındaki korelasyonu modelle.
-4. Bu iş kolunu `[WS-P10.3] Implement Hardware Power Calibration & Simulation Map | state: WS-P10.3.DONE` formatıyla commit et.
-5. PROJECT_STATE.md dosyasını WS-P10.4 adımına ilerlet.
+WS-P11.1: API Key & Token Yetkilendirme:
+1. `tests/test_phase11_auth.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
+2. `src/pqc_bench/gateway/auth.py` (veya ilgili auth modülü) ile JWT / API Key middleware geliştir.
+3. Çoklu kiracı (multi-tenant) rol tabanlı erişim kontrolünü (RBAC) test et.
+4. Bu iş kolunu `[WS-P11.1] Implement API Key & Token Authentication Middleware | state: WS-P11.1.DONE` formatıyla commit et.
+5. PROJECT_STATE.md dosyasını WS-P11.2 adımına ilerlet.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -55,8 +55,8 @@ WS-P10.3: Donanım Güç Kalibrasyon Haritası:
 | 36 | WS-P9.4 Fuzzing Güvenlik Raporu | DONE | P9.4 | CPU | Fuzzing açıkları ve anomali matrisi JSON/Markdown ihracı |
 | 37 | WS-P10.1 C-FFI Hızlandırıcı Çekirdek | DONE | P10.1 | CPU | C/Cython ile derlenmiş yüksek hızlı NTT çekirdeği - optimized NTT core eklendildı (WS-P9.4 completed) |
 | 38 | WS-P10.2 CPU Önbellek Zamanlama Simülatörü | DONE | P10.2 | CPU | Flush+Reload & Prime+Probe L1/L3 önbellek sızıntı modeli |
-| 39 | WS-P10.3 Donanım Güç Kalibrasyon Haritası | TODO | P10.3 | CPU | x86_64 vs ARM64 vs Apple Silicon CPU nanometre güç profili |
-| 40 | WS-P10.4 Donanım Benchmark API | TODO | P10.4 | CPU | GET /api/v1/hardware/benchmark donanım karşılaştırma servisi |
+| 39 | WS-P10.3 Donanım Güç Kalibrasyon Haritası | DONE | P10.3 | CPU | x86_64 vs ARM64 vs Apple Silicon CPU nanometre güç profili |
+| 40 | WS-P10.4 Donanım Benchmark API | DONE | P10.4 | CPU | GET /api/v1/hardware/benchmark donanım karşılaştırma servisi |
 | 41 | WS-P11.1 API Key & Token Yetkilendirme | TODO | P11.1 | CPU | Çoklu kullanıcı ve kiracı (multi-tenant) JWT middleware |
 | 42 | WS-P11.2 Rate Limiting & DoS Kalkanı | TODO | P11.2 | CPU | Token-bucket algoritması ile API hız sınırlama |
 | 43 | WS-P11.3 Docker Compose & K8s Manifestoları | TODO | P11.3 | Ops | Cluster dağıtımı için Kubernetes manifestoları & Helm charts |
@@ -68,14 +68,9 @@ WS-P10.3: Donanım Güç Kalibrasyon Haritası:
 
 ## Kabul Kriteri Durumu
 - [x] Aşama 1-8 kapsamındaki 33 iş kolu tamamlandı (1573/1573 test passed).
-- [x] WS-P9.1: Sabit Zamanlılık Fuzzing Motoru tamamlandı.
-- [x] WS-P9.2: Bellek Zeroization Denetörü tamamlandı - 18/18 pytest passed.
-- [x] WS-P9.3: Polinom Taşma Tarayıcısı tamamlandı - 12/12 pytest passed.
-- [x] WS-P9.4: Fuzzing Güvenlik Raporu tamamlandı - 20/20 pytest passed.
-- [x] WS-P9.5 / P10.1: C-FFI Hızlandırıcı Çekirdek ve Benchmark API tamamlandı - 21/21 pytest passed.
 - [x] Aşama 9: Kuantum Sonrası Otomatik Fuzzing & Bellek Güvenliği tamamlandı (1659/1659 test passed).
 - [x] GitHub Push Engeli Çözüldü: Personal Access Token `workflow` yetkisi ile güncellendi, 53 commit origin/main'e push edildi.
 - [x] WS-P10.2: CPU Önbellek Zamanlama Simülatörü tamamlandı - 4/4 pytest passed.
-- [ ] Aşama 10: Donanım Hızlandırma & C-FFI / Önbellek Zamanlama (WS-P10.3 - WS-P10.4)
+- [x] WS-P10.3 & WS-P10.4: Donanım Güç Kalibrasyon Haritası ve Benchmark API tamamlandı - 11/11 pytest passed.
 - [ ] Aşama 11: Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı (WS-P11.1 - WS-P11.4)
 - [ ] Aşama 12: Sürekli Kriptografik Zeka & Nihai Entegrasyon (WS-P12.1 - WS-P12.4)
