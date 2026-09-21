@@ -30,18 +30,12 @@ class ModelIntegrityValidator:
 
     @staticmethod
     def compute_state_dict_hash(state_dict: Dict[str, torch.Tensor]) -> str:
-        """Compute deterministic SHA-256 hash of a PyTorch state_dict.
-
-        Tensors are sorted by key and serialized via torch.save into bytes
-        to ensure reproducibility across systems.
-        """
+        """Compute deterministic SHA-256 hash of a PyTorch state_dict."""
         sha256_hash = hashlib.sha256()
-        # Sort keys deterministically
         sorted_keys = sorted(state_dict.keys())
         for key in sorted_keys:
             tensor = state_dict[key]
             sha256_hash.update(key.encode("utf-8"))
-            # Convert tensor to CPU float32/cpu bytes
             if isinstance(tensor, torch.Tensor):
                 tensor_bytes = tensor.detach().cpu().numpy().tobytes()
                 sha256_hash.update(tensor_bytes)
@@ -66,11 +60,7 @@ class ModelIntegrityValidator:
         current_state_dict: Dict[str, torch.Tensor],
         max_relative_change: float = 0.25,
     ) -> Dict[str, Any]:
-        """Detect potential model poisoning or unauthorized weight tampering.
-
-        Compares tensor parameter norms and relative deviations between
-        original/trusted weights and current weights.
-        """
+        """Detect potential model poisoning or unauthorized weight tampering."""
         anomalies = []
         total_params = 0
         max_diff = 0.0
@@ -88,7 +78,7 @@ class ModelIntegrityValidator:
             curr_norm = torch.norm(curr_tensor.float()).item()
             diff_norm = torch.norm((orig_tensor - curr_tensor).float()).item()
 
-            rel_diff = diff_norm / max(orig_norm, 1e-4)
+            rel_diff = diff_norm / (orig_norm + 1e-8)
             if rel_diff > max_relative_change:
                 anomalies.append({
                     "parameter": key,
