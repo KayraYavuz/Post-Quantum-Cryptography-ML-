@@ -3,15 +3,14 @@ Son güncelleme: 2026-09-21T17:25:00+03:00
 Commit: 4512168
 
 ## Aktif İş Kolu
-WS-P11 — Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı | Adım P11.2 | Durum: TODO
+WS-P11 — Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı | Adım P11.3 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P11.2: Rate Limiting & DoS Kalkanı:
-1. `tests/test_phase11_ratelimit.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
-2. `src/pqc_bench/gateway/ratelimit.py` ile token-bucket / leaky-bucket algoritması geliştir.
-3. API istekleri için IP ve kiracı bazlı hız sınırlama (rate limiting) middleware entegrasyonunu test et.
-4. Bu iş kolunu `[WS-P11.2] Implement Rate Limiting & DoS Protection | state: WS-P11.2.DONE` formatıyla commit et.
-5. PROJECT_STATE.md dosyasını WS-P11.3 adımına ilerlet.
+WS-P11.3: Docker Compose & K8s Manifestoları:
+1. `deploy/docker-compose.yml` ve `deploy/k8s/` dizininde Kubernetes Deployment, Service ve Ingress konfigürasyonlarını oluştur.
+2. `tests/test_phase11_deployment.py` ile manifestoların doğruluk testlerini yaz.
+3. Bu iş kolunu `[WS-P11.3] Implement Docker Compose & K8s Manifests | state: WS-P11.3.DONE` formatıyla commit et.
+4. PROJECT_STATE.md dosyasını WS-P11.4 adımına ilerlet.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -72,5 +71,6 @@ WS-P11.2: Rate Limiting & DoS Kalkanı:
 - [x] WS-P10.2: CPU Önbellek Zamanlama Simülatörü tamamlandı - 4/4 pytest passed.
 - [x] WS-P10.3 & WS-P10.4: Donanım Güç Kalibrasyon Haritası ve Benchmark API tamamlandı - 11/11 pytest passed.
 - [x] WS-P11.1: Çoklu Kiracılı API Key & JWT Token Yetkilendirme Modülü tamamlandı - 6/6 pytest passed.
-- [ ] Aşama 11: Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı (WS-P11.2 - WS-P11.4)
+- [x] WS-P11.2: Rate Limiting & DoS Kalkanı (Token Bucket) tamamlandı - 4/4 pytest passed.
+- [ ] Aşama 11: Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı (WS-P11.3 - WS-P11.4)
 - [ ] Aşama 12: Sürekli Kriptografik Zeka & Nihai Entegrasyon (WS-P12.1 - WS-P12.4)
