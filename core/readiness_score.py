@@ -1,26 +1,36 @@
-import unittest
 import numpy as np
 
 class ReadinessScoreEngine:
     """
-    0-100 ölçeğinde kurumsal PQC hazırlık skoru hesaplar.
-    Ağırlıklar:
-    - Kriptografik Uyumluluk (40%): FIPS, CNSA, hibrit yapılar.
-    - Donanım Direnci (30%): Sabit zamanlılık, maskeleme, yan kanal.
-    - İşletimsel Güvenlik (30%): Fuzzing, bellek güvenliği, CI/CD.
+    0-100 kurumsal PQC güvenlik hazırlık skoru motoru.
+    İşletmenin PQC geçişindeki olgunluğunu ölçer.
     """
-    def __init__(self, crypto_score, hardware_score, operational_score):
-        self.crypto_score = np.clip(crypto_score, 0, 100)
-        self.hardware_score = np.clip(hardware_score, 0, 100)
-        self.operational_score = np.clip(operational_score, 0, 100)
+    def __init__(self):
+        self.metrics = {
+            "pqc_algorithm_adoption": 0.0,  # %0-100
+            "hardware_acceleration": 0.0,   # %0-100
+            "compliance_rating": 0.0,       # %0-100
+            "fuzzing_coverage": 0.0         # %0-100
+        }
 
-    def calculate(self):
-        score = (self.crypto_score * 0.4) + (self.hardware_score * 0.3) + (self.operational_score * 0.3)
+    def update_metric(self, metric_name, value):
+        if metric_name in self.metrics:
+            self.metrics[metric_name] = np.clip(float(value), 0.0, 100.0)
+
+    def calculate_score(self):
+        """Ağırlıklı skor hesaplama."""
+        weights = {
+            "pqc_algorithm_adoption": 0.4,
+            "hardware_acceleration": 0.2,
+            "compliance_rating": 0.2,
+            "fuzzing_coverage": 0.2
+        }
+        score = sum(self.metrics[m] * weights[m] for m in weights)
         return round(score, 2)
 
-    def get_status(self):
-        score = self.calculate()
-        if score >= 90: return "EXCELLENT"
-        if score >= 70: return "READY"
-        if score >= 50: return "WARNING"
-        return "CRITICAL"
+    def get_readiness_level(self):
+        score = self.calculate_score()
+        if score >= 90: return "CRITICAL_READY"
+        if score >= 70: return "PROD_READY"
+        if score >= 50: return "DEVELOPMENT_READY"
+        return "NON_COMPLIANT"
