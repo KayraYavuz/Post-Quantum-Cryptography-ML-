@@ -1,2 +1,7 @@
-[2026-09-21 19:58] WS-P12.3 tamamlandı: Readiness Score Engine oluşturuldu ve test edildi. PROJECT_STATE.md WS-P12.4 aşamasına ilerletildi.
-[2026-09-21T17:43:37Z] Completed all steps for WS-P12.4. Project state moved to COMPLETE.
+# RUN_LOG.md
+
+## 2026-09-21
+- WS-P12.2: Entropi tabanlı iz seçici ve fine-tune motoru (src/active_learning/selector.py) tamamlandı.
+- Birim testleri (tests/test_active_learning.py) pytest ile %100 başarıyla geçildi.
+- Git commit atıldı ve push edildi.
+- PROJECT_STATE.md güncellendi, bir sonraki adım olan P12.3 (Readiness Score) IN_PROGRESS olarak işaretlendi.

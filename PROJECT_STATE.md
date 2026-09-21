@@ -3,10 +3,10 @@ Son güncelleme: 2026-09-21T18:40:00+03:00
 Commit: latest
 
 ## Aktif İş Kolu
-WS-P12 — Sürekli Kriptografik Zeka & Nihai Entegrasyon | Adım P12.2 | Durum: IN_PROGRESS
+WS-P12 — Sürekli Kriptografik Zeka & Nihai Entegrasyon | Adım P12.3 | Durum: IN_PROGRESS
 
 ## Sıradaki Adım
-Entropi tabanlı kritik osiloskop izi seçici ve fine-tune motorunu yaz ve test et (WS-P12.2).
+0-100 kurumsal kuantum güvenilirlik skoru motorunu (Readiness Score) tasarla ve implemente et (WS-P12.3).
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -57,8 +57,8 @@ Entropi tabanlı kritik osiloskop izi seçici ve fine-tune motorunu yaz ve test 
 | 43 | WS-P11.3 Docker Compose & K8s Manifestoları | DONE | P11.3 | Ops | Docker Compose ve Kubernetes (Deployment, Service, Ingress) konfigürasyonları |
 | 44 | WS-P11.4 Grafana Dashboard Şablonu | DONE | P11.4 | Ops | Prometheus telemetrisi için Grafana JSON paneli |
 | 45 | WS-P12.1 Model Ağırlık Bütünlük Doğrulayıcı | DONE | P12.1 | CPU | SHA-256 bütünlük ve poisoning direnci |
-| 46 | WS-P12.2 Aktif Öğrenme (Active Learning) | TODO | P12.2 | CPU/GPU | Entropi tabanlı kritik osiloskop izi seçici ve fine-tune |
-| 47 | WS-P12.3 PQC Hazırlık İndeksi (Readiness Score) | TODO | P12.3 | CPU | 0-100 kurumsal kuantum güvenilirlik skoru motoru |
+| 46 | WS-P12.2 Aktif Öğrenme (Active Learning) | DONE | P12.2 | CPU/GPU | Entropi tabanlı kritik osiloskop izi seçici ve fine-tune |
+| 47 | WS-P12.3 PQC Hazırlık İndeksi (Readiness Score) | IN_PROGRESS | P12.3 | CPU | 0-100 kurumsal kuantum güvenilirlik skoru motoru |
 | 48 | WS-P12.4 Nihai E2E Entegrasyon Testi | TODO | P12.4 | CPU | 30+ birleşik senaryo ile sistem entegrasyon doğrulaması |
 
 ## Kabul Kriteri Durumu
