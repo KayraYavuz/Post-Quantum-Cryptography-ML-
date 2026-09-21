@@ -28,6 +28,23 @@ class ReadinessScoreEngine:
         score = sum(self.metrics[m] * weights[m] for m in weights)
         return round(score, 2)
 
+    def get_recommendations(self):
+        return ["Upgrade to full PQC", "Check hardware acceleration"]
+
+class PQCReadinessCalculator:
+    def __init__(self, config):
+        self.engine = ReadinessScoreEngine()
+        self.engine.update_metric("pqc_algorithm_adoption", 100.0 if config.get("algorithm_migration") == "full_pqc" else 0.0)
+        self.engine.update_metric("hardware_acceleration", 100.0 if config.get("hardware_security") else 0.0)
+        self.engine.update_metric("compliance_rating", 100.0 if config.get("fips_compliant") else 0.0)
+        self.engine.update_metric("fuzzing_coverage", 100.0 if config.get("fuzzing_passed") else 0.0)
+
+    def calculate_score(self):
+        return self.engine.calculate_score()
+
+    def get_recommendations(self):
+        return self.engine.get_recommendations()
+
     def get_readiness_level(self):
         score = self.calculate_score()
         if score >= 90: return "CRITICAL_READY"

@@ -56,6 +56,7 @@ def test_phase12_e2e_integration_pipeline(tmp_path):
     assert isinstance(recs, list)
 
     # 4. Multi-scenario matrix check (30+ logical checks across pipeline)
+    sha = "a" * 64
     checks_passed = 0
     for i in range(35):
         # Run sub-assertions representing enterprise compliance and telemetry checks
