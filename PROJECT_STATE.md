@@ -1,17 +1,17 @@
 # PROJECT STATE — AŞAMA 9-12: İLERİ GÜVENLİK FUZZING, DONANIM HIZLANDIRMA, CLOUD/K8S & SÜREKLİ KRİPTOGRAFİK ZEKA
-Son güncelleme: 2026-09-21T17:15:00+03:00
+Son güncelleme: 2026-09-21T17:25:00+03:00
 Commit: 4512168
 
 ## Aktif İş Kolu
-WS-P11 — Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı | Adım P11.1 | Durum: TODO
+WS-P11 — Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı | Adım P11.2 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P11.1: API Key & Token Yetkilendirme:
-1. `tests/test_phase11_auth.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
-2. `src/pqc_bench/gateway/auth.py` (veya ilgili auth modülü) ile JWT / API Key middleware geliştir.
-3. Çoklu kiracı (multi-tenant) rol tabanlı erişim kontrolünü (RBAC) test et.
-4. Bu iş kolunu `[WS-P11.1] Implement API Key & Token Authentication Middleware | state: WS-P11.1.DONE` formatıyla commit et.
-5. PROJECT_STATE.md dosyasını WS-P11.2 adımına ilerlet.
+WS-P11.2: Rate Limiting & DoS Kalkanı:
+1. `tests/test_phase11_ratelimit.py` birim testlerini yaz, pytest ile çalıştırıp doğrula.
+2. `src/pqc_bench/gateway/ratelimit.py` ile token-bucket / leaky-bucket algoritması geliştir.
+3. API istekleri için IP ve kiracı bazlı hız sınırlama (rate limiting) middleware entegrasyonunu test et.
+4. Bu iş kolunu `[WS-P11.2] Implement Rate Limiting & DoS Protection | state: WS-P11.2.DONE` formatıyla commit et.
+5. PROJECT_STATE.md dosyasını WS-P11.3 adımına ilerlet.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |
@@ -57,7 +57,7 @@ WS-P11.1: API Key & Token Yetkilendirme:
 | 38 | WS-P10.2 CPU Önbellek Zamanlama Simülatörü | DONE | P10.2 | CPU | Flush+Reload & Prime+Probe L1/L3 önbellek sızıntı modeli |
 | 39 | WS-P10.3 Donanım Güç Kalibrasyon Haritası | DONE | P10.3 | CPU | x86_64 vs ARM64 vs Apple Silicon CPU nanometre güç profili |
 | 40 | WS-P10.4 Donanım Benchmark API | DONE | P10.4 | CPU | GET /api/v1/hardware/benchmark donanım karşılaştırma servisi |
-| 41 | WS-P11.1 API Key & Token Yetkilendirme | TODO | P11.1 | CPU | Çoklu kullanıcı ve kiracı (multi-tenant) JWT middleware |
+| 41 | WS-P11.1 API Key & Token Yetkilendirme | DONE | P11.1 | CPU | Çoklu kullanıcı ve kiracı (multi-tenant) JWT middleware & 6/6 tests passed |
 | 42 | WS-P11.2 Rate Limiting & DoS Kalkanı | TODO | P11.2 | CPU | Token-bucket algoritması ile API hız sınırlama |
 | 43 | WS-P11.3 Docker Compose & K8s Manifestoları | TODO | P11.3 | Ops | Cluster dağıtımı için Kubernetes manifestoları & Helm charts |
 | 44 | WS-P11.4 Grafana Dashboard Şablonu | TODO | P11.4 | Ops | Prometheus telemetrisi için Grafana JSON paneli |
@@ -69,8 +69,8 @@ WS-P11.1: API Key & Token Yetkilendirme:
 ## Kabul Kriteri Durumu
 - [x] Aşama 1-8 kapsamındaki 33 iş kolu tamamlandı (1573/1573 test passed).
 - [x] Aşama 9: Kuantum Sonrası Otomatik Fuzzing & Bellek Güvenliği tamamlandı (1659/1659 test passed).
-- [x] GitHub Push Engeli Çözüldü: Personal Access Token `workflow` yetkisi ile güncellendi, 53 commit origin/main'e push edildi.
 - [x] WS-P10.2: CPU Önbellek Zamanlama Simülatörü tamamlandı - 4/4 pytest passed.
 - [x] WS-P10.3 & WS-P10.4: Donanım Güç Kalibrasyon Haritası ve Benchmark API tamamlandı - 11/11 pytest passed.
-- [ ] Aşama 11: Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı (WS-P11.1 - WS-P11.4)
+- [x] WS-P11.1: Çoklu Kiracılı API Key & JWT Token Yetkilendirme Modülü tamamlandı - 6/6 pytest passed.
+- [ ] Aşama 11: Çoklu Kiracılı Güvenlik Ağ Geçidi & Cloud/K8s Hazırlığı (WS-P11.2 - WS-P11.4)
 - [ ] Aşama 12: Sürekli Kriptografik Zeka & Nihai Entegrasyon (WS-P12.1 - WS-P12.4)
