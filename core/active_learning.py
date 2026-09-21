@@ -15,10 +15,10 @@ class EntropySelector:
         probs = trace / total
         return -np.sum(probs * np.log2(probs + 1e-9))
 
-    def select_critical_traces(self, traces, top_k=5):
+    def select_informative_traces(self, traces, n_samples=1):
         entropies = [self.calculate_entropy(t) for t in traces]
-        indices = np.argsort(entropies)[-top_k:]
-        return traces[indices], indices
+        indices = np.argsort(entropies)[-n_samples:]
+        return [traces[i] for i in indices]
 
 class FineTuneEngine:
     def __init__(self, model):
