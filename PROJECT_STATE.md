@@ -6,11 +6,11 @@ Commit: latest
 WS-P12 — Sürekli Kriptografik Zeka & Nihai Entegrasyon | Adım P12.2 | Durum: TODO
 
 ## Sıradaki Adım
-WS-P12.2: Aktif Öğrenme (Active Learning):
-1. `core/active_learning.py` modülünü oluştur: entropi tabanlı osiloskop izi seçici.
-2. `tests/test_phase12_active_learning.py` ile iz seçimi ve fine-tuning döngüsünü doğrula.
-3. Bu iş kolunu `[WS-P12.2] Implement Active Learning Engine | state: WS-P12.2.DONE` formatıyla commit et.
-4. PROJECT_STATE.md dosyasını WS-P12.3 adımına ilerlet.
+WS-P12.3: PQC Hazırlık İndeksi (Readiness Score):
+1. `core/readiness_score.py` modülünü oluştur: 0-100 kurumsal güvenlik skoru motoru.
+2. `tests/test_phase12_readiness_score.py` ile skoru doğrula.
+3. Bu iş kolunu `[WS-P12.3] Implement Readiness Score Engine | state: WS-P12.3.DONE` formatıyla commit et.
+4. PROJECT_STATE.md dosyasını WS-P12.4 adımına ilerlet.
 
 ## İş Kolu Durum Tablosu (Büyük Yol Haritası)
 | # | Kol | Durum | Son adım | GPU/CPU | Açıklama |

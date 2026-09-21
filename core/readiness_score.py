@@ -1,22 +1,21 @@
-import math
+import numpy as np
 
 class ReadinessScoreEngine:
-    def __init__(self):
-        # Default weights for corporate readiness factors
-        self.weights = {
-            "algorithm_compliance": 0.30,
-            "hardware_security": 0.25,
-            "software_integrity": 0.25,
-            "operational_resilience": 0.20
-        }
+    """
+    Kurumsal Kuantum Güvenlik Hazırlık (Readiness) Skoru Hesaplama Motoru.
+    Algoritmalar, donanım, bulut ve kütüphane bazlı güvenlik metriklerini analiz eder.
+    """
+    
+    def __init__(self, weights=None):
+        # Varsayılan ağırlıklar: [Algoritma, Donanım, Bulut, Kütüphane]
+        self.weights = weights or {"algorithm": 0.4, "hardware": 0.2, "cloud": 0.2, "library": 0.2}
+        
+    def calculate_score(self, metrics):
+        """
+        metrics: dict {'algorithm': 0-100, 'hardware': 0-100, 'cloud': 0-100, 'library': 0-100}
+        """
+        score = sum(metrics[k] * self.weights[k] for k in metrics if k in self.weights)
+        return float(np.clip(score, 0, 100))
 
-    def calculate_score(self, metrics: dict) -> float:
-        """
-        0-100 kurumsal kuantum güvenilirlik skoru motoru.
-        metrics örneği: {"algorithm_compliance": 90, "hardware_security": 85, ...}
-        """
-        score = 0.0
-        for factor, weight in self.weights.items():
-            value = metrics.get(factor, 0.0)
-            score += value * weight
-        return round(max(0.0, min(100.0, score)), 2)
+def get_engine():
+    return ReadinessScoreEngine()

@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 from core.active_learning import EntropySelector, FineTuneEngine
 from core.readiness_score import PQCReadinessCalculator
-from core.model_integrity import ModelIntegrityVerifier
+from core.model_integrity import ModelIntegrityValidator as ModelIntegrityVerifier
 import os
 import json
 import tempfile
